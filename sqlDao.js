@@ -9,7 +9,7 @@ pmysql.createPool({
     host : 'localhost',
     user : 'root',
     password : 'root',
-    database : 'proj2024Mysql'
+    database : 'mydb'
     })
     //p passes back the connection to the database
     .then((p) => {
