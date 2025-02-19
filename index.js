@@ -1,8 +1,10 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser')
+var mySqlDao = require('./sqlDao')
 let ejs = require('ejs');
 app.set('view engine', 'ejs')
+const { check, validationResult } = require('express-validator');
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: false}))
@@ -27,7 +29,15 @@ app.get("/participants", (req, res)=> {
 
 //Rendering the members and their details
 app.get("/members", (req, res)=> {
-    res.render("memberDetails");
+    mySqlDao.getMembers()
+    .then((data)=>{
+        console.log("Correctly retrieved data")
+        res.render("memberDetails", {"squadMembers": data});
+    })
+    .catch((error)=>{
+        console.log("Error Encountered While Retrieving data")
+        res.send(error);
+    })
 })
 
 //Rendering the campaings with their details

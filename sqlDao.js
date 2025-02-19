@@ -22,7 +22,17 @@ pmysql.createPool({
 //Members methods & logic
 //Displaying all the beauty squad members
 var getMembers = function(){
-    //This method will allow me to pull any necessary info from the db regarding the beauty squad members
+    return new Promise((resolve, reject)=>{
+        pool.query('select u.id AS "MEMBER ID", u.username AS "MEMBER NAME", a.award_id AS "AWARD ID" from user u INNER JOIN user_awards a ON u.id = a.user_id;')
+        .then((data) => {
+            console.log("Members Received")
+            resolve(data);
+        })
+        .catch((error) => {
+            console.log("CATCH mySql.Dao.js")
+            reject(error)
+        })
+   })
 }
 
 //Participants methods  logic

@@ -10,4 +10,21 @@
             <a href="/campaigns">Track Campaign</a>
         </p>
     </div>
+
+    <div>
+        <table style="border: 1px solid black; margin-left: auto; margin-right: auto;">
+            <tr>
+                <th style="border: 1px solid black;">ID</th>
+                <th style="border: 1px solid black;">Name</th>
+                <th style="border: 1px solid black;">Member Award</th>
+            </tr>
+            <% squadMembers.forEach((member) => { %>
+            <tr>
+                <td style="border: 1px solid black;"><%= member.id %></td>
+                <td style="border: 1px solid black;"><%= member.username %></td>
+                <td style="border: 1px solid black;"><%= member.user_award %></td>
+            </tr>
+            <% }) %>
+        </table>
+    </div>
 </div>
