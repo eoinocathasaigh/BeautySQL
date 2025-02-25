@@ -15,13 +15,13 @@
             <tr>
                 <th style="border: 1px solid black;">ID</th>
                 <th style="border: 1px solid black;">Name</th>
-                <th style="border: 1px solid black;">Member Award</th>
+                <th style="border: 1px solid black;">Squad Member Email</th>
             </tr>
             <% squadMembers.forEach((member) => { %>
             <tr>
-                <td style="border: 1px solid black;"><%= member.id %></td>
+                <td style="border: 1px solid black;"><%= member.user_id %></td>
                 <td style="border: 1px solid black;"><%= member.username %></td>
-                <td style="border: 1px solid black;"><%= member.user_award %></td>
+                <td style="border: 1px solid black;"><%= member.user_email %></td>
             </tr>
             <% }) %>
         </table>
