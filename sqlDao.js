@@ -23,7 +23,7 @@ pmysql.createPool({
 //Displaying all the beauty squad members
 var getMembers = function(){
     return new Promise((resolve, reject)=>{
-        pool.query('select u.id AS "MEMBER ID", u.username AS "MEMBER NAME", a.award_id AS "AWARD ID" from user u INNER JOIN user_awards a ON u.id = a.user_id;')
+        pool.query('select u.id AS "Member ID", u.username AS "Member NAME", a.award_id AS "Award ID" from user u INNER JOIN user_awards a ON u.id = a.user_id;')
         .then((data) => {
             console.log("Members Received")
             resolve(data);
