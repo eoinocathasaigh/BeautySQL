@@ -16,13 +16,18 @@
                 <th style="border: 1px solid black;">ID</th>
                 <th style="border: 1px solid black;">Name</th>
                 <th style="border: 1px solid black;">Squad Member Email</th>
+                <th style="border: 1px solid black;">Video Reviewer</th>
+                <th style="border: 1px solid black;">Update Video Reviewer Status</th>
             </tr>
             <% squadMembers.forEach((member) => { %>
             <tr>
                 <td style="border: 1px solid black;"><%= member.user_id %></td>
                 <td style="border: 1px solid black;"><%= member.username %></td>
                 <td style="border: 1px solid black;"><%= member.user_email %></td>
-            </tr>
+                <td style="border: 1px solid black;"><%= member.video_reviewer %></td>
+                <td style="border: 1px solid black;">
+                    <button onclick="updateEligibility('<%= member.user_id %>')">Update Status</button></td>
+                </tr>
             <% }) %>
         </table>
     </div>

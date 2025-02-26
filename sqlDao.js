@@ -43,7 +43,133 @@ var getParticipants = function(){
 
 //Campaing methods & logic
 var getCampaigns = function(){
-
+    //Command to get the campaings and their specific info
+    return new Promise((resolve, reject)=>{
+        pool.query(`WITH AllRecords AS (
+    SELECT 
+        user.id AS user_id,
+        uw.award_id AS Sampler_Badge,
+        samcap.product_id AS Campaign_p_id,
+        pv.product_id AS review_product_id,
+        pr.id AS Product_id,
+        pr.title AS product_title,
+        samcap.product_variant_id AS SamCap_Product_var_id,
+        r.product_variant_id AS Review_product_variant_id,
+        r.id AS review_id,
+        r.title AS review_title,
+        r.description AS review_description,
+        r.rating AS review_rating,
+        r.recommend_product AS will_recommend,
+        r.repurchase_product AS will_repurchase,
+        hpa.name AS how_did_get_product,
+        r.link1 AS social_media_content_link1,
+        r.link2 AS social_media_content_link2,
+        r.link3 AS social_media_content_link3,
+        r.link4 AS social_media_content_link4,
+        r.link5 AS social_media_content_link5,
+        r.created_at AS review_created_at,
+        rs.sentiment AS review_sentiment,
+        rs.sentiment_score_positive AS review_sentiment_score_positive,
+        rs.sentiment_score_negative AS review_sentiment_score_negative,
+        rs.sentiment_score_neutral AS review_sentiment_score_neutral,
+        rs.sentiment_score_mixed AS review_sentiment_score_mixed,
+        samcap.posted_date AS Campaign_posted_at,
+        samint.campaign_ref AS sampling_campaign_ref,
+        samint.status AS campaign_status,
+        samcap.campaign_ref AS campaign_name,
+        samcap.product_id AS sampling_product_id,
+        samcap.no_of_samples AS sampling_no_of_samples,
+        samcap.posted_date AS sampling_posted_date,
+        samint.video_content AS user_lef_video_content,
+        user.username AS username,
+        p.name AS profile_name,
+        p.surname AS profile_surname,
+        p.instagram_handle AS instagram_handle,
+        p.instagram_followers AS instagram_followers,
+        p.tiktok_handle AS tiktok_handle,
+        p.tiktok_followers AS tiktok_followers,
+        CONCAT('https://cdn.thebeautybuddy.com/video/', rv.video_id, '/MP4/', rv.video_id, '_720.mp4') AS video_url,
+        video.upload_note AS video_status,
+        video.deleted AS review_video_deleted,
+        video.id AS review_video_id,
+        video.created_at AS review_video_created_at,
+        user.email AS user_email,
+        user.country AS user_country,
+        user.birthday AS user_dob,
+        user.gender AS gender,
+        user.last_login_at AS user_last_login_at,
+        user.created_at AS user_created_at,
+        p.newsletter AS profile_newsletter,
+        p.profile_image_id AS profile_image_id,
+        fup.file_path AS profile_image_url,
+        fu.file_path AS product_image_url, -- Fixed the product image path retrieval
+        uat.skin_tone AS ua_skin_tone
+    FROM user
+    LEFT JOIN profile p ON user.id = p.user_id
+    LEFT JOIN user_attribute uat ON user.id = uat.user_id
+    LEFT JOIN review r ON user.id = r.user_id
+    LEFT JOIN review_sentiment rs ON r.id = rs.review_id
+    LEFT JOIN review_video rv ON r.id = rv.review_id
+    LEFT JOIN video video ON video.id = rv.video_id
+    LEFT JOIN user_awards uw ON user.id = uw.user_id
+    LEFT JOIN product_variant pv ON r.product_variant_id = pv.id
+    LEFT JOIN product pr ON pv.product_id = pr.id
+    LEFT JOIN brand br ON pr.brand_id = br.id
+    LEFT JOIN sampler_interactions samint ON user.id = samint.user_id
+    LEFT JOIN sampling_campaigns samcap ON samint.campaign_ref = samcap.id
+    LEFT JOIN (
+        SELECT ptfu1.product_id, ptfu1.file_upload_id
+        FROM product_to_file_upload ptfu1
+        WHERE ptfu1.id = (
+            SELECT MAX(ptfu2.id)
+            FROM product_to_file_upload ptfu2
+            WHERE ptfu2.product_id = ptfu1.product_id
+        )
+    ) ptfu ON pv.id = ptfu.product_id
+    LEFT JOIN file_upload fu ON ptfu.file_upload_id = fu.id AND fu.file_upload_category_id = 1
+    LEFT JOIN file_upload fup ON p.profile_image_id = fup.id
+    LEFT JOIN how_product_acquired hpa ON r.how_did_get_product = hpa.id
+    WHERE samcap.product_id = pr.id
+    AND uw.award_id = '6'
+    AND r.deleted = "0"
+),
+RankedVideos AS (
+    SELECT *,
+           ROW_NUMBER() OVER (
+               PARTITION BY user_id
+               ORDER BY 
+                   CASE WHEN review_video_created_at IS NULL THEN 0 ELSE 1 END, 
+                   review_video_created_at DESC
+           ) AS rn
+    FROM AllRecords
+)
+SELECT * 
+FROM RankedVideos 
+WHERE video_status = "Success"  
+   OR (review_video_created_at IS NULL)  
+   OR (video_status IS NULL AND rn = 1);`)
+        .then((data) => {
+            console.log("Campaing Data Received")
+            resolve(data);
+        })
+        .catch((error) => {
+            console.log("CATCH mySql.Dao.js")
+            reject(error)
+        })
+   })
 }
 
-module.exports = {getMembers, getParticipants, getCampaigns}
+//Updating the video reviewer status of a squad member - means they are suitable for a video campaign
+var updateVideoEligibility = function(memberID){
+    console.log("User Updated Correctly")
+    return new Promise((resolve, reject) => {
+        pool.query('UPDATE user SET video_reviewer = 1 WHERE id IN (?);', [memberID])
+        .then((data) => {
+            resolve(data[0]);
+        })
+        .catch((error) => {
+            reject(error);
+        });
+    });
+}
+module.exports = {getMembers, getParticipants, getCampaigns, updateVideoEligibility}

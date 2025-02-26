@@ -32,7 +32,7 @@ app.get("/members", (req, res)=> {
     mySqlDao.getMembers()
     .then((data)=>{
         console.log("Correctly retrieved data")
-        res.render("memberDetails", {"squadMembers": data});
+        res.render("memberDetails", {"squadMembers": data, updateEligibility: mySqlDao.updateVideoEligibility});
     })
     .catch((error)=>{
         console.log("Error Encountered While Retrieving data")
@@ -42,5 +42,13 @@ app.get("/members", (req, res)=> {
 
 //Rendering the campaings with their details
 app.get("/campaigns", (req, res)=> {
-    res.render("campaigns");
+    mySqlDao.getCampaigns()
+    .then((data)=>{
+        console.log("Correctly retrieved data")
+        res.render("campaigns", {"campDetails": data});
+    })
+    .catch((error)=>{
+        console.log("Error Encountered While Retrieving data")
+        res.send(error);
+    })
 })

@@ -9,4 +9,21 @@
             <a href="/members">Track Members</a><br>
         </p>
     </div>
+
+    <div>
+        <table style="border: 1px solid black; margin-left: auto; margin-right: auto;">
+            <tr>
+                <th style="border: 1px solid black;">ID</th>
+                <th style="border: 1px solid black;">Name</th>
+                <th style="border: 1px solid black;">Squad Member Email</th>
+            </tr>
+            <% campDetails.forEach((campaign) => { %>
+            <tr>
+                <td style="border: 1px solid black;"><%= campaign.user_id %></td>
+                <td style="border: 1px solid black;"><%= campaign.Sampler_Badge %></td>
+                <td style="border: 1px solid black;"><%= campaign.Product_id %></td>
+            </tr>
+            <% }) %>
+        </table>
+    </div>
 </div>
