@@ -1,0 +1,41 @@
+<!--Simplistic view of the member details-->
+<div style="text-align: center; border: 2px solid black; border-radius: 5px; max-width: fit-content; margin: auto; background-color: lightblue;">
+    <h1><u>Page for dealing with the details of each member</u></h1>
+    <!--Navigation Links: Providing routing to each of the core parts of our application-->
+    <div style="text-align: center; border: 2px solid black; margin: auto; background-color: aquamarine;">
+        <p>
+            <a href="/">Home</a><br>
+            <a href="/participants">Track Participants</a><br>
+            <a href="/campaigns">Track Campaign</a>
+        </p>
+    </div>
+
+    <div>
+        <table style="border: 1px solid black; margin-left: auto; margin-right: auto;">
+            <tr>
+                <th style="border: 1px solid black;">ID</th>
+                <th style="border: 1px solid black;">Name</th>
+                <th style="border: 1px solid black;">Squad Member Email</th>
+                <th style="border: 1px solid black;">Video Reviewer</th>
+                <th style="border: 1px solid black;">Update Video Reviewer Status</th>
+            </tr>
+            <% squadMembers.forEach((member) => { %>
+                <tr>
+                <td style="border: 1px solid black;"><%= member.user_id %></td>
+                <td style="border: 1px solid black;"><%= member.username %></td>
+                <td style="border: 1px solid black;"><%= member.user_email %></td>
+                <td style="border: 1px solid black;"><%= member.video_reviewer %></td>
+                <td style="border: 1px solid black;">
+                    <form action="/members/edit/<%= member.user_id %>" method="GET">
+                        <button type="submit">Member Details</button>
+                    </form>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+</div>
+
+<!--Scripting for certain events to happen with this page-->
+<script>
+    
+</script>

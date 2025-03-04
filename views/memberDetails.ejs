@@ -1,34 +1,25 @@
-<!--Simplistic view of the member details-->
-<div style="text-align: center; border: 2px solid black; border-radius: 5px; max-width: fit-content; margin: auto; background-color: lightblue;">
-    <h1><u>Page for dealing with the details of each member</u></h1>
-    <!--Navigation Links: Providing routing to each of the core parts of our application-->
-    <div style="text-align: center; border: 2px solid black; margin: auto; background-color: aquamarine;">
-        <p>
-            <a href="/">Home</a><br>
-            <a href="/participants">Track Participants</a><br>
-            <a href="/campaigns">Track Campaign</a>
-        </p>
-    </div>
+<body>
+    <div style="text-align: center;">
+        <p style="font-size: 20px;"><a href="/">Home</a></p>
+        <h1><u>Member ID: <%= id %></u></h1>
+        <h1><u>Member Name: <%= memberDetails.username %></u></h1>
 
-    <div>
-        <table style="border: 1px solid black; margin-left: auto; margin-right: auto;">
-            <tr>
-                <th style="border: 1px solid black;">ID</th>
-                <th style="border: 1px solid black;">Name</th>
-                <th style="border: 1px solid black;">Squad Member Email</th>
-                <th style="border: 1px solid black;">Video Reviewer</th>
-                <th style="border: 1px solid black;">Update Video Reviewer Status</th>
-            </tr>
-            <% squadMembers.forEach((member) => { %>
-            <tr>
-                <td style="border: 1px solid black;"><%= member.user_id %></td>
-                <td style="border: 1px solid black;"><%= member.username %></td>
-                <td style="border: 1px solid black;"><%= member.user_email %></td>
-                <td style="border: 1px solid black;"><%= member.video_reviewer %></td>
-                <td style="border: 1px solid black;">
-                    <button onclick="updateEligibility('<%= member.user_id %>')">Update Status</button></td>
-                </tr>
-            <% }) %>
-        </table>
+        <!-- Form to Edit Student -->
+        <form action="/members/edit/<%= id %>" method="POST" style="border: 2px solid black; border-radius: 5px; margin-left: auto; margin-right: auto; max-width: fit-content; background-color: wheat;">
+            <label for="sid">Student ID:</label>
+            <!--The id can be seen but not edited-->
+            <input type="text" id="mid" name="sid" value="<%= id %>" readonly>
+            <br>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<%= memberDetails.username %>">
+            <br>
+            <label for="age">Email:</label>
+            <input type="text" id="email" name="email" value="<%= memberDetails.user_email %>">
+            <br>
+            <label for="age">Email:</label>
+            <input type="text" id="email" name="age" value="<%= memberDetails.user_email %>">
+            <br>
+            <button type="submit">Update</button>
+        </form>
     </div>
-</div>
+</body>

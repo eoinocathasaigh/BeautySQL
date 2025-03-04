@@ -27,12 +27,26 @@ app.get("/participants", (req, res)=> {
     res.render("participants");
 })
 
+//Rendering the page for the individual beauty squad member details
+app.get("/members/edit/:id", (req, res)=> {
+    const id = req.params.id;
+    mySqlDao.memberDetails(id)
+    .then((data)=>{
+        console.log("Correctly retrieved data")
+        res.render("memberDetails", {memberDetails: data, id});
+    })
+    .catch((error)=>{
+        console.log("Error Encountered While Retrieving data")
+        res.send(error);
+    })
+})
+
 //Rendering the members and their details
 app.get("/members", (req, res)=> {
     mySqlDao.getMembers()
     .then((data)=>{
         console.log("Correctly retrieved data")
-        res.render("memberDetails", {"squadMembers": data, updateEligibility: mySqlDao.updateVideoEligibility});
+        res.render("squadMembers", {"squadMembers": data, updateEligibility: mySqlDao.updateVideoEligibility});
     })
     .catch((error)=>{
         console.log("Error Encountered While Retrieving data")
