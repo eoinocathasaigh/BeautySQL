@@ -22,11 +22,6 @@ app.get("/", (req, res)=> {
     res.render("home");
 })
 
-//Rendering the participants page
-app.get("/participants", (req, res)=> {
-    res.render("participants");
-})
-
 //Rendering the page for the individual beauty squad member details
 app.get("/members/edit/:id", (req, res)=> {
     const id = req.params.id;
