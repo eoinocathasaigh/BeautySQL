@@ -1,23 +1,130 @@
+<head>
+    <link rel="stylesheet" href="/styles.css">
+</head>
 <body>
-    <div style="text-align: center;">
-        <p style="font-size: 20px;"><a href="/">Home</a></p>
-        <h1><u>Member ID: <%= id %></u></h1>
-        <h1><u>Member Name: <%= memberDetails.username %></u></h1>
+    <div class="container">
+        <p style="font-size: 20px;"><a href="/members"><u>Home</u></a></p>
+        <h1><u>Currently Viewing: <%= memberDetails.username %></u></h1>
 
-        <!-- Form to Edit Student -->
-        <form action="/members/edit/<%= id %>" method="POST" style="border: 2px solid black; border-radius: 5px; margin-left: auto; margin-right: auto; max-width: fit-content; background-color: wheat;">
-            <label for="sid">Student ID:</label>
-            <!--The id can be seen but not edited-->
-            <input type="text" id="mid" name="sid" value="<%= id %>" readonly>
+        <img src="<%= memberDetails.profile_image_url %>" alt="<%= memberDetails.username %>'s Profile Photo">
+        <!-- Form to view and edit the information regarding  -->
+        <form action="/members/edit/<%= id %>" method="POST">
+            <label for="id">Member ID:</label>
+            <input type="text" id="mid" name="id" value="<%= id %>" readonly>
             <br>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="<%= memberDetails.username %>">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="<%= memberDetails.username %>">
+            <label for="fname">First:</label>
+            <input type="text" id="fname" name="fname" value="<%= memberDetails.profile_name %>">
             <br>
-            <label for="age">Email:</label>
+            <label for="sname">Surname:</label>
+            <input type="text" id="sname" name="sname" value="<%= memberDetails.profile_surname %>">
+            <br>
+            <label for="email">Email:</label>
             <input type="text" id="email" name="email" value="<%= memberDetails.user_email %>">
             <br>
-            <label for="age">Email:</label>
-            <input type="text" id="email" name="age" value="<%= memberDetails.user_email %>">
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" value="<%= memberDetails.user_country %>">
+            <br>
+            <label for="dob">Date of Birth:</label>
+            <input type="text" id="dob" name="dob" value="<%= memberDetails.user_dob %>">
+            <br>
+            <label for="gender">Gender:</label>
+            <input type="text" id="gender" name="gender" value="<%= memberDetails.gender %>">
+            <br>
+            <label for="vide_rev">Video Reviewer:</label>
+            <input type="text" id="vide_rev" name="vide_rev" value="<%= memberDetails.video_reviewer %>">
+            <br>
+            <label for="heard">Heard About:</label>
+            <input type="text" id="heard" name="heard" value="<%= memberDetails.heard_about %>">
+            <br>
+            <label for="status">User Status:</label>
+            <input type="text" id="status" name="status" value="<%= memberDetails.user_status %>">
+            <br>
+            <label for="lastLog">Last Login:</label>
+            <input type="text" id="lastLog" name="lastLog" value="<%= memberDetails.user_last_login_at %>">
+            <br>
+            <label for="create">Created At:</label>
+            <input type="text" id="create" name="create" value="<%= memberDetails.user_created_at %>">
+            <br>
+            <label for="instHand">Instagram Handle:</label>
+            <input type="text" id="instHand" name="instHand" value="<%= memberDetails.profile_instagram_handle %>">
+            <br>
+            <label for="tikHand">TikTok Handle:</label>
+            <input type="text" id="tikHand" name="tikHand" value="<%= memberDetails.profile_tiktok_handle %>">
+            <br>
+            <label for="instFol">Instagram Followers:</label>
+            <input type="text" id="instFol" name="instFol" value="<%= memberDetails.instagram_followers %>">
+            <br>
+            <label for="profShar">Profile Sharing:</label>
+            <input type="text" id="profShar" name="profShar" value="<%= memberDetails.profile_sharing %>">
+            <br>
+            <label for="profAtts">Profile Attributes Privacy:</label>
+            <input type="text" id="profAtts" name="profAtts" value="<%= memberDetails.profile_attributes_privacy %>">
+            <br>
+            <label for="profBio">Profile Bio:</label>
+            <input type="text" id="profBio" name="profBio" value="<%= memberDetails.profile_bio %>">
+            <br>
+            <label for="profImgId">Profile Image Id:</label>
+            <input type="text" id="profImgId" name="profImgId" value="<%= memberDetails.profile_image_id %>">
+            <br>
+            <label for="profNews">Profile Newsletter:</label>
+            <input type="text" id="profNews" name="profNews" value="<%= memberDetails.profile_newsletter %>">
+            <br>
+            <br>
+
+            <!--LAYING OUT THE ATTRIBUTES OF THE SQUAD MEMBER-->
+            <label>Squad Member Attributes</label>
+            <label for="skinTone">Skin Tone:</label>
+            <input type="text" id="skinTone" name="skinTone" value="<%= memberDetails.ua_skin_tone %>">
+            <br>
+            <label for="complex">Skin Complexion:</label>
+            <input type="text" id="complex" name="complex" value="<%= memberDetails.ua_skin_complexion %>">
+            <br>
+            <label for="sensSkin">Sensitive Skin:</label>
+            <input type="checkbox" id="sensSkin" name="sensSkin" value="1" <%= memberDetails.ua_sensitive_skin ? 'checked' : '' %>>
+            <br>
+            <label for="skinType">Skin Type:</label>
+            <input type="text" id="skinType" name="skinType" value="<%= memberDetails.ua_skin_type %>">
+            <br>
+            <label for="skinLin">Skin Concerns - Fine Lines:</label>
+            <input type="checkbox" id="skinLin" name="skinLin" value="1" <%= memberDetails.ua_skin_concerns_file_lines ? 'checked' : '' %>>
+            <br>
+            <label for="skinBreak">Skin Concerns - Breakouts:</label>
+            <input type="checkbox" id="skinBreak" name="skinBreak" value="1" <%= memberDetails.ua_skin_concerns_breakouts ? 'checked' : '' %>>
+            <br>
+            <label for="lPore">Skin Concerns - Large Pores:</label>
+            <input type="checkbox" id="lPore" name="lPore" value="1" <%= memberDetails.ua_skin_concerns_large_pores ? 'checked' : '' %>>
+            <br>
+            <label for="hypPig">Skin Concerns - Hyper Pigmentation:</label>
+            <input type="checkbox" id="hypPig" name="hypPig" value="1" <%= memberDetails.ua_skin_concerns_hyper_pigmentation ? 'checked' : '' %>>
+            <br>
+            <label for="unevTone">Skin Concerns - Uneven Tone:</label>
+            <input type="checkbox" id="unevTone" name="unevTone" value="1" <%= memberDetails.ua_skin_concerns_uneven_tone ? 'checked' : '' %>>
+            <br>
+            <label for="dehyd">Skin Concerns - Dehydration:</label>
+            <input type="checkbox" id="dehyd" name="dehyd" value="1" <%= memberDetails.ua_skin_concerns_dehydration ? 'checked' : '' %>>
+            <br>
+            <label for="acne">Skin Concerns - Acne:</label>
+            <input type="checkbox" id="acne" name="acne" value="1" <%= memberDetails.ua_skin_concerns_acne ? 'checked' : '' %>>
+            <br>
+            <label for="dullSkin">Dull Skin:</label>
+            <input type="checkbox" id="dullSkin" name="dullSkin" value="1" <%= memberDetails.ua_skin_dull_skin ? 'checked' : '' %>>
+            <br>
+            <label for="rosa">Skin Concerns - Rosacea:</label>
+            <input type="checkbox" id="rosa" name="rosa" value="1" <%= memberDetails.ua_skin_concerns_rosacea ? 'checked' : '' %>>
+            <br>
+            <label for="darkSpots">Skin Concerns - Dark Spots:</label>
+            <input type="checkbox" id="darkSpots" name="darkSpots" value="1" <%= memberDetails.ua_skin_concerns_dark_spots ? 'checked' : '' %>>
+            <br>
+            <label for="sunDam">Skin Concerns - Sun Damage:</label>
+            <input type="checkbox" id="sunDam" name="sunDam" value="1" <%= memberDetails.ua_skin_concerns_sun_damage ? 'checked' : '' %>>
+            <br>
+            <label for="puffy">Skin Concerns - Puffiness:</label>
+            <input type="checkbox" id="puffy" name="puffy" value="1" <%= memberDetails.ua_skin_concerns_puffiness ? 'checked' : '' %>>
+            <br>
+            <label for="cysAcne">Skin Concerns - Cystic Acne:</label>
+            <input type="checkbox" id="cysAcne" name="cysAcne" value="1" <%= memberDetails.ua_skin_concerns_cystic_acne ? 'checked' : '' %>>
             <br>
             <button type="submit">Update</button>
         </form>

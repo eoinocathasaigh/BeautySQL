@@ -27,7 +27,6 @@ app.get("/members/edit/:id", (req, res)=> {
     const id = req.params.id;
     mySqlDao.memberDetails(id)
     .then((data)=>{
-        console.log("Correctly retrieved data")
         res.render("memberDetails", {memberDetails: data, id});
     })
     .catch((error)=>{
@@ -51,13 +50,11 @@ app.get("/members", (req, res)=> {
 
 //Rendering the campaings with their details
 app.get("/campaigns", (req, res)=> {
-    mySqlDao.getCampaigns()
+    mySqlDao.getCamps()
     .then((data)=>{
-        console.log("Correctly retrieved data")
         res.render("campaigns", {"campDetails": data});
     })
     .catch((error)=>{
-        console.log("Error Encountered While Retrieving data")
         res.send(error);
     })
 })

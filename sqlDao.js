@@ -41,6 +41,20 @@ var getParticipants = function(){
 
 }
 
+var getCamps = function(){
+    return new Promise((resolve, reject)=>{
+        pool.query(`select id as camp_id, campaign_ref as sampling_campaign_ref, posted_date from sampling_campaigns where posted_date > CURRENT_DATE();`)
+        .then((data) => {
+            console.log("Campaing Data Received")
+            resolve(data);
+        })
+        .catch((error) => {
+            console.log("CATCH mySql.Dao.js")
+            reject(error)
+        })
+   })
+}
+
 //Campaing methods & logic
 var getCampaigns = function(){
     //Command to get the campaings and their specific info
@@ -184,4 +198,4 @@ var updateVideoEligibility = function(memberID){
         });
     });
 }
-module.exports = {getMembers, memberDetails, getParticipants, getCampaigns, updateVideoEligibility}
+module.exports = {getMembers, memberDetails, getParticipants, getCampaigns, getCamps, updateVideoEligibility}
