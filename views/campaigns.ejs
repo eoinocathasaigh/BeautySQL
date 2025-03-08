@@ -1,54 +1,30 @@
 <!--Simplistic view of the campaign details-->
 <div style="text-align: center; border: 2px solid black; border-radius: 5px; max-width: fit-content; margin: auto; background-color: lightblue;">
-    <h1><u>Page for dealing with the details of each member</u></h1>
     <!--Navigation Links: Providing routing to each of the core parts of our application-->
     <div style="text-align: center; border: 2px solid black; margin: auto; background-color: aquamarine;">
-        <p>
-            <a href="/">Home</a><br>
-            <a href="/members">Track Members</a><br>
-        </p>
+      <p>
+        <a href="/">Home</a><br>
+        <a href="/members">Track Members</a><br>
+      </p>
     </div>
-
-    <!--Actual place for selecing which campaign to choose & add participants to-->
-    <select id="camps" onchange="performAction()">
-        <option>Select campaign</option>
-        <% campDetails.forEach((campaign) => { %>
-            <option value="<%= campaign.sampling_campaign_ref %>"><%= campaign.sampling_campaign_ref %></option>
-        <% }) %>
-    </select>
-    <div id="contentDiv">
-        <table style="border: 1px solid black; margin-left: auto; margin-right: auto;">
-            <tr>
-                <th style="border: 1px solid black;">ID</th>
-                <th style="border: 1px solid black;">Name</th>
-                <th style="border: 1px solid black;">Squad Member Email</th>
-            </tr>
-            <% campDetails.forEach((campaign) => { %>
-            <tr>
-                <td style="border: 1px solid black;"><%= campaign.user_id %></td>
-                <td style="border: 1px solid black;"><%= campaign.Sampler_Badge %></td>
-                <td style="border: 1px solid black;"><%= campaign.Product_id %></td>
-            </tr>
-            <% }) %>
-        </table>
-    </div>
+    <h2>Current Campaigns</h2>
+    <ul>
+      <% campDetails.forEach(function(campaign) { %>
+        <li style="list-style-type: none; margin: 10px 0;">
+          <div style="border: 1px solid black; padding: 10px; border-radius: 5px; background-color: white;">
+            <h3><%= campaign.sampling_campaign_ref %></h3>
+            <p><strong>Start Date:</strong> <%= campaign.posted_date %></p>
+            <p><strong>End Date:</strong> <%= campaign.end_date %></p>
+            <p><strong>Description:</strong> <%= campaign.description %></p>
+            <a href="/campaigns/<%= campaign.sampling_campaign_ref %>">
+              <button style="padding: 5px 10px; border-radius: 5px; background-color: lightgreen;">View Details</button>
+            </a>
+          </div>
+        </li>
+      <% }); %>
+    </ul>
 </div>
 
 <script>
-    //RESEARCH WAYS TO LIMIT DATA SEEN - CUT BACK ON LOADING TIME
-    function performAction() {
-        const campaignRef = document.getElementById("camps").value;
-        // Example: Making an API call or calling a function
-        alert("Campaign selected: " + campaignRef);
-
-        // If using AJAX/fetch to send data to a backend
-        fetch('/your-endpoint', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ campaignRef })
-        })
-        .then(response => response.json())
-        .then(data => console.log("Response from server:", data))
-        .catch(error => console.error("Error:", error));
-    }
+    
 </script>

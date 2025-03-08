@@ -33,7 +33,7 @@
             <input type="text" id="gender" name="gender" value="<%= memberDetails.gender %>">
             <br>
             <label for="vide_rev">Video Reviewer:</label>
-            <input type="text" id="vide_rev" name="vide_rev" value="<%= memberDetails.video_reviewer %>">
+            <input type="checkbox" id="vide_rev" name="vide_rev" value="1" <%= memberDetails.video_reviewer ? 'checked' : '' %>>
             <br>
             <label for="heard">Heard About:</label>
             <input type="text" id="heard" name="heard" value="<%= memberDetails.heard_about %>">
@@ -74,7 +74,7 @@
             <br>
 
             <!--LAYING OUT THE ATTRIBUTES OF THE SQUAD MEMBER-->
-            <label>Squad Member Attributes</label>
+            <label><h2><u>Squad Member Attributes</u></h2></label>
             <label for="skinTone">Skin Tone:</label>
             <input type="text" id="skinTone" name="skinTone" value="<%= memberDetails.ua_skin_tone %>">
             <br>
@@ -126,6 +126,59 @@
             <label for="cysAcne">Skin Concerns - Cystic Acne:</label>
             <input type="checkbox" id="cysAcne" name="cysAcne" value="1" <%= memberDetails.ua_skin_concerns_cystic_acne ? 'checked' : '' %>>
             <br>
+
+            <label for="eyeCol">Eye Colour:</label>
+            <input type="text" id="eyeCol" name="eyeCol" value="<%= memberDetails.ua_eye_colour %>">
+            <br>
+            <label for="eyeDark">Eye Concerns - Dark Circles:</label>
+            <input type="checkbox" id="eyeDark" name="eyeDark" value="1" <%= memberDetails.ua_eye_concerns_dark_circles ? 'checked' : '' %>>
+            <br>
+            <label for="sensSkin">Sensitive Skin:</label>
+            <input type="checkbox" id="sensSkin" name="sensSkin" value="1" <%= memberDetails.ua_sensitive_skin ? 'checked' : '' %>>
+            <br>
+            <label for="skinType">Skin Type:</label>
+            <input type="text" id="skinType" name="skinType" value="<%= memberDetails.ua_skin_type %>">
+            <br>
+            <label for="skinLin">Skin Concerns - Fine Lines:</label>
+            <input type="checkbox" id="skinLin" name="skinLin" value="1" <%= memberDetails.ua_skin_concerns_file_lines ? 'checked' : '' %>>
+            <br>
+            <label for="skinBreak">Skin Concerns - Breakouts:</label>
+            <input type="checkbox" id="skinBreak" name="skinBreak" value="1" <%= memberDetails.ua_skin_concerns_breakouts ? 'checked' : '' %>>
+            <br>
+            <label for="lPore">Skin Concerns - Large Pores:</label>
+            <input type="checkbox" id="lPore" name="lPore" value="1" <%= memberDetails.ua_skin_concerns_large_pores ? 'checked' : '' %>>
+            <br>
+            <label for="hypPig">Skin Concerns - Hyper Pigmentation:</label>
+            <input type="checkbox" id="hypPig" name="hypPig" value="1" <%= memberDetails.ua_skin_concerns_hyper_pigmentation ? 'checked' : '' %>>
+            <br>
+            <label for="unevTone">Skin Concerns - Uneven Tone:</label>
+            <input type="checkbox" id="unevTone" name="unevTone" value="1" <%= memberDetails.ua_skin_concerns_uneven_tone ? 'checked' : '' %>>
+            <br>
+            <label for="dehyd">Skin Concerns - Dehydration:</label>
+            <input type="checkbox" id="dehyd" name="dehyd" value="1" <%= memberDetails.ua_skin_concerns_dehydration ? 'checked' : '' %>>
+            <br>
+            <label for="acne">Skin Concerns - Acne:</label>
+            <input type="checkbox" id="acne" name="acne" value="1" <%= memberDetails.ua_skin_concerns_acne ? 'checked' : '' %>>
+            <br>
+            <label for="dullSkin">Dull Skin:</label>
+            <input type="checkbox" id="dullSkin" name="dullSkin" value="1" <%= memberDetails.ua_skin_dull_skin ? 'checked' : '' %>>
+            <br>
+            <label for="rosa">Skin Concerns - Rosacea:</label>
+            <input type="checkbox" id="rosa" name="rosa" value="1" <%= memberDetails.ua_skin_concerns_rosacea ? 'checked' : '' %>>
+            <br>
+            <label for="darkSpots">Skin Concerns - Dark Spots:</label>
+            <input type="checkbox" id="darkSpots" name="darkSpots" value="1" <%= memberDetails.ua_skin_concerns_dark_spots ? 'checked' : '' %>>
+            <br>
+            <label for="sunDam">Skin Concerns - Sun Damage:</label>
+            <input type="checkbox" id="sunDam" name="sunDam" value="1" <%= memberDetails.ua_skin_concerns_sun_damage ? 'checked' : '' %>>
+            <br>
+            <label for="puffy">Skin Concerns - Puffiness:</label>
+            <input type="checkbox" id="puffy" name="puffy" value="1" <%= memberDetails.ua_skin_concerns_puffiness ? 'checked' : '' %>>
+            <br>
+            <label for="cysAcne">Skin Concerns - Cystic Acne:</label>
+            <input type="checkbox" id="cysAcne" name="cysAcne" value="1" <%= memberDetails.ua_skin_concerns_cystic_acne ? 'checked' : '' %>>
+            <br>
+            
             <button type="submit">Update</button>
         </form>
     </div>

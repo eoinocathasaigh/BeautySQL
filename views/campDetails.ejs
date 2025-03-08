@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaign Details</title>
+    <link rel="stylesheet" href="/public/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .campaign-details, .participants {
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .participant-list {
+            list-style: none;
+            padding: 0;
+        }
+        .participant-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .participant-list input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="campaign-details">
+            <h2>Campaign Reference: <%= campDetails.sampling_campaign_ref %></h2>
+        </div>
+    </div>
+</body>
+</html>

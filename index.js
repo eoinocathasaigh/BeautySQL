@@ -40,7 +40,7 @@ app.get("/members", (req, res)=> {
     mySqlDao.getMembers()
     .then((data)=>{
         console.log("Correctly retrieved data")
-        res.render("squadMembers", {"squadMembers": data, updateEligibility: mySqlDao.updateVideoEligibility});
+        res.render("squadMembers", {"squadMembers": data});
     })
     .catch((error)=>{
         console.log("Error Encountered While Retrieving data")
@@ -49,6 +49,7 @@ app.get("/members", (req, res)=> {
 })
 
 //Rendering the campaings with their details
+
 app.get("/campaigns", (req, res)=> {
     mySqlDao.getCamps()
     .then((data)=>{
@@ -58,3 +59,43 @@ app.get("/campaigns", (req, res)=> {
         res.send(error);
     })
 })
+
+app.get("/campaigns/:campRef", (req, res)=> {
+    mySqlDao.getCampaignDetails(req.params.campRef)
+    .then((data)=>{
+        res.render("campDetails", {"campDetails": data});
+    })
+    .catch((error)=>{
+        res.send(error);
+    })
+})
+
+/*
+//Rendering specific data based on the specified campaign
+app.get("/campaigns", async(req, res)=> {
+    // routes.js
+    try {
+      // Get all campaigns for the dropdown
+      const campaigns = await mySqlDao.getCamps();
+      
+      console.log("Something is working")
+      // Check if a campaign ID was selected
+      const selectedCampaignId = req.query.campaignId;
+      let campaignData = null;
+      
+      if (selectedCampaignId) {
+        // If a campaign was selected, get its data
+        campaignData = await mySqlDao.getCampaignDetails(selectedCampaignId);
+      }
+      
+      // Render the page with both the dropdown options and any selected campaign data
+      res.render('campaigns', { 
+        campaigns, 
+        campaignData,
+        selectedCampaignId 
+      });
+    } catch (error) {
+      console.error('Error loading campaigns:', error);
+      res.status(500).send('Error loading campaigns');
+    }
+})*/

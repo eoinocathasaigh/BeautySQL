@@ -185,6 +185,18 @@ var memberDetails = function(memberID){
     });
 }
 
+//Getting a specific campaign & its details as opposed to a specific 
+var getCampaignDetails = function(campaignRef){
+    console.log("Retrieving data for campaign: " + campaignRef)
+    return new Promise((resolve, reject) =>{
+        pool.query()
+        .then((data) => {
+            resolve(data[0]);
+        })
+    });
+}
+
+//POTENTIALLY REMOVE THIS - UPDATING AN ENTIRE USER AS OPPOSED TO THEIR INDIVIDUAL PIECES OF INFO
 //Updating the video reviewer status of a squad member - means they are suitable for a video campaign
 var updateVideoEligibility = function(memberID){
     console.log("User Updated Correctly")
@@ -198,4 +210,4 @@ var updateVideoEligibility = function(memberID){
         });
     });
 }
-module.exports = {getMembers, memberDetails, getParticipants, getCampaigns, getCamps, updateVideoEligibility}
+module.exports = {getMembers, memberDetails, getParticipants, getCampaigns, getCamps, getCampaignDetails}
