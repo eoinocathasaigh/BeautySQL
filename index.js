@@ -69,33 +69,3 @@ app.get("/campaigns/:campRef", (req, res)=> {
         res.send(error);
     })
 })
-
-/*
-//Rendering specific data based on the specified campaign
-app.get("/campaigns", async(req, res)=> {
-    // routes.js
-    try {
-      // Get all campaigns for the dropdown
-      const campaigns = await mySqlDao.getCamps();
-      
-      console.log("Something is working")
-      // Check if a campaign ID was selected
-      const selectedCampaignId = req.query.campaignId;
-      let campaignData = null;
-      
-      if (selectedCampaignId) {
-        // If a campaign was selected, get its data
-        campaignData = await mySqlDao.getCampaignDetails(selectedCampaignId);
-      }
-      
-      // Render the page with both the dropdown options and any selected campaign data
-      res.render('campaigns', { 
-        campaigns, 
-        campaignData,
-        selectedCampaignId 
-      });
-    } catch (error) {
-      console.error('Error loading campaigns:', error);
-      res.status(500).send('Error loading campaigns');
-    }
-})*/

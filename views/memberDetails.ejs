@@ -133,53 +133,290 @@
             <label for="eyeDark">Eye Concerns - Dark Circles:</label>
             <input type="checkbox" id="eyeDark" name="eyeDark" value="1" <%= memberDetails.ua_eye_concerns_dark_circles ? 'checked' : '' %>>
             <br>
-            <label for="sensSkin">Sensitive Skin:</label>
-            <input type="checkbox" id="sensSkin" name="sensSkin" value="1" <%= memberDetails.ua_sensitive_skin ? 'checked' : '' %>>
+            <label for="eyeLines">Eye Concerns - Lines/Wrinkles:</label>
+            <input type="checkbox" id="eyeLines" name="eyeLines" value="1" <%= memberDetails.ua_eye_concerns_lines_wrinkles ? 'checked' : '' %>>
             <br>
-            <label for="skinType">Skin Type:</label>
-            <input type="text" id="skinType" name="skinType" value="<%= memberDetails.ua_skin_type %>">
+            <label for="eyeDroop">Eye Concerns - Drooping Eyelids:</label>
+            <input type="checkbox" id="eyeDroop" name="eyeDroop" value="1" <%= memberDetails.ua_eye_concerns_drooping_eyelids ? 'checked' : '' %>>
             <br>
-            <label for="skinLin">Skin Concerns - Fine Lines:</label>
-            <input type="checkbox" id="skinLin" name="skinLin" value="1" <%= memberDetails.ua_skin_concerns_file_lines ? 'checked' : '' %>>
+            <label for="eyePuffy">Eye Concerns - Puffiness:</label>
+            <input type="checkbox" id="eyePuffy" name="eyePuffy" value="1" <%= memberDetails.ua_eye_concerns_puffiness ? 'checked' : '' %>>
             <br>
-            <label for="skinBreak">Skin Concerns - Breakouts:</label>
-            <input type="checkbox" id="skinBreak" name="skinBreak" value="1" <%= memberDetails.ua_skin_concerns_breakouts ? 'checked' : '' %>>
+            <label for="eyeHollows">Eye Concerns - Under Eye Hallows:</label>
+            <input type="checkbox" id="eyeHollows" name="eyeHollows" value="1" <%= memberDetails.ua_eye_concerns_under_eye_hallows ? 'checked' : '' %>>
             <br>
-            <label for="lPore">Skin Concerns - Large Pores:</label>
-            <input type="checkbox" id="lPore" name="lPore" value="1" <%= memberDetails.ua_skin_concerns_large_pores ? 'checked' : '' %>>
+            <label for="eyeNone">Eye Concerns - None:</label>
+            <input type="checkbox" id="eyeNone" name="eyeNone" value="1" <%= memberDetails.ua_eye_concerns_none ? 'checked' : '' %>>
             <br>
-            <label for="hypPig">Skin Concerns - Hyper Pigmentation:</label>
-            <input type="checkbox" id="hypPig" name="hypPig" value="1" <%= memberDetails.ua_skin_concerns_hyper_pigmentation ? 'checked' : '' %>>
+            <label for="lipsNormal">Lips Concerns - Normal:</label>
+            <input type="checkbox" id="lipsNormal" name="lipsNormal" value="1" <%= memberDetails.ua_lips_concerns_normal ? 'checked' : '' %>>
             <br>
-            <label for="unevTone">Skin Concerns - Uneven Tone:</label>
-            <input type="checkbox" id="unevTone" name="unevTone" value="1" <%= memberDetails.ua_skin_concerns_uneven_tone ? 'checked' : '' %>>
+            <label for="lipsDry">Lips Concerns - Dry:</label>
+            <input type="checkbox" id="lipsDry" name="lipsDry" value="1" <%= memberDetails.ua_lips_concerns_dry ? 'checked' : '' %>>
             <br>
-            <label for="dehyd">Skin Concerns - Dehydration:</label>
-            <input type="checkbox" id="dehyd" name="dehyd" value="1" <%= memberDetails.ua_skin_concerns_dehydration ? 'checked' : '' %>>
+            <label for="lipsCracked">Lips Concerns - Cracked:</label>
+            <input type="checkbox" id="lipsCracked" name="lipsCracked" value="1" <%= memberDetails.ua_lips_concerns_cracked ? 'checked' : '' %>>
             <br>
-            <label for="acne">Skin Concerns - Acne:</label>
-            <input type="checkbox" id="acne" name="acne" value="1" <%= memberDetails.ua_skin_concerns_acne ? 'checked' : '' %>>
+            <label for="lipsColdSores">Lips Concerns - Cold Sores:</label>
+            <input type="checkbox" id="lipsColdSores" name="lipsColdSores" value="1" <%= memberDetails.ua_lips_concerns_cold_sores ? 'checked' : '' %>>
             <br>
-            <label for="dullSkin">Dull Skin:</label>
-            <input type="checkbox" id="dullSkin" name="dullSkin" value="1" <%= memberDetails.ua_skin_dull_skin ? 'checked' : '' %>>
+            <label for="lipsThin">Lips Concerns - Thin:</label>
+            <input type="checkbox" id="lipsThin" name="lipsThin" value="1" <%= memberDetails.ua_lips_concerns_thin ? 'checked' : '' %>>
             <br>
-            <label for="rosa">Skin Concerns - Rosacea:</label>
-            <input type="checkbox" id="rosa" name="rosa" value="1" <%= memberDetails.ua_skin_concerns_rosacea ? 'checked' : '' %>>
+            <label for="lipsChapped">Lips Concerns - Chapped:</label>
+            <input type="checkbox" id="lipsChapped" name="lipsChapped" value="1" <%= memberDetails.ua_lips_concerns_chapped ? 'checked' : '' %>>
             <br>
-            <label for="darkSpots">Skin Concerns - Dark Spots:</label>
-            <input type="checkbox" id="darkSpots" name="darkSpots" value="1" <%= memberDetails.ua_skin_concerns_dark_spots ? 'checked' : '' %>>
+
+            <label for="eyeCol">Skin Type: - Select</label>
+            <input type="text" id="eyeCol" name="eyeCol" value="<%= memberDetails.ua_eye_colour %>">
+
+            <label for="bodyCellulite">Body Skin Concerns - Cellulite:</label>
+            <input type="checkbox" id="bodyCellulite" name="bodyCellulite" value="1" <%= memberDetails.ua_body_skin_concerns_cellulite ? 'checked' : '' %>>
             <br>
-            <label for="sunDam">Skin Concerns - Sun Damage:</label>
-            <input type="checkbox" id="sunDam" name="sunDam" value="1" <%= memberDetails.ua_skin_concerns_sun_damage ? 'checked' : '' %>>
+            <label for="bodyStretchMarks">Body Skin Concerns - Stretch Marks:</label>
+            <input type="checkbox" id="bodyStretchMarks" name="bodyStretchMarks" value="1" <%= memberDetails.ua_body_skin_concerns_stretch_marks ? 'checked' : '' %>>
             <br>
-            <label for="puffy">Skin Concerns - Puffiness:</label>
-            <input type="checkbox" id="puffy" name="puffy" value="1" <%= memberDetails.ua_skin_concerns_puffiness ? 'checked' : '' %>>
+            <label for="bodyDehydration">Body Skin Concerns - Dehydration:</label>
+            <input type="checkbox" id="bodyDehydration" name="bodyDehydration" value="1" <%= memberDetails.ua_body_skin_concerns_dehydration ? 'checked' : '' %>>
             <br>
-            <label for="cysAcne">Skin Concerns - Cystic Acne:</label>
-            <input type="checkbox" id="cysAcne" name="cysAcne" value="1" <%= memberDetails.ua_skin_concerns_cystic_acne ? 'checked' : '' %>>
+            <label for="bodyMenopausal">Body Skin Concerns - Menopausal:</label>
+            <input type="checkbox" id="bodyMenopausal" name="bodyMenopausal" value="1" <%= memberDetails.ua_body_skin_concerns_menopausal ? 'checked' : '' %>>
             <br>
-            
+            <label for="bodyItchySkin">Body Skin Concerns - Itchy Skin:</label>
+            <input type="checkbox" id="bodyItchySkin" name="bodyItchySkin" value="1" <%= memberDetails.ua_body_skin_concerns_itchy_skin ? 'checked' : '' %>>
+            <br>
+            <label for="bodyEczema">Body Skin Concerns - Eczema:</label>
+            <input type="checkbox" id="bodyEczema" name="bodyEczema" value="1" <%= memberDetails.ua_body_skin_concerns_eczema ? 'checked' : '' %>>
+            <br>
+            <label for="bodyPsoriasis">Body Skin Concerns - Psoriasis:</label>
+            <input type="checkbox" id="bodyPsoriasis" name="bodyPsoriasis" value="1" <%= memberDetails.ua_body_skin_concerns_psoriasis ? 'checked' : '' %>>
+            <br>
+            <label for="bodyVitiligo">Body Skin Concerns - Vitiligo:</label>
+            <input type="checkbox" id="bodyVitiligo" name="bodyVitiligo" value="1" <%= memberDetails.ua_body_skin_concerns_vitiligo ? 'checked' : '' %>>
+            <br>
+            <label for="bodyKeratosisPilaris">Body Skin Concerns - Keratosis Pilaris:</label>
+            <input type="checkbox" id="bodyKeratosisPilaris" name="bodyKeratosisPilaris" value="1" <%= memberDetails.ua_body_skin_concerns_keratosis_pilaris ? 'checked' : '' %>>
+            <br>
+            <label for="bodyNone">Body Skin Concerns - None:</label>
+            <input type="checkbox" id="bodyNone" name="bodyNone" value="1" <%= memberDetails.ua_body_skin_concerns_none ? 'checked' : '' %>>
+            <br>
+            <label for="hairStruct">Hair Structure - select:</label>
+            <input type="checkbox" id="hairStruct" name="hairStruct" value="1" <%= memberDetails.ua_hair_structure ? 'checked' : '' %>>
+            <br>
+            <label for="moistLvl">Moisture Levels:</label>
+            <input type="checkbox" id="moistLvl" name="moistLvl" value="1" <%= memberDetails.ua_moisture_levels ? 'checked' : '' %>>
+            <br>
+            <label for="hairCol">Hair Colour - select:</label>
+            <input type="checkbox" id="hairCol" name="hairCol" value="1" <%= memberDetails.ua_hair_colour ? 'checked' : '' %>>
+            <br>
+            <label for="hairColTreat">Hair Colour - Treated:</label>
+            <input type="checkbox" id="hairColTreat" name="hairColTreat" value="1" <%= memberDetails.ua_hair_colour_treated ? 'checked' : '' %>>
+            <br>
+            <label for="hairColTreatHow">Hair Colour - Treated How:</label>
+            <input type="checkbox" id="hairColTreatHow" name="hairColTreatHow" value="1" <%= memberDetails.ua_hair_colour_treated_how ? 'checked' : '' %>>
+            <br>
+
+            <label for="hairFrizz">Hair Concerns - Frizz:</label>
+            <input type="checkbox" id="hairFrizz" name="hairFrizz" value="1" <%= memberDetails.ua_hair_concerns_frizz ? 'checked' : '' %>>
+            <br>
+            <label for="hairDandruff">Hair Concerns - Dandruff:</label>
+            <input type="checkbox" id="hairDandruff" name="hairDandruff" value="1" <%= memberDetails.ua_hair_concerns_dandruff ? 'checked' : '' %>>
+            <br>
+            <label for="hairDamage">Hair Concerns - Damage:</label>
+            <input type="checkbox" id="hairDamage" name="hairDamage" value="1" <%= memberDetails.ua_hair_concerns_damage ? 'checked' : '' %>>
+            <br>
+            <label for="hairColoured">Hair Concerns - Coloured:</label>
+            <input type="checkbox" id="hairColoured" name="hairColoured" value="1" <%= memberDetails.ua_hair_concerns_coloured ? 'checked' : '' %>>
+            <br>
+            <label for="hairLackVolume">Hair Concerns - Lack of Volume:</label>
+            <input type="checkbox" id="hairLackVolume" name="hairLackVolume" value="1" <%= memberDetails.ua_hair_concerns_lack_volume ? 'checked' : '' %>>
+            <br>
+            <label for="hairLoss">Hair Concerns - Hair Loss:</label>
+            <input type="checkbox" id="hairLoss" name="hairLoss" value="1" <%= memberDetails.ua_hair_concerns_hair_loss ? 'checked' : '' %>>
+            <br>
+            <label for="hairAgeing">Hair Concerns - Ageing Hair:</label>
+            <input type="checkbox" id="hairAgeing" name="hairAgeing" value="1" <%= memberDetails.ua_hair_concerns_ageing_hair ? 'checked' : '' %>>
+            <br>
+            <label for="hairSplitEnds">Hair Concerns - Split Ends:</label>
+            <input type="checkbox" id="hairSplitEnds" name="hairSplitEnds" value="1" <%= memberDetails.ua_hair_concerns_split_ends ? 'checked' : '' %>>
+            <br>
+            <label for="hairLackShine">Hair Concerns - Lack of Shine:</label>
+            <input type="checkbox" id="hairLackShine" name="hairLackShine" value="1" <%= memberDetails.ua_hair_concerns_lack_shine ? 'checked' : '' %>>
+            <br>
+            <label for="hairPsoriasis">Hair Concerns - Psoriasis:</label>
+            <input type="checkbox" id="hairPsoriasis" name="hairPsoriasis" value="1" <%= memberDetails.ua_hair_concerns_psoriasis ? 'checked' : '' %>>
+            <br>
+            <label for="hairOilyScalp">Hair Concerns - Oily Scalp:</label>
+            <input type="checkbox" id="hairOilyScalp" name="hairOilyScalp" value="1" <%= memberDetails.ua_hair_oily_scalp ? 'checked' : '' %>>
+            <br>
+            <label for="hairItchyScalp">Hair Concerns - Itchy Scalp:</label>
+            <input type="checkbox" id="hairItchyScalp" name="hairItchyScalp" value="1" <%= memberDetails.ua_hair_concern_itchy_scalp ? 'checked' : '' %>>
+            <br>
+            <label for="hairHeatDamaged">Hair Concerns - Heat Damaged:</label>
+            <input type="checkbox" id="hairHeatDamaged" name="hairHeatDamaged" value="1" <%= memberDetails.ua_hair_concern_heat_damaged ? 'checked' : '' %>>
+            <br>
+            <label for="hairThinning">Hair Concerns - Thinning:</label>
+            <input type="checkbox" id="hairThinning" name="hairThinning" value="1" <%= memberDetails.ua_hair_concern_thinning ? 'checked' : '' %>>
+            <br>
+            <label for="hairAlopecia">Hair Concerns - Alopecia:</label>
+            <input type="checkbox" id="hairAlopecia" name="hairAlopecia" value="1" <%= memberDetails.ua_hair_concern_alopecia ? 'checked' : '' %>>
+            <br>
+            <label for="hairDryScalp">Hair Concerns - Dry Scalp:</label>
+            <input type="checkbox" id="hairDryScalp" name="hairDryScalp" value="1" <%= memberDetails.ya_hari_concern_dry_scalp ? 'checked' : '' %>>
+            <br>
+            <label for="hairNone">Hair Concerns - None:</label>
+            <input type="checkbox" id="hairNone" name="hairNone" value="1" <%= memberDetails.ua_hair_concerns_none ? 'checked' : '' %>>
+            <br>
+            <label for="scentsClean">Scents - Clean:</label>
+            <input type="checkbox" id="scentsClean" name="scentsClean" value="1" <%= memberDetails.ua_scents_clean ? 'checked' : '' %>>
+            <br>
+            <label for="scentsFloral">Scents - Floral:</label>
+            <input type="checkbox" id="scentsFloral" name="scentsFloral" value="1" <%= memberDetails.ua_scents_floral ? 'checked' : '' %>>
+            <br>
+            <label for="scentsOriental">Scents - Oriental:</label>
+            <input type="checkbox" id="scentsOriental" name="scentsOriental" value="1" <%= memberDetails.ua_scents_oriental ? 'checked' : '' %>>
+            <br>
+            <label for="scentsWoody">Scents - Woody:</label>
+            <input type="checkbox" id="scentsWoody" name="scentsWoody" value="1" <%= memberDetails.ua_scents_woody ? 'checked' : '' %>>
+            <br>
+            <label for="scentsCitrus">Scents - Citrus:</label>
+            <input type="checkbox" id="scentsCitrus" name="scentsCitrus" value="1" <%= memberDetails.ua_scents_citrus ? 'checked' : '' %>>
+            <br>
+            <label for="scentsFruity">Scents - Fruity:</label>
+            <input type="checkbox" id="scentsFruity" name="scentsFruity" value="1" <%= memberDetails.ua_scents_fruity ? 'checked' : '' %>>
+            <br>
+            <label for="scentsGreen">Scents - Green:</label>
+            <input type="checkbox" id="scentsGreen" name="scentsGreen" value="1" <%= memberDetails.ua_scents_green ? 'checked' : '' %>>
+            <br>
+            <label for="scentsOceanic">Scents - Oceanic:</label>
+            <input type="checkbox" id="scentsOceanic" name="scentsOceanic" value="1" <%= memberDetails.ua_scents_oceanic ? 'checked' : '' %>>
+            <br>
+            <label for="scentsSpicy">Scents - Spicy:</label>
+            <input type="checkbox" id="scentsSpicy" name="scentsSpicy" value="1" <%= memberDetails.ua_scents_spicy ? 'checked' : '' %>>
+            <br>
+            <label for="productAntiAgeing">Product - Anti Ageing:</label>
+            <input type="checkbox" id="productAntiAgeing" name="productAntiAgeing" value="1" <%= memberDetails.ua_product_anti_ageing ? 'checked' : '' %>>
+            <br>
+            <label for="productClean">Product - Clean:</label>
+            <input type="checkbox" id="productClean" name="productClean" value="1" <%= memberDetails.ua_product_clean ? 'checked' : '' %>>
+            <br>
+            <label for="productContainsAloe">Product - Contains Aloe:</label>
+            <input type="checkbox" id="productContainsAloe" name="productContainsAloe" value="1" <%= memberDetails.ua_product_contains_aloe ? 'checked' : '' %>>
+            <br>
+            <label for="productContainsCaffeine">Product - Contains Caffeine:</label>
+            <input type="checkbox" id="productContainsCaffeine" name="productContainsCaffeine" value="1" <%= memberDetails.ua_product_contains_caffeine ? 'checked' : '' %>>
+            <br>
+            <label for="productContainsCocoa">Product - Contains Cocoa:</label>
+            <input type="checkbox" id="productContainsCocoa" name="productContainsCocoa" value="1" <%= memberDetails.ua_product_contains_cocoa ? 'checked' : '' %>>
+            <br>
+            <label for="productContainsRetinol">Product - Contains Retinol:</label>
+            <input type="checkbox" id="productContainsRetinol" name="productContainsRetinol" value="1" <%= memberDetails.ua_product_contains_retinol ? 'checked' : '' %>>
+            <br>
+            <label for="productContainsShea">Product - Contains Shea:</label>
+            <input type="checkbox" id="productContainsShea" name="productContainsShea" value="1" <%= memberDetails.ua_product_contains_shea ? 'checked' : '' %>>
+            <br>
+            <label for="productContainsSpf">Product - Contains SPF:</label>
+            <input type="checkbox" id="productContainsSpf" name="productContainsSpf" value="1" <%= memberDetails.ua_product_contains_spf ? 'checked' : '' %>>
+            <br>
+            <label for="productCrueltyFree">Product - Cruelty Free:</label>
+            <input type="checkbox" id="productCrueltyFree" name="productCrueltyFree" value="1" <%= memberDetails.ua_product_cruelty_free ? 'checked' : '' %>>
+            <br>
+            <label for="productEcoFriendly">Product - Eco Friendly:</label>
+            <input type="checkbox" id="productEcoFriendly" name="productEcoFriendly" value="1" <%= memberDetails.ua_product_eco_friendly ? 'checked' : '' %>>
+            <br>
+            <label for="productHalal">Product - Halal:</label>
+            <input type="checkbox" id="productHalal" name="productHalal" value="1" <%= memberDetails.ua_product_halal ? 'checked' : '' %>>
+            <br>
+            <label for="productNatural">Product - Natural:</label>
+            <input type="checkbox" id="productNatural" name="productNatural" value="1" <%= memberDetails.ua_product_natural ? 'checked' : '' %>>
+            <br>
+            <label for="productOrganic">Product - Organic:</label>
+            <input type="checkbox" id="productOrganic" name="productOrganic" value="1" <%= memberDetails.ua_product_organic ? 'checked' : '' %>>
+            <br>
+            <label for="productVeganFriendly">Product - Vegan Friendly:</label>
+            <input type="checkbox" id="productVeganFriendly" name="productVeganFriendly" value="1" <%= memberDetails.ua_product_vegan_friendly ? 'checked' : '' %>>
+            <br>
+            <label for="productSustainable">Product - Sustainable:</label>
+            <input type="checkbox" id="productSustainable" name="productSustainable" value="1" <%= memberDetails.ua_product_sustainable ? 'checked' : '' %>>
+            <br>
+
+            <!--PURCHASING FACTOR PORTION OF CODE-->
+            <label><h2><u>Purchasing Factors</u></h2></label>
+            <label for="purFact1">Purchase Factor 1:</label>
+            <input type="text" id="purFact1" name="purFact1" value="<%= memberDetails.ua_purchasing_factor1 %>">
+            <br>
+            <label for="purFact2">Purchase Factor 2:</label>
+            <input type="text" id="purFact2" name="purFact2" value="<%= memberDetails.ua_purchasing_factor2 %>">
+            <br>
+            <label for="purFact3">Purchase Factor 3:</label>
+            <input type="text" id="purFact3" name="purFact3" value="<%= memberDetails.ua_purchasing_factor3 %>">
+            <br>
+            <label for="purFact4">Purchase Factor 4:</label>
+            <input type="text" id="purFact4" name="purFact4" value="<%= memberDetails.ua_purchasing_factor4 %>">
+            <br>
+            <label for="purFact5">Purchase Factor 5:</label>
+            <input type="text" id="purFact5" name="purFact5" value="<%= memberDetails.ua_purchasing_factor5 %>">
+            <br>
+            <label for="purFact6">Purchase Factor 6:</label>
+            <input type="text" id="purFact6" name="purFact6" value="<%= memberDetails.ua_purchasing_factor6 %>">
+            <br>
+            <label for="purFact7">Purchase Factor 7:</label>
+            <input type="text" id="purFact7" name="purFact7" value="<%= memberDetails.ua_purchasing_factor7 %>">
+            <br>
+            <label for="purFact8">Purchase Factor 8:</label>
+            <input type="text" id="purFact8" name="purFact8" value="<%= memberDetails.ua_purchasing_factor8 %>">
+            <br>
+            <label for="purFact9">Purchase Factor 9:</label>
+            <input type="text" id="purFact9" name="purFact9" value="<%= memberDetails.ua_purchasing_factor9 %>">
+            <br>
+            <label for="purFact10">Purchase Factor 10:</label>
+            <input type="text" id="purFact10" name="purFact10" value="<%= memberDetails.ua_purchasing_factor10 %>">
+            <br>
+
+            <label for="trySkin">Try Skincare:</label>
+            <input type="text" id="trySkin" name="trySkin" value="<%= memberDetails.ua_try_skincare %>">
+            <br>
+            <label for="tryHair">Try Haircare:</label>
+            <input type="text" id="tryHair" name="tryHair" value="<%= memberDetails.ua_try_haircare %>">
+            <br>
+            <label for="tryMake">Try Makeup:</label>
+            <input type="text" id="tryMake" name="tryMake" value="<%= memberDetails.ua_try_makeup %>">
+            <br>
+            <label for="edu">Education:</label>
+            <input type="text" id="edu" name="edu" value="<%= memberDetails.ua_education %>">
+            <br>
+            <label for="emp">Employment:</label>
+            <input type="text" id="emp" name="emp" value="<%= memberDetails.ua_employment %>">
+            <br>
+            <label for="un18">Under 18 in home:</label>
+            <input type="checkbox" id="un18" name="un18" value="1" <%= memberDetails.ua_under_18_in_home ? 'checked' : '' %>>
+            <br>
+            <label for="add1">Address 1:</label>
+            <input type="text" id="add1" name="add1" value="<%= memberDetails.ua_address1 %>">
+            <br>
+            <label for="add2">Address 2:</label>
+            <input type="text" id="add2" name="add2" value="<%= memberDetails.ua_address2 %>">
+            <br>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" value="<%= memberDetails.ua_city %>">
+            <br>
+            <label for="county">County:</label>
+            <input type="text" id="county" name="county" value="<%= memberDetails.ua_county %>">
+            <br>
+            <label for="postcode">Postcode:</label>
+            <input type="text" id="postcode" name="postcode" value="<%= memberDetails.ua_postcode %>">
+            <br>
+            <label for="phoneCode">Phone Code:</label>
+            <input type="text" id="phoneCode" name="phoneCode" value="<%= memberDetails.ua_phone_code %>" maxlength="8">
+            <br>
+            <label for="phoneNum">Phone Number:</label>
+            <input type="text" id="phoneNum" name="phoneNum" value="<%= memberDetails.ua_phone_number %>" maxlength="20">
+            <br>
+            <label for="phoneConfAt">Phone Confirmed At:</label>
+            <input type="number" id="phoneConfAt" name="phoneConfAt" value="<%= memberDetails.ua_phone_confirmed_at %>">
+            <br>
             <button type="submit">Update</button>
         </form>
     </div>
 </body>
+</html>
