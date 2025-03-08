@@ -30,7 +30,14 @@
             <input type="text" id="dob" name="dob" value="<%= memberDetails.user_dob %>">
             <br>
             <label for="gender">Gender:</label>
-            <input type="text" id="gender" name="gender" value="<%= memberDetails.gender %>">
+            <select id="gender" name="gender">
+                <option value="NULL" <%= memberDetails.gender === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="FEMALE" <%= memberDetails.gender === 'FEMALE' ? 'selected' : '' %>>Female</option>
+                <option value="MALE" <%= memberDetails.gender === 'MALE' ? 'selected' : '' %>>Male</option>
+                <option value="NON_BINARY" <%= memberDetails.gender === 'NON_BINARY' ? 'selected' : '' %>>Non-binary</option>
+                <option value="OTHER" <%= memberDetails.gender === 'OTHER' ? 'selected' : '' %>>Other</option>
+                <option value="PREFER_NOT_ANSWER" <%= memberDetails.gender === 'PREFER_NOT_ANSWER' ? 'selected' : '' %>>Prefer not to answer</option>
+            </select>
             <br>
             <label for="vide_rev">Video Reviewer:</label>
             <input type="checkbox" id="vide_rev" name="vide_rev" value="1" <%= memberDetails.video_reviewer ? 'checked' : '' %>>
@@ -39,7 +46,12 @@
             <input type="text" id="heard" name="heard" value="<%= memberDetails.heard_about %>">
             <br>
             <label for="status">User Status:</label>
-            <input type="text" id="status" name="status" value="<%= memberDetails.user_status %>">
+            <select id="status" name="status">
+                <option value="NULL" <%= memberDetails.user_status === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ACTIVE" <%= memberDetails.user_status === 'ACTIVE' ? 'selected' : '' %>>Active</option>
+                <option value="DELETED" <%= memberDetails.user_status === 'DELETED' ? 'selected' : '' %>>Deleted</option>
+                <option value="PENDING" <%= memberDetails.user_status === 'PENDING' ? 'selected' : '' %>>Pending</option>
+            </select>
             <br>
             <label for="lastLog">Last Login:</label>
             <input type="text" id="lastLog" name="lastLog" value="<%= memberDetails.user_last_login_at %>">
@@ -76,16 +88,39 @@
             <!--LAYING OUT THE ATTRIBUTES OF THE SQUAD MEMBER-->
             <label><h2><u>Squad Member Attributes</u></h2></label>
             <label for="skinTone">Skin Tone:</label>
-            <input type="text" id="skinTone" name="skinTone" value="<%= memberDetails.ua_skin_tone %>">
+            <select id="skinTone" name="skinTone">
+                <option value="NULL" <%= memberDetails.ua_skin_tone === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="VERY_FAIR" <%= memberDetails.ua_skin_tone === 'VERY_FAIR' ? 'selected' : '' %>>Very Fair</option>
+                <option value="FAIR" <%= memberDetails.ua_skin_tone === 'FAIR' ? 'selected' : '' %>>Fair</option>
+                <option value="MEDIUM" <%= memberDetails.ua_skin_tone === 'MEDIUM' ? 'selected' : '' %>>Medium</option>
+                <option value="TAN" <%= memberDetails.ua_skin_tone === 'TAN' ? 'selected' : '' %>>Tan</option>
+                <option value="DEEP" <%= memberDetails.ua_skin_tone === 'DEEP' ? 'selected' : '' %>>Deep</option>
+                <option value="DARK" <%= memberDetails.ua_skin_tone === 'DARK' ? 'selected' : '' %>>Dark</option>
+            </select>
             <br>
             <label for="complex">Skin Complexion:</label>
-            <input type="text" id="complex" name="complex" value="<%= memberDetails.ua_skin_complexion %>">
+            <select id="complex" name="complex">
+                <option value="NULL" <%= memberDetails.ua_skin_complexion === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="COOL" <%= memberDetails.ua_skin_complexion === 'COOL' ? 'selected' : '' %>>Cool</option>
+                <option value="OLIVE" <%= memberDetails.ua_skin_complexion === 'OLIVE' ? 'selected' : '' %>>Olive</option>
+                <option value="NEUTRAL" <%= memberDetails.ua_skin_complexion === 'NEUTRAL' ? 'selected' : '' %>>Neutral</option>
+                <option value="BEIGE" <%= memberDetails.ua_skin_complexion === 'BEIGE' ? 'selected' : '' %>>Beige</option>
+                <option value="WARM" <%= memberDetails.ua_skin_complexion === 'WARM' ? 'selected' : '' %>>Warm</option>
+                <option value="GOLDEN" <%= memberDetails.ua_skin_complexion === 'GOLDEN' ? 'selected' : '' %>>Golden</option>
+            </select>
             <br>
             <label for="sensSkin">Sensitive Skin:</label>
             <input type="checkbox" id="sensSkin" name="sensSkin" value="1" <%= memberDetails.ua_sensitive_skin ? 'checked' : '' %>>
             <br>
             <label for="skinType">Skin Type:</label>
-            <input type="text" id="skinType" name="skinType" value="<%= memberDetails.ua_skin_type %>">
+            <select id="skinType" name="skinType">
+                <option value="NULL" <%= memberDetails.ua_skin_type === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="NORMAL" <%= memberDetails.ua_skin_type === 'NORMAL' ? 'selected' : '' %>>Normal</option>
+                <option value="DRY" <%= memberDetails.ua_skin_type === 'DRY' ? 'selected' : '' %>>Dry</option>
+                <option value="OILY" <%= memberDetails.ua_skin_type === 'OILY' ? 'selected' : '' %>>Oily</option>
+                <option value="COMBINATION" <%= memberDetails.ua_skin_type === 'COMBINATION' ? 'selected' : '' %>>Combination</option>
+                <option value="MATURE" <%= memberDetails.ua_skin_type === 'MATURE' ? 'selected' : '' %>>Mature</option>
+            </select>
             <br>
             <label for="skinLin">Skin Concerns - Fine Lines:</label>
             <input type="checkbox" id="skinLin" name="skinLin" value="1" <%= memberDetails.ua_skin_concerns_file_lines ? 'checked' : '' %>>
@@ -128,7 +163,16 @@
             <br>
 
             <label for="eyeCol">Eye Colour:</label>
-            <input type="text" id="eyeCol" name="eyeCol" value="<%= memberDetails.ua_eye_colour %>">
+            <select id="eyeCol" name="eyeCol">
+                <option value="NULL" <%= memberDetails.ua_eye_colour === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="BLUE" <%= memberDetails.ua_eye_colour === 'BLUE' ? 'selected' : '' %>>Blue</option>
+                <option value="GREEN" <%= memberDetails.ua_eye_colour === 'GREEN' ? 'selected' : '' %>>Green</option>
+                <option value="GREY" <%= memberDetails.ua_eye_colour === 'GREY' ? 'selected' : '' %>>Grey</option>
+                <option value="BROWN" <%= memberDetails.ua_eye_colour === 'BROWN' ? 'selected' : '' %>>Brown</option>
+                <option value="HAZEL" <%= memberDetails.ua_eye_colour === 'HAZEL' ? 'selected' : '' %>>Hazel</option>
+                <option value="AMBER" <%= memberDetails.ua_eye_colour === 'AMBER' ? 'selected' : '' %>>Amber</option>
+                <option value="RED" <%= memberDetails.ua_eye_colour === 'RED' ? 'selected' : '' %>>Red</option>
+            </select>
             <br>
             <label for="eyeDark">Eye Concerns - Dark Circles:</label>
             <input type="checkbox" id="eyeDark" name="eyeDark" value="1" <%= memberDetails.ua_eye_concerns_dark_circles ? 'checked' : '' %>>
@@ -167,8 +211,16 @@
             <input type="checkbox" id="lipsChapped" name="lipsChapped" value="1" <%= memberDetails.ua_lips_concerns_chapped ? 'checked' : '' %>>
             <br>
 
-            <label for="eyeCol">Skin Type: - Select</label>
-            <input type="text" id="eyeCol" name="eyeCol" value="<%= memberDetails.ua_eye_colour %>">
+            <label for="bodySkinType">Body Skin Type:</label>
+            <select id="bodySkinType" name="bodySkinType">
+                <option value="NULL" <%= memberDetails.ua_body_skin_type === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="NORMAL" <%= memberDetails.ua_body_skin_type === 'NORMAL' ? 'selected' : '' %>>Normal</option>
+                <option value="DRY" <%= memberDetails.ua_body_skin_type === 'DRY' ? 'selected' : '' %>>Dry</option>
+                <option value="OILY" <%= memberDetails.ua_body_skin_type === 'OILY' ? 'selected' : '' %>>Oily</option>
+                <option value="COMBINATION" <%= memberDetails.ua_body_skin_type === 'COMBINATION' ? 'selected' : '' %>>Combination</option>
+                <option value="MATURE" <%= memberDetails.ua_body_skin_type === 'MATURE' ? 'selected' : '' %>>Mature</option>
+            </select>
+            <br>
 
             <label for="bodyCellulite">Body Skin Concerns - Cellulite:</label>
             <input type="checkbox" id="bodyCellulite" name="bodyCellulite" value="1" <%= memberDetails.ua_body_skin_concerns_cellulite ? 'checked' : '' %>>
@@ -200,22 +252,52 @@
             <label for="bodyNone">Body Skin Concerns - None:</label>
             <input type="checkbox" id="bodyNone" name="bodyNone" value="1" <%= memberDetails.ua_body_skin_concerns_none ? 'checked' : '' %>>
             <br>
-            <label for="hairStruct">Hair Structure - select:</label>
-            <input type="checkbox" id="hairStruct" name="hairStruct" value="1" <%= memberDetails.ua_hair_structure ? 'checked' : '' %>>
+            <label for="hairStruct">Hair Structure:</label>
+            <select id="hairStruct" name="hairStruct">
+                <option value="NULL" <%= memberDetails.ua_hair_structure === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="FINE" <%= memberDetails.ua_hair_structure === 'FINE' ? 'selected' : '' %>>Fine</option>
+                <option value="MEDIUM" <%= memberDetails.ua_hair_structure === 'MEDIUM' ? 'selected' : '' %>>Medium</option>
+                <option value="COARSE" <%= memberDetails.ua_hair_structure === 'COARSE' ? 'selected' : '' %>>Coarse</option>
+            </select>
             <br>
             <label for="moistLvl">Moisture Levels:</label>
-            <input type="checkbox" id="moistLvl" name="moistLvl" value="1" <%= memberDetails.ua_moisture_levels ? 'checked' : '' %>>
+            <select id="moistLvl" name="moistLvl">
+                <option value="NULL" <%= memberDetails.ua_moisture_levels === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="NORMAL" <%= memberDetails.ua_moisture_levels === 'NORMAL' ? 'selected' : '' %>>Normal</option>
+                <option value="DRY" <%= memberDetails.ua_moisture_levels === 'DRY' ? 'selected' : '' %>>Dry</option>
+                <option value="OILY" <%= memberDetails.ua_moisture_levels === 'OILY' ? 'selected' : '' %>>Oily</option>
+            </select>
             <br>
-            <label for="hairCol">Hair Colour - select:</label>
-            <input type="checkbox" id="hairCol" name="hairCol" value="1" <%= memberDetails.ua_hair_colour ? 'checked' : '' %>>
+            <label for="hairCol">Hair Colour:</label>
+            <select id="hairCol" name="hairCol">
+                <option value="NULL" <%= memberDetails.ua_hair_colour === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="BLONDE" <%= memberDetails.ua_hair_colour === 'BLONDE' ? 'selected' : '' %>>Blonde</option>
+                <option value="RED" <%= memberDetails.ua_hair_colour === 'RED' ? 'selected' : '' %>>Red</option>
+                <option value="BROWN" <%= memberDetails.ua_hair_colour === 'BROWN' ? 'selected' : '' %>>Brown</option>
+                <option value="BLACK" <%= memberDetails.ua_hair_colour === 'BLACK' ? 'selected' : '' %>>Black</option>
+                <option value="GREY" <%= memberDetails.ua_hair_colour === 'GREY' ? 'selected' : '' %>>Grey</option>
+                <option value="WHITE" <%= memberDetails.ua_hair_colour === 'WHITE' ? 'selected' : '' %>>White</option>
+                <option value="OTHER" <%= memberDetails.ua_hair_colour === 'OTHER' ? 'selected' : '' %>>Other</option>
+            </select>
             <br>
             <label for="hairColTreat">Hair Colour - Treated:</label>
             <input type="checkbox" id="hairColTreat" name="hairColTreat" value="1" <%= memberDetails.ua_hair_colour_treated ? 'checked' : '' %>>
             <br>
             <label for="hairColTreatHow">Hair Colour - Treated How:</label>
-            <input type="checkbox" id="hairColTreatHow" name="hairColTreatHow" value="1" <%= memberDetails.ua_hair_colour_treated_how ? 'checked' : '' %>>
+            <select id="hairColTreatHow" name="hairColTreatHow">
+                <option value="NULL" <%= memberDetails.ua_hair_colour_treated_how === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="TEMPORARY_COLOUR" <%= memberDetails.ua_hair_colour_treated_how === 'TEMPORARY_COLOUR' ? 'selected' : '' %>>Temporary Colour</option>
+                <option value="SEMI_PERMANENT_COLOUR" <%= memberDetails.ua_hair_colour_treated_how === 'SEMI_PERMANENT_COLOUR' ? 'selected' : '' %>>Semi-Permanent Colour</option>
+                <option value="DEMI_PERMANENT" <%= memberDetails.ua_hair_colour_treated_how === 'DEMI_PERMANENT' ? 'selected' : '' %>>Demi-Permanent</option>
+                <option value="PERMANENT_HIGHLIGHTS" <%= memberDetails.ua_hair_colour_treated_how === 'PERMANENT_HIGHLIGHTS' ? 'selected' : '' %>>Permanent Highlights</option>
+                <option value="OMBRE" <%= memberDetails.ua_hair_colour_treated_how === 'OMBRE' ? 'selected' : '' %>>Ombre</option>
+                <option value="BALYAGE" <%= memberDetails.ua_hair_colour_treated_how === 'BALYAGE' ? 'selected' : '' %>>Balyage</option>
+                <option value="LOWLIGHTS" <%= memberDetails.ua_hair_colour_treated_how === 'LOWLIGHTS' ? 'selected' : '' %>>Lowlights</option>
+                <option value="TEXTURED_HIGHLIGHTS" <%= memberDetails.ua_hair_colour_treated_how === 'TEXTURED_HIGHLIGHTS' ? 'selected' : '' %>>Textured Highlights</option>
+                <option value="ROOT_COLOUR" <%= memberDetails.ua_hair_colour_treated_how === 'ROOT_COLOUR' ? 'selected' : '' %>>Root Colour</option>
+                <option value="HENNA" <%= memberDetails.ua_hair_colour_treated_how === 'HENNA' ? 'selected' : '' %>>Henna</option>
+            </select>
             <br>
-
             <label for="hairFrizz">Hair Concerns - Frizz:</label>
             <input type="checkbox" id="hairFrizz" name="hairFrizz" value="1" <%= memberDetails.ua_hair_concerns_frizz ? 'checked' : '' %>>
             <br>
@@ -295,49 +377,124 @@
             <input type="checkbox" id="scentsSpicy" name="scentsSpicy" value="1" <%= memberDetails.ua_scents_spicy ? 'checked' : '' %>>
             <br>
             <label for="productAntiAgeing">Product - Anti Ageing:</label>
-            <input type="checkbox" id="productAntiAgeing" name="productAntiAgeing" value="1" <%= memberDetails.ua_product_anti_ageing ? 'checked' : '' %>>
+            <select id="productAntiAgeing" name="productAntiAgeing">
+                <option value="NULL" <%= memberDetails.ua_product_anti_ageing === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_anti_ageing === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_anti_ageing === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_anti_ageing === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productClean">Product - Clean:</label>
-            <input type="checkbox" id="productClean" name="productClean" value="1" <%= memberDetails.ua_product_clean ? 'checked' : '' %>>
+            <select id="productClean" name="productClean">
+                <option value="NULL" <%= memberDetails.ua_product_clean === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_clean === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_clean === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_clean === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productContainsAloe">Product - Contains Aloe:</label>
-            <input type="checkbox" id="productContainsAloe" name="productContainsAloe" value="1" <%= memberDetails.ua_product_contains_aloe ? 'checked' : '' %>>
+            <select id="productContainsAloe" name="productContainsAloe">
+                <option value="NULL" <%= memberDetails.ua_product_contains_aloe === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_contains_aloe === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_contains_aloe === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_contains_aloe === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productContainsCaffeine">Product - Contains Caffeine:</label>
-            <input type="checkbox" id="productContainsCaffeine" name="productContainsCaffeine" value="1" <%= memberDetails.ua_product_contains_caffeine ? 'checked' : '' %>>
+            <select id="productContainsCaffeine" name="productContainsCaffeine">
+                <option value="NULL" <%= memberDetails.ua_product_contains_caffeine === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_contains_caffeine === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_contains_caffeine === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_contains_caffeine === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productContainsCocoa">Product - Contains Cocoa:</label>
-            <input type="checkbox" id="productContainsCocoa" name="productContainsCocoa" value="1" <%= memberDetails.ua_product_contains_cocoa ? 'checked' : '' %>>
+            <select id="productContainsCocoa" name="productContainsCocoa">
+                <option value="NULL" <%= memberDetails.ua_product_contains_cocoa === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_contains_cocoa === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_contains_cocoa === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_contains_cocoa === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productContainsRetinol">Product - Contains Retinol:</label>
-            <input type="checkbox" id="productContainsRetinol" name="productContainsRetinol" value="1" <%= memberDetails.ua_product_contains_retinol ? 'checked' : '' %>>
+            <select id="productContainsRetinol" name="productContainsRetinol">
+                <option value="NULL" <%= memberDetails.ua_product_contains_retinol === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_contains_retinol === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_contains_retinol === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_contains_retinol === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productContainsShea">Product - Contains Shea:</label>
-            <input type="checkbox" id="productContainsShea" name="productContainsShea" value="1" <%= memberDetails.ua_product_contains_shea ? 'checked' : '' %>>
+            <select id="productContainsShea" name="productContainsShea">
+                <option value="NULL" <%= memberDetails.ua_product_contains_shea === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_contains_shea === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_contains_shea === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_contains_shea === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productContainsSpf">Product - Contains SPF:</label>
-            <input type="checkbox" id="productContainsSpf" name="productContainsSpf" value="1" <%= memberDetails.ua_product_contains_spf ? 'checked' : '' %>>
+            <select id="productContainsSpf" name="productContainsSpf">
+                <option value="NULL" <%= memberDetails.ua_product_contains_spf === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_contains_spf === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_contains_spf === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_contains_spf === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productCrueltyFree">Product - Cruelty Free:</label>
-            <input type="checkbox" id="productCrueltyFree" name="productCrueltyFree" value="1" <%= memberDetails.ua_product_cruelty_free ? 'checked' : '' %>>
+            <select id="productCrueltyFree" name="productCrueltyFree">
+                <option value="NULL" <%= memberDetails.ua_product_cruelty_free === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_cruelty_free === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_cruelty_free === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_cruelty_free === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productEcoFriendly">Product - Eco Friendly:</label>
-            <input type="checkbox" id="productEcoFriendly" name="productEcoFriendly" value="1" <%= memberDetails.ua_product_eco_friendly ? 'checked' : '' %>>
+            <select id="productEcoFriendly" name="productEcoFriendly">
+                <option value="NULL" <%= memberDetails.ua_product_eco_friendly === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_eco_friendly === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_eco_friendly === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_eco_friendly === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productHalal">Product - Halal:</label>
-            <input type="checkbox" id="productHalal" name="productHalal" value="1" <%= memberDetails.ua_product_halal ? 'checked' : '' %>>
+            <select id="productHalal" name="productHalal">
+                <option value="NULL" <%= memberDetails.ua_product_halal === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_halal === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_halal === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_halal === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productNatural">Product - Natural:</label>
-            <input type="checkbox" id="productNatural" name="productNatural" value="1" <%= memberDetails.ua_product_natural ? 'checked' : '' %>>
+            <select id="productNatural" name="productNatural">
+                <option value="NULL" <%= memberDetails.ua_product_natural === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_natural === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_natural === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_natural === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productOrganic">Product - Organic:</label>
-            <input type="checkbox" id="productOrganic" name="productOrganic" value="1" <%= memberDetails.ua_product_organic ? 'checked' : '' %>>
+            <select id="productOrganic" name="productOrganic">
+                <option value="NULL" <%= memberDetails.ua_product_organic === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_organic === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_organic === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_organic === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productVeganFriendly">Product - Vegan Friendly:</label>
-            <input type="checkbox" id="productVeganFriendly" name="productVeganFriendly" value="1" <%= memberDetails.ua_product_vegan_friendly ? 'checked' : '' %>>
+            <select id="productVeganFriendly" name="productVeganFriendly">
+                <option value="NULL" <%= memberDetails.ua_product_vegan_friendly === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_vegan_friendly === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_vegan_friendly === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_vegan_friendly === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
             <label for="productSustainable">Product - Sustainable:</label>
-            <input type="checkbox" id="productSustainable" name="productSustainable" value="1" <%= memberDetails.ua_product_sustainable ? 'checked' : '' %>>
+            <select id="productSustainable" name="productSustainable">
+                <option value="NULL" <%= memberDetails.ua_product_sustainable === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="ALWAYS" <%= memberDetails.ua_product_sustainable === 'ALWAYS' ? 'selected' : '' %>>Always</option>
+                <option value="SOMETIMES" <%= memberDetails.ua_product_sustainable === 'SOMETIMES' ? 'selected' : '' %>>Sometimes</option>
+                <option value="DONTMIND" <%= memberDetails.ua_product_sustainable === 'DONTMIND' ? 'selected' : '' %>>Don't Mind</option>
+            </select>
             <br>
 
             <!--PURCHASING FACTOR PORTION OF CODE-->
