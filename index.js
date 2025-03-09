@@ -35,6 +35,21 @@ app.get("/members/edit/:id", (req, res)=> {
     })
 })
 
+//Allowing the user to update the details of a member
+app.post("/members/edit/:id", (req, res)=> {
+    const id = req.params.id;
+    const {username, fname, sname, email, dob, gender, vide_rev, heard, status, lastLog, create, tikHand, instFol, profShar, profAtts, profBio, profImgId, profNews, skinTone, complex, sensSkin, skinType, skinLin, skinBreak, lPore, hypPig, unevTone, dehyd, acne, dullSkin, rosa, sunDam, puffy, cysAcne, eyeCol, eyeDark, eyeLines, eyeDroop, eyePuffy, eyeHollows, eyeNone, lipsNormal, lipsDry, lipsCracked, lipsColdSores, lipsThin, lipsChapped, bodySkinType, bodyStretchMarks, bodyDehydration, bodyMenopausal, bodyItchySkin, bodyEczema, bodyPsoriasis, bodyVitiligo, bodyKeratosisPilaris, bodyNone, hairStruct, moistLvl, hairCol, hairColTreat, hairColTreatHow, hairFrizz, hairDandruff, hairDamage, hairColoured, hairLackVolume, hairLoss, hairAgeing, hairSplitEnds, hairLackShine, hairPsoriasis, hairOilyScalp, hairItchyScalp, hairHeatDamaged, hairThining, hairAlopecia, hairDryScalp, hairNone, scentsClean, scentsFloral, scentsOriental, scentsWoody, scentsCitrus, scentsFruity, scentsGreen, scentsOceanic, scentsSpicy, productAntiAgeing, productClean, productContainsAloe, productContainsCaffeine, productContainsRetinol, productContainsShea, productContainsSpf, productCrueltyFree, productEcoFriendly, productHalal, productNatural, productOrganic, productVeganFriendly, productSustainable, purFact1, purFact2, purFact3, purFact4, purFact5, purFact6, purFact7, purFact8, purFact9, purFact10, trySkin, tryHair, tryMake, edu, emp, un18, add1, add2, city, county, postcode, phoneCode, phoneNum, phoneConfAt} = req.body;
+    const updatedData = {username, fname, sname, email, dob, gender, vide_rev, heard, status, lastLog, create, tikHand, instFol, profShar, profAtts, profBio, profImgId, profNews, skinTone, complex, sensSkin, skinType, skinLin, skinBreak, lPore, hypPig, unevTone, dehyd, acne, dullSkin, rosa, sunDam, puffy, cysAcne, eyeCol, eyeDark, eyeLines, eyeDroop, eyePuffy, eyeHollows, eyeNone, lipsNormal, lipsDry, lipsCracked, lipsColdSores, lipsThin, lipsChapped, bodySkinType, bodyStretchMarks, bodyDehydration, bodyMenopausal, bodyItchySkin, bodyEczema, bodyPsoriasis, bodyVitiligo, bodyKeratosisPilaris, bodyNone, hairStruct, moistLvl, hairCol, hairColTreat, hairColTreatHow, hairFrizz, hairDandruff, hairDamage, hairColoured, hairLackVolume, hairLoss, hairAgeing, hairSplitEnds, hairLackShine, hairPsoriasis, hairOilyScalp, hairItchyScalp, hairHeatDamaged, hairThining, hairAlopecia, hairDryScalp, hairNone, scentsClean, scentsFloral, scentsOriental, scentsWoody, scentsCitrus, scentsFruity, scentsGreen, scentsOceanic, scentsSpicy, productAntiAgeing, productClean, productContainsAloe, productContainsCaffeine, productContainsRetinol, productContainsShea, productContainsSpf, productCrueltyFree, productEcoFriendly, productHalal, productNatural, productOrganic, productVeganFriendly, productSustainable, purFact1, purFact2, purFact3, purFact4, purFact5, purFact6, purFact7, purFact8, purFact9, purFact10, trySkin, tryHair, tryMake, edu, emp, un18, add1, add2, city, county, postcode, phoneCode, phoneNum, phoneConfAt}
+    mySqlDao.updateMember(id, updatedData)
+    .then(()=>{
+        res.redirect("/members");
+    })
+    .catch((error)=>{
+        console.log("Error Encountered While Retrieving data")
+        res.send(error);
+    })
+})
+
 //Rendering the members and their details
 app.get("/members", (req, res)=> {
     mySqlDao.getMembers()
