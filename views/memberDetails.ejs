@@ -283,6 +283,9 @@
                 <option value="OTHER" <%= memberDetails.ua_hair_colour === 'OTHER' ? 'selected' : '' %>>Other</option>
             </select>
             <br>
+            <label for="hairType">Hair Colour - Type:</label>
+            <input type="checkbox" id="hairType" name="hairType" value="1" <%= memberDetails.ua_hair_type ? 'checked' : '' %>>
+            <br>
             <label for="hairColTreat">Hair Colour - Treated:</label>
             <input type="checkbox" id="hairColTreat" name="hairColTreat" value="1" <%= memberDetails.ua_hair_colour_treated ? 'checked' : '' %>>
             <br>
