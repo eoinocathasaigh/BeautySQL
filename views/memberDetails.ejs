@@ -10,7 +10,7 @@
         <!-- Form to view and edit the information regarding  -->
         <form action="/members/edit/<%= id %>" method="POST">
             <label for="id">Member ID:</label>
-            <input type="text" id="mid" name="id" value="<%= id %>" readonly>
+            <input type="text" id="id" name="id" value="<%= memberDetails.user_id %>" readonly>
             <br>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" value="<%= memberDetails.username %>">
@@ -31,12 +31,12 @@
             <br>
             <label for="gender">Gender:</label>
             <select id="gender" name="gender">
-                <option value="NULL" <%= memberDetails.gender === 'NULL' ? 'selected' : '' %>>Select a value</option>
-                <option value="FEMALE" <%= memberDetails.gender === 'FEMALE' ? 'selected' : '' %>>Female</option>
-                <option value="MALE" <%= memberDetails.gender === 'MALE' ? 'selected' : '' %>>Male</option>
-                <option value="NON_BINARY" <%= memberDetails.gender === 'NON_BINARY' ? 'selected' : '' %>>Non-binary</option>
-                <option value="OTHER" <%= memberDetails.gender === 'OTHER' ? 'selected' : '' %>>Other</option>
-                <option value="PREFER_NOT_ANSWER" <%= memberDetails.gender === 'PREFER_NOT_ANSWER' ? 'selected' : '' %>>Prefer not to answer</option>
+                <option value='' <%= memberDetails.gender === '' ? 'selected' : '' %>>Select a value</option>
+                <option value='FEMALE' <%= memberDetails.gender === 'FEMALE' ? 'selected' : '' %>>Female</option>
+                <option value='MALE' <%= memberDetails.gender === 'MALE' ? 'selected' : '' %>>Male</option>
+                <option value='NON_BINARY' <%= memberDetails.gender === 'NON_BINARY' ? 'selected' : '' %>>Non-binary</option>
+                <option value='OTHER' <%= memberDetails.gender === 'OTHER' ? 'selected' : '' %>>Other</option>
+                <option value='PREFER_NOT_ANSWER' <%= memberDetails.gender === 'PREFER_NOT_ANSWER' ? 'selected' : '' %>>Prefer not to answer</option>
             </select>
             <br>
             <label for="vide_rev">Video Reviewer:</label>
@@ -47,14 +47,14 @@
             <br>
             <label for="status">User Status:</label>
             <select id="status" name="status">
-                <option value="NULL" <%= memberDetails.user_status === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="" <%= memberDetails.user_status === 'NULL' ? 'selected' : '' %>>Select a value</option>
                 <option value="ACTIVE" <%= memberDetails.user_status === 'ACTIVE' ? 'selected' : '' %>>Active</option>
                 <option value="DELETED" <%= memberDetails.user_status === 'DELETED' ? 'selected' : '' %>>Deleted</option>
                 <option value="PENDING" <%= memberDetails.user_status === 'PENDING' ? 'selected' : '' %>>Pending</option>
             </select>
             <br>
             <label for="lastLog">Last Login:</label>
-            <input type="text" id="lastLog" name="lastLog" value="<%= memberDetails.user_last_login_at %>">
+            <input type="number" id="lastLog" name="lastLog" value="<%= memberDetails.user_last_login_at %>">
             <br>
             <label for="create">Created At:</label>
             <input type="text" id="create" name="create" value="<%= memberDetails.user_created_at %>">
@@ -92,7 +92,7 @@
             <label><h2><u>Squad Member Attributes</u></h2></label>
             <label for="skinTone">Skin Tone:</label>
             <select id="skinTone" name="skinTone">
-                <option value="NULL" <%= memberDetails.ua_skin_tone === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                <option value="" <%= memberDetails.ua_skin_tone === 'NULL' ? 'selected' : '' %>>Select a value</option>
                 <option value="VERY_FAIR" <%= memberDetails.ua_skin_tone === 'VERY_FAIR' ? 'selected' : '' %>>Very Fair</option>
                 <option value="FAIR" <%= memberDetails.ua_skin_tone === 'FAIR' ? 'selected' : '' %>>Fair</option>
                 <option value="MEDIUM" <%= memberDetails.ua_skin_tone === 'MEDIUM' ? 'selected' : '' %>>Medium</option>
