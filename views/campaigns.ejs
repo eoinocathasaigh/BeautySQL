@@ -13,12 +13,13 @@
         <li style="list-style-type: none; margin: 10px 0;">
           <div style="border: 1px solid black; padding: 10px; border-radius: 5px; background-color: white;">
             <h3><%= campaign.sampling_campaign_ref %></h3>
+            <p><strong>Campaign ID:</strong> <%= campaign.camp_id %></p>
             <p><strong>Start Date:</strong> <%= campaign.posted_date %></p>
             <p><strong>End Date:</strong> <%= campaign.end_date %></p>
             <p><strong>Description:</strong> <%= campaign.description %></p>
-            <a href="/campaigns/<%= campaign.sampling_campaign_ref %>">
-              <button style="padding: 5px 10px; border-radius: 5px; background-color: lightgreen;">View Details</button>
-            </a>
+            <form action="/campaigns/<%= campaign.camp_id %>" method="GET">
+              <button type="submit">View Details</button>
+            </form>
           </div>
         </li>
       <% }); %>

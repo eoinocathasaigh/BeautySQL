@@ -75,12 +75,21 @@ app.get("/campaigns", (req, res)=> {
     })
 })
 
-app.get("/campaigns/:campRef", (req, res)=> {
-    mySqlDao.getCampaignDetails(req.params.campRef)
+app.get("/campaigns/:id", (req, res)=> {
+    const id = req.params.id;
+    mySqlDao.getCampaignDetails(id)
     .then((data)=>{
         res.render("campDetails", {"campDetails": data});
     })
     .catch((error)=>{
         res.send(error);
     })
+
+    /*
+    mySqlDao.getEligibleParticipants(req.params.id)
+    .then(data => {
+        res.render("campDetails", {"campDetails": data});
+    })
+    .catch(error => console.error(error));
+    */
 })
