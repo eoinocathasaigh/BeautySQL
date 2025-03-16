@@ -1,70 +1,73 @@
-/* General Page Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
 
-/* Table Styling */
-table {
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.nav-links {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.nav-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #007BFF;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.campaignTable {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
-th, td {
-    padding: 10px;
+.campaignTable th, .campaignTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
     text-align: left;
-    border: 1px solid #dee2e6;
 }
 
-th {
-    background-color: #343a40;
-    color: #ffffff;
-}
-
-tr:nth-child(even) {
+.campaignTable th {
     background-color: #f2f2f2;
+    color: #333;
 }
 
-/* Profile Image Styling */
-.profile-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
+.campaignTable tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
-/* Product Image Styling */
-.product-img {
-    width: 80px;
-    height: auto;
+.campaignTable tr:hover {
+    background-color: #f1f1f1;
 }
 
-/* Video Container */
-.video-container {
-    max-width: 200px;
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
-.video-container video {
-    width: 100%;
-    border-radius: 10px;
+button:hover {
+    background-color: #0056b3;
 }
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    th, td {
-        font-size: 14px;
-        padding: 8px;
-    }
-
-    .profile-img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .product-img {
-        width: 60px;
-    }
-}
-

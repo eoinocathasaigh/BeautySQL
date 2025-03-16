@@ -1,27 +1,48 @@
-<!--Simplistic view of the campaign details-->
-<div style="text-align: center; border: 2px solid black; border-radius: 5px; max-width: fit-content; margin: auto; background-color: lightblue;">
-    <!--Navigation Links: Providing routing to each of the core parts of our application-->
-    <div style="text-align: center; border: 2px solid black; margin: auto; background-color: aquamarine;">
-      <p>
-        <a href="/">Home</a><br>
-        <a href="/members">Track Members</a><br>
-      </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaigns</title>
+    <link rel="stylesheet" href="/campaignStyles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nav-links">
+            <p>
+                <a href="/">Home</a>
+                <a href="/members">Track Members</a>
+            </p>
+        </div>
+        <h2>Current Campaigns</h2>
+        <table class="campaignTable">
+            <thead>
+                <tr>
+                    <th>Campaign Reference</th>
+                    <th>Campaign ID</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% campDetails.forEach(function(campaign) { %>
+                    <tr>
+                        <td><%= campaign.sampling_campaign_ref %></td>
+                        <td><%= campaign.camp_id %></td>
+                        <td><%= campaign.posted_date %></td>
+                        <td><%= campaign.end_date %></td>
+                        <td><%= campaign.description %></td>
+                        <td>
+                            <form action="/campaigns/<%= campaign.camp_id %>" method="GET">
+                                <button type="submit">View Details</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
     </div>
-    <h2>Current Campaigns</h2>
-    <ul>
-      <% campDetails.forEach(function(campaign) { %>
-        <li style="list-style-type: none; margin: 10px 0;">
-          <div style="border: 1px solid black; padding: 10px; border-radius: 5px; background-color: white;">
-            <h3><%= campaign.sampling_campaign_ref %></h3>
-            <p><strong>Campaign ID:</strong> <%= campaign.camp_id %></p>
-            <p><strong>Start Date:</strong> <%= campaign.posted_date %></p>
-            <p><strong>End Date:</strong> <%= campaign.end_date %></p>
-            <p><strong>Description:</strong> <%= campaign.description %></p>
-            <form action="/campaigns/<%= campaign.camp_id %>" method="GET">
-              <button type="submit">View Details</button>
-            </form>
-          </div>
-        </li>
-      <% }); %>
-    </ul>
-</div>
+</body>
+</html>
