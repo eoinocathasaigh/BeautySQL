@@ -57,7 +57,7 @@
             <input type="number" id="lastLog" name="lastLog" minlength="1" value="<%= memberDetails.user_last_login_at %>">
             <br>
             <label for="create">Created At:</label>
-            <input type="datetime-local" id="create" name="create" value="<%= memberDetails.user_created_at %>">
+            <input type="text" id="create" name="create" value="<%= memberDetails.user_created_at %>" readonly>
             <br>
             <label for="instHand">Instagram Handle:</label>
             <input type="text" id="instHand" name="instHand" maxlength="255" value="<%= memberDetails.profile_instagram_handle %>">
