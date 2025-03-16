@@ -5,58 +5,120 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campaign Data</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/public/campaignStyles.css">
 </head>
 <body class="container py-4">
-    <h2 class="text-center mb-4">Campaign Data</h2>
-    <table class="table table-striped table-bordered">
-        <thead class="table-dark">
-            <tr>
-                <th>Profile</th>
-                <th>Username</th>
-                <th>Product</th>
-                <th>Review</th>
-                <th>Rating</th>
-                <th>Recommendation</th>
-                <th>Review Video</th>
-                <th>Review Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% campDetails.forEach(function(campaign) { %>
-            <tr>
-                <td>
-                    <% if (campaign.profile_image_url) { %>
-                        <img src="<%= campaign.profile_image_url %>" alt="Profile" class="profile-img">
-                    <% } %>
-                </td>
-                <td><%= campaign.username %></td>
-                <td>
-                    <img src="<%= campaign.product_image_url %>" alt="Product" class="product-img">
-                    <br><%= campaign.product_title %>
-                </td>
-                <td>
-                    <strong><%= campaign.review_title %></strong>
-                    <p><%= campaign.review_description %></p>
-                </td>
-                <td><%= campaign.review_rating %>/5</td>
-                <td><%= campaign.will_recommend ? "Yes" : "No" %></td>
-                <td>
-                    <% if (campaign.video_url) { %>
-                        <div class="video-container">
-                            <video controls width="100%">
-                                <source src="<%= campaign.video_url %>" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
+    <h2 class="text-center mb-4">Campaign Details</h2>
+    <div class="accordion" id="campaignAccordion">
+        <% campDetails.forEach(function(campaign, index) { %>
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                            data-bs-target="#collapse<%= index %>" aria-expanded="false">
+                        <%= campaign.username %> (ID: <%= campaign.user_id %>)
+                    </button>
+                </h2>
+                <div id="collapse<%= index %>" class="accordion-collapse collapse" data-bs-parent="#campaignAccordion">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <!-- User Profile Section -->
+                            <div class="col-md-4">
+                                <div class="card mb-3">
+                                    <div class="card-header bg-primary text-white">User Profile</div>
+                                    <div class="card-body">
+                                        <img src="<%= campaign.profile_image_url %>" class="img-fluid rounded mb-2" alt="Profile">
+                                        <p><strong>Name:</strong> <%= campaign.profile_name %> <%= campaign.profile_surname %></p>
+                                        <p><strong>Email:</strong> <%= campaign.user_email %></p>
+                                        <p><strong>Country:</strong> <%= campaign.user_country %></p>
+                                        <p><strong>DOB:</strong> <%= campaign.user_dob %></p>
+                                        <p><strong>Gender:</strong> <%= campaign.gender %></p>
+                                        <p><strong>Skin Tone:</strong> <%= campaign.ua_skin_tone %></p>
+                                    </div>
+                                </div>
+                                <div class="card mb-3">
+                                    <div class="card-header bg-info text-white">Social Media</div>
+                                    <div class="card-body">
+                                        <p><strong>Instagram:</strong> <%= campaign.instagram_handle %></p>
+                                        <p><strong>Instagram Followers:</strong><%= campaign.instagram_followers %> followers</p>
+                                        <p><strong>TikTok:</strong> <%= campaign.tiktok_handle %></p>
+                                        <p><strong>TikTok Followers:</strong><%= campaign.tiktok_followers %> followers</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Campaign & Review Section -->
+                            <div class="col-md-8">
+                                <div class="card mb-3">
+                                    <div class="card-header bg-success text-white">Campaign Information</div>
+                                    <div class="card-body">
+                                        <p><strong>Campaign Name:</strong> <%= campaign.campaign_name %></p>
+                                        <p><strong>Status:</strong> <%= campaign.campaign_status %></p>
+                                        <p><strong>Posted Date:</strong> <%= new Date(campaign.sampling_posted_date).toLocaleDateString() %></p>
+                                        <p><strong>Samples:</strong> <%= campaign.sampling_no_of_samples %></p>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3">
+                                    <div class="card-header bg-warning">Product Review</div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <img src="<%= campaign.product_image_url %>" class="img-fluid" alt="Product">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h5><%= campaign.product_title %></h5>
+                                                <h6><%= campaign.review_title %></h6>
+                                                <p><%= campaign.review_description %></p>
+                                                <p><strong>Rating:</strong> <%= campaign.review_rating %>/5</p>
+                                                <p><strong>Would Recommend:</strong> <%= campaign.will_recommend ? "Yes" : "No" %></p>
+                                                <p><strong>Would Repurchase:</strong> <%= campaign.will_repurchase ? "Yes" : "No" %></p>
+                                                <p><strong>How obtained:</strong> <%= campaign.how_did_get_product %></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <% if (campaign.video_url) { %>
+                                <div class="card mb-3">
+                                    <div class="card-header bg-danger text-white">Review Video</div>
+                                    <div class="card-body">
+                                        <video controls width="100%">
+                                            <source src="<%= campaign.video_url %>" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                        <p><strong>Video Status:</strong> <%= campaign.video_status %></p>
+                                    </div>
+                                </div>
+                                <% } %>
+
+                                <div class="card">
+                                    <div class="card-header bg-secondary text-white">Sentiment Analysis</div>
+                                    <div class="card-body">
+                                        <p><strong>Overall Sentiment:</strong> <%= campaign.review_sentiment %></p>
+                                        <div class="progress mb-2">
+                                            <!--<div class="progress-bar bg-success" style="width: <%= campaign.review_sentiment_score_positive %>%">
+                                                Positive <%= campaign.review_sentiment_score_positive %>%
+                                            </div>-->
+                                        </div>
+                                        <div class="progress mb-2">
+                                            <!--<div class="progress-bar bg-danger" style="width: <%= campaign.review_sentiment_score_negative %>%">
+                                                Negative <%= campaign.review_sentiment_score_negative %>%
+                                            </div>-->
+                                        </div>
+                                        <div class="progress mb-2">
+                                            <!--<div class="progress-bar bg-secondary" style="width: <%= campaign.review_sentiment_score_neutral %>%">
+                                                Neutral <%= campaign.review_sentiment_score_neutral %>%
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    <% } else { %>
-                        No Video
-                    <% } %>
-                </td>
-                <td><%= new Date(campaign.review_created_at).toLocaleDateString() %></td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
