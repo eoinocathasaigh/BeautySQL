@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: wheat;
     margin: 0;
     padding: 0;
 }
@@ -22,16 +22,20 @@ body {
 .nav-links a {
     margin: 0 10px;
     text-decoration: none;
-    color: #007BFF;
+    color: #3498db;
+    font-weight: bold;
 }
 
 .nav-links a:hover {
     text-decoration: underline;
+    color: #2c3e50;
 }
 
-h2 {
+h1 {
     text-align: center;
     color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .campaignTable {
