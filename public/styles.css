@@ -89,3 +89,10 @@ button {
 button:hover {
     background-color: #2980b9;
 }
+
+.profile-img{
+    border-radius: 5%;
+    border: 3px solid #ccc;
+    margin: 0 auto;
+    display: block;
+}

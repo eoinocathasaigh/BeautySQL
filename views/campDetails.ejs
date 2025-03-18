@@ -30,7 +30,7 @@
                                 <div class="card mb-3">
                                     <div class="card-header bg-primary text-white">User Profile</div>
                                     <div class="card-body">
-                                        <img src="<%= campaign.profile_image_url %>" class="img-fluid rounded mb-2" alt="Profile">
+                                        <img src="<%= campaign.profile_image_url %>" class="img-fluid rounded mb-2" alt="<%= campaign.username %>'s Profile Photo">
                                         <p><strong>Name:</strong> <%= campaign.profile_name %> <%= campaign.profile_surname %></p>
                                         <p><strong>Email:</strong> <%= campaign.user_email %></p>
                                         <p><strong>Country:</strong> <%= campaign.user_country %></p>

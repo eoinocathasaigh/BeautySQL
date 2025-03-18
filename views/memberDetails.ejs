@@ -7,7 +7,7 @@
         <p style="font-size: 20px;"><a href="/members"><u>Back</u></a></p>
         <h1><u>Currently Viewing: <%= memberDetails.username %></u></h1>
 
-        <img src="<%= memberDetails.profile_image_url %>" alt="<%= memberDetails.username %>'s Profile Photo">
+        <img src="<%= memberDetails.profile_image_url %>" alt="<%= memberDetails.username %>'s Profile Photo" class="profile-img">
         <!-- Form to view and edit the information regarding  -->
         <form class="updadeForm" action="/members/edit/<%= id %>" method="POST">
             <label for="id">Member ID:</label>
