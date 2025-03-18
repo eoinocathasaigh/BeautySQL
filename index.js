@@ -66,7 +66,6 @@ app.post("/members/edit/:id", (req, res)=> {
 app.get("/members", (req, res)=> {
     mySqlDao.getMembers()
     .then((data)=>{
-        console.log("Correctly retrieved data")
         res.render("squadMembers", {"squadMembers": data});
     })
     .catch((error)=>{
