@@ -51,8 +51,8 @@ h1 {
 }
 
 .campaignTable th {
-    background-color: #f2f2f2;
-    color: #333;
+    background-color: #343a40;
+    color: #ffffff;
 }
 
 .campaignTable tr:nth-child(even) {

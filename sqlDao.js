@@ -205,7 +205,7 @@ WHERE video_status = "Success"
 }
 
 //Getting a specific campaign & its details as opposed to a specific 
-var getCampaignDetails = function (campaignId) {
+var getCampaignParticipants = function (campaignId) {
     return new Promise((resolve, reject) => {
         pool.query(`WITH AllRecords AS (
     SELECT 
@@ -322,4 +322,4 @@ WHERE video_status = "Success"
     })
 }
 
-module.exports = { getMembers, memberDetails, getCampaigns, getCamps, getCampaignDetails, updateMember };
+module.exports = { getMembers, memberDetails, getCampaigns, getCamps, getCampaignParticipants, updateMember };

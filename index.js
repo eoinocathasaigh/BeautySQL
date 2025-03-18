@@ -89,7 +89,7 @@ app.get("/campaigns", (req, res)=> {
 
 app.get("/campaigns/:id", (req, res)=> {
     const id = req.params.id;
-    mySqlDao.getCampaignDetails(id)
+    mySqlDao.getCampaignParticipants(id)
     .then((data)=>{
         res.render("campDetails", {"campDetails": data});
     })
