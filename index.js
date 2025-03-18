@@ -16,10 +16,22 @@ app.listen(3000, ()=>{
     console.log("App is listening for connection");
 })
 
+/*
 //Routing in the application
 //Returning the content of the home page - what the user will initially see
 app.get("/", (req, res)=> {
     res.render("home");
+})
+*/
+
+app.get("/", (req, res)=> {
+    mySqlDao.getCamps()
+    .then((data)=>{
+        res.render("campaigns", {"campDetails": data});
+    })
+    .catch((error)=>{
+        res.send(error);
+    })
 })
 
 //Rendering the page for the individual beauty squad member details

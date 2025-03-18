@@ -37,19 +37,14 @@
                                         <p><strong>DOB:</strong> <%= campaign.user_dob %></p>
                                         <p><strong>Gender:</strong> <%= campaign.gender %></p>
                                         <p><strong>Skin Tone:</strong> <%= campaign.ua_skin_tone %></p>
-                                    </div>
-                                </div>
-                                <div class="card mb-3">
-                                    <div class="card-header bg-info text-white">Social Media</div>
-                                    <div class="card-body">
-                                        <p><strong>Instagram:</strong> <%= campaign.instagram_handle %></p>
-                                        <p><strong>Instagram Followers:</strong><%= campaign.instagram_followers %> followers</p>
-                                        <p><strong>TikTok:</strong> <%= campaign.tiktok_handle %></p>
-                                        <p><strong>TikTok Followers:</strong><%= campaign.tiktok_followers %> followers</p>
+                                        <p><strong>Skin Type:</strong> <%= campaign.ua_skin_type %></p>
+                                        <p><strong>Hair Type:</strong> <%= campaign.ua_hair_type %></p>
+                                        <p><strong>Eye Colour:</strong> <%= campaign.ua_eye_colour %></p>
+                                        <p><strong>Newsletter:</strong> <%= campaign.profile_newsletter ? "Subscribed" : "Not Subscribed" %></p>
                                     </div>
                                 </div>
                             </div>
-
+    
                             <!-- Campaign & Review Section -->
                             <div class="col-md-8">
                                 <div class="card mb-3">
@@ -58,10 +53,12 @@
                                         <p><strong>Campaign Name:</strong> <%= campaign.campaign_name %></p>
                                         <p><strong>Status:</strong> <%= campaign.campaign_status %></p>
                                         <p><strong>Posted Date:</strong> <%= new Date(campaign.sampling_posted_date).toLocaleDateString() %></p>
+                                        <p><strong>End Date:</strong> <%= new Date(campaign.campaign_end_date).toLocaleDateString() %></p>
                                         <p><strong>Samples:</strong> <%= campaign.sampling_no_of_samples %></p>
+                                        <p><strong>Campaign Ref:</strong> <%= campaign.sampling_campaign_ref %></p>
                                     </div>
                                 </div>
-
+    
                                 <div class="card mb-3">
                                     <div class="card-header bg-warning">Product Review</div>
                                     <div class="card-body">
@@ -77,11 +74,12 @@
                                                 <p><strong>Would Recommend:</strong> <%= campaign.will_recommend ? "Yes" : "No" %></p>
                                                 <p><strong>Would Repurchase:</strong> <%= campaign.will_repurchase ? "Yes" : "No" %></p>
                                                 <p><strong>How obtained:</strong> <%= campaign.how_did_get_product %></p>
+                                                <p><strong>Review Created At:</strong> <%= new Date(campaign.review_created_at).toLocaleDateString() %></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
+    
                                 <% if (campaign.video_url) { %>
                                 <div class="card mb-3">
                                     <div class="card-header bg-danger text-white">Review Video</div>
@@ -94,26 +92,50 @@
                                     </div>
                                 </div>
                                 <% } %>
-
+    
                                 <div class="card">
                                     <div class="card-header bg-secondary text-white">Sentiment Analysis</div>
                                     <div class="card-body">
                                         <p><strong>Overall Sentiment:</strong> <%= campaign.review_sentiment %></p>
                                         <div class="progress mb-2">
-                                            <!--<div class="progress-bar bg-success" style="width: <%= campaign.review_sentiment_score_positive %>%">
+                                            <!--
+                                            <div class="progress-bar bg-success" style="width: <%= campaign.review_sentiment_score_positive %>%">
                                                 Positive <%= campaign.review_sentiment_score_positive %>%
-                                            </div>-->
+                                            </div>
+                                            -->
                                         </div>
+
                                         <div class="progress mb-2">
-                                            <!--<div class="progress-bar bg-danger" style="width: <%= campaign.review_sentiment_score_negative %>%">
+                                            <!--
+                                            <div class="progress-bar bg-danger" style="width: <%= campaign.review_sentiment_score_negative %>%">
                                                 Negative <%= campaign.review_sentiment_score_negative %>%
                                             </div>-->
                                         </div>
                                         <div class="progress mb-2">
-                                            <!--<div class="progress-bar bg-secondary" style="width: <%= campaign.review_sentiment_score_neutral %>%">
+                                            <!--
+                                            <div class="progress-bar bg-secondary" style="width: <%= campaign.review_sentiment_score_neutral %>%">
                                                 Neutral <%= campaign.review_sentiment_score_neutral %>%
-                                            </div>-->
+                                            </div>
+                                            -->
                                         </div>
+                                        <div class="progress mb-2">
+                                            <!--
+                                            <div class="progress-bar bg-warning" style="width: <%= campaign.review_sentiment_score_mixed %>%">
+                                                Mixed <%= campaign.review_sentiment_score_mixed %>%
+                                            </div>
+                                            -->
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="card mt-3">
+                                    <div class="card-header bg-info text-white">Social Media Links</div>
+                                    <div class="card-body">
+                                        <p><strong>Link 1:</strong> <a href="<%= campaign.social_media_content_link1 %>" target="_blank"><%= campaign.social_media_content_link1 %></a></p>
+                                        <p><strong>Link 2:</strong> <a href="<%= campaign.social_media_content_link2 %>" target="_blank"><%= campaign.social_media_content_link2 %></a></p>
+                                        <p><strong>Link 3:</strong> <a href="<%= campaign.social_media_content_link3 %>" target="_blank"><%= campaign.social_media_content_link3 %></a></p>
+                                        <p><strong>Link 4:</strong> <a href="<%= campaign.social_media_content_link4 %>" target="_blank"><%= campaign.social_media_content_link4 %></a></p>
+                                        <p><strong>Link 5:</strong> <a href="<%= campaign.social_media_content_link5 %>" target="_blank"><%= campaign.social_media_content_link5 %></a></p>
                                     </div>
                                 </div>
                             </div>

@@ -265,7 +265,7 @@ var getCampaignDetails = function (campaignId) {
         p.newsletter AS profile_newsletter,
         p.profile_image_id AS profile_image_id,
         fup.file_path AS profile_image_url,
-        fu.file_path AS product_image_url, -- Fixed the product image path retrieval
+        fu.file_path AS product_image_url,
         uat.skin_tone AS ua_skin_tone
     FROM user
     LEFT JOIN profile p ON user.id = p.user_id
