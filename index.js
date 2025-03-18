@@ -40,8 +40,6 @@ app.post("/members/edit/:id", (req, res)=> {
     const userId = req.params.id;
     const updatedData = req.body;
 
-    console.log(updatedData); // Log the submitted data
-
     mySqlDao.updateMember(userId, updatedData)
     .then(()=>{
         res.redirect("/members");
