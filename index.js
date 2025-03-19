@@ -90,12 +90,14 @@ app.get("/campaigns/:id", (req, res) => {
     const id = req.params.id;
     Promise.all([
         mySqlDao.getCampaignParticipants(id),
-        mySqlDao.getCampDetails(id)
+        mySqlDao.getCampDetails(id),
+        mySqlDao.getEligibleMembers()
     ])
-    .then(([audienceData, campaignDetails]) => {
+    .then(([audienceData, campaignDetails, availableMembers]) => {
         res.render("campDetails", {
             "campDetails": campaignDetails,
-            "audienceDetails": audienceData
+            "audienceDetails": audienceData,
+            "availableMembers": availableMembers
         });
     })
     .catch((error) => {

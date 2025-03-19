@@ -89,14 +89,26 @@ var getValidCamps = function () {
 var getCampDetails = function (campaignId) {
     //Command to get the campaings and their specific info
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT sc.*,
-                    ua.attribute_name as attribute_name,
-                    ua.attribute_value as attribute_value
-                    FROM sampling_campaigns sc
-                    LEFT JOIN user_attributes ua ON sc.id = ua.user_id
-                    WHERE sc.id = ?;`, campaignId)
+        pool.query(`SELECT 
+            samcap.id AS campaign_id,
+            samcap.product_id AS product_id,
+            samcap.product_variant_id AS SamCap_Product_var_id,
+            samcap.posted_date AS Campaign_posted_at,
+            samcap.campaign_ref AS campaign_name,
+            samcap.product_id AS sampling_product_id,
+            samcap.no_of_samples AS sampling_no_of_samples,
+            samcap.posted_date AS sampling_posted_date,
+            samint.campaign_ref AS sampling_campaign_ref,
+            samint.status AS campaign_status,
+            samint.video_content AS user_lef_video_content,
+            ua.attribute_name AS attribute_name,
+            ua.attribute_value AS attribute_value
+            FROM sampling_campaigns samcap
+            LEFT JOIN sampler_interactions samint ON samcap.id = samint.campaign_ref
+            LEFT JOIN user_attributes ua ON samint.user_id = ua.user_id
+            WHERE samcap.id = ?;`, campaignId)
             .then((data) => {
-                resolve(data);
+                resolve(data[0]);
             })
             .catch((error) => {
                 console.log("CATCH mySql.Dao.js")
@@ -223,4 +235,23 @@ WHERE video_status = "Success"
     })
 }
 
-module.exports = { getMembers, memberDetails, getCampDetails, getValidCamps, getCampaignParticipants, updateMember };
+var getEligibleMembers = function () {
+    return new Promise((resolve, reject) => {
+        pool.query(`SELECT u.id, u.username, u.email, ua.attribute_name, ua.attribute_value
+            FROM user u
+            JOIN user_attributes ua ON u.id = ua.user_id
+            JOIN awards a ON u.id = a.id
+            LEFT JOIN audience aud ON u.id = aud.id
+            WHERE a.id = 6
+            AND aud.id IS NULL;`)
+            .then((data) => {
+                resolve(data);
+            })
+            .catch((error) => {
+                console.log("CATCH mySql.Dao.js")
+                reject(error)
+            })
+    });
+}
+
+module.exports = { getMembers, memberDetails, getCampDetails, getValidCamps, getCampaignParticipants, updateMember, getEligibleMembers };
