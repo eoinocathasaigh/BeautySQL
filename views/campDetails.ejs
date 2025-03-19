@@ -14,12 +14,12 @@
     </div>
     <h2 class="text-center mb-4">Campaign Details</h2>
     <div class="accordion" id="campaignAccordion">
-        <% campDetails.forEach(function(campaign, index) { %>
+        <% audienceDetails.forEach(function(audience, index) { %>
             <div class="accordion-item mb-3">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
                             data-bs-target="#collapse<%= index %>" aria-expanded="false">
-                        <%= campaign.username %> (ID: <%= campaign.user_id %>)
+                        <%= audience.username %> (ID: <%= audience.user_id %>)
                     </button>
                 </h2>
                 <div id="collapse<%= index %>" class="accordion-collapse collapse" data-bs-parent="#campaignAccordion">
@@ -30,17 +30,17 @@
                                 <div class="card mb-3">
                                     <div class="card-header bg-primary text-white">User Profile</div>
                                     <div class="card-body">
-                                        <img src="<%= campaign.profile_image_url %>" class="img-fluid rounded mb-2" alt="<%= campaign.username %>'s Profile Photo">
-                                        <p><strong>Name:</strong> <%= campaign.profile_name %> <%= campaign.profile_surname %></p>
-                                        <p><strong>Email:</strong> <%= campaign.user_email %></p>
-                                        <p><strong>Country:</strong> <%= campaign.user_country %></p>
-                                        <p><strong>DOB:</strong> <%= campaign.user_dob %></p>
-                                        <p><strong>Gender:</strong> <%= campaign.gender %></p>
-                                        <p><strong>Skin Tone:</strong> <%= campaign.ua_skin_tone %></p>
-                                        <p><strong>Skin Type:</strong> <%= campaign.ua_skin_type %></p>
-                                        <p><strong>Hair Type:</strong> <%= campaign.ua_hair_type %></p>
-                                        <p><strong>Eye Colour:</strong> <%= campaign.ua_eye_colour %></p>
-                                        <p><strong>Newsletter:</strong> <%= campaign.profile_newsletter ? "Subscribed" : "Not Subscribed" %></p>
+                                        <img src="<%= audience.profile_image_url %>" class="img-fluid rounded mb-2" alt="<%= audience.username %>'s Profile Photo">
+                                        <p><strong>Name:</strong> <%= audience.profile_name %> <%= audience.profile_surname %></p>
+                                        <p><strong>Email:</strong> <%= audience.user_email %></p>
+                                        <p><strong>Country:</strong> <%= audience.user_country %></p>
+                                        <p><strong>DOB:</strong> <%= audience.user_dob %></p>
+                                        <p><strong>Gender:</strong> <%= audience.gender %></p>
+                                        <p><strong>Skin Tone:</strong> <%= audience.ua_skin_tone %></p>
+                                        <p><strong>Skin Type:</strong> <%= audience.ua_skin_type %></p>
+                                        <p><strong>Hair Type:</strong> <%= audience.ua_hair_type %></p>
+                                        <p><strong>Eye Colour:</strong> <%= audience.ua_eye_colour %></p>
+                                        <p><strong>Newsletter:</strong> <%= audience.profile_newsletter ? "Subscribed" : "Not Subscribed" %></p>
                                     </div>
                                 </div>
                             </div>
@@ -50,12 +50,12 @@
                                 <div class="card mb-3">
                                     <div class="card-header bg-success text-white">Campaign Information</div>
                                     <div class="card-body">
-                                        <p><strong>Campaign Name:</strong> <%= campaign.campaign_name %></p>
-                                        <p><strong>Status:</strong> <%= campaign.campaign_status %></p>
-                                        <p><strong>Posted Date:</strong> <%= new Date(campaign.sampling_posted_date).toLocaleDateString() %></p>
-                                        <p><strong>End Date:</strong> <%= new Date(campaign.campaign_end_date).toLocaleDateString() %></p>
-                                        <p><strong>Samples:</strong> <%= campaign.sampling_no_of_samples %></p>
-                                        <p><strong>Campaign Ref:</strong> <%= campaign.sampling_campaign_ref %></p>
+                                        <p><strong>Campaign Name:</strong> <%= audience.campaign_name %></p>
+                                        <p><strong>Status:</strong> <%= audience.campaign_status %></p>
+                                        <p><strong>Posted Date:</strong> <%= new Date(audience.sampling_posted_date).toLocaleDateString() %></p>
+                                        <p><strong>End Date:</strong> <%= new Date(audience.campaign_end_date).toLocaleDateString() %></p>
+                                        <p><strong>Samples:</strong> <%= audience.sampling_no_of_samples %></p>
+                                        <p><strong>Campaign Ref:</strong> <%= audience.sampling_campaign_ref %></p>
                                     </div>
                                 </div>
     
@@ -64,31 +64,31 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <img src="<%= campaign.product_image_url %>" class="img-fluid" alt="Product">
+                                                <img src="<%= audience.product_image_url %>" class="img-fluid" alt="Product">
                                             </div>
                                             <div class="col-md-8">
-                                                <h5><%= campaign.product_title %></h5>
-                                                <h6><%= campaign.review_title %></h6>
-                                                <p><%= campaign.review_description %></p>
-                                                <p><strong>Rating:</strong> <%= campaign.review_rating %>/5</p>
-                                                <p><strong>Would Recommend:</strong> <%= campaign.will_recommend ? "Yes" : "No" %></p>
-                                                <p><strong>Would Repurchase:</strong> <%= campaign.will_repurchase ? "Yes" : "No" %></p>
-                                                <p><strong>How obtained:</strong> <%= campaign.how_did_get_product %></p>
-                                                <p><strong>Review Created At:</strong> <%= new Date(campaign.review_created_at).toLocaleDateString() %></p>
+                                                <h5><%= audience.product_title %></h5>
+                                                <h6><%= audience.review_title %></h6>
+                                                <p><%= audience.review_description %></p>
+                                                <p><strong>Rating:</strong> <%= audience.review_rating %>/5</p>
+                                                <p><strong>Would Recommend:</strong> <%= audience.will_recommend ? "Yes" : "No" %></p>
+                                                <p><strong>Would Repurchase:</strong> <%= audience.will_repurchase ? "Yes" : "No" %></p>
+                                                <p><strong>How obtained:</strong> <%= audience.how_did_get_product %></p>
+                                                <p><strong>Review Created At:</strong> <%= new Date(audience.review_created_at).toLocaleDateString() %></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
     
-                                <% if (campaign.video_url) { %>
+                                <% if (audience.video_url) { %>
                                 <div class="card mb-3">
                                     <div class="card-header bg-danger text-white">Review Video</div>
                                     <div class="card-body">
                                         <video controls width="100%">
-                                            <source src="<%= campaign.video_url %>" type="video/mp4">
+                                            <source src="<%= audience.video_url %>" type="video/mp4">
                                             Your browser does not support the video tag.
                                         </video>
-                                        <p><strong>Video Status:</strong> <%= campaign.video_status %></p>
+                                        <p><strong>Video Status:</strong> <%= audience.video_status %></p>
                                     </div>
                                 </div>
                                 <% } %>
@@ -96,32 +96,32 @@
                                 <div class="card">
                                     <div class="card-header bg-secondary text-white">Sentiment Analysis</div>
                                     <div class="card-body">
-                                        <p><strong>Overall Sentiment:</strong> <%= campaign.review_sentiment %></p>
+                                        <p><strong>Overall Sentiment:</strong> <%= audience.review_sentiment %></p>
                                         <div class="progress mb-2">
                                             <!--
-                                            <div class="progress-bar bg-success" style="width: <%= campaign.review_sentiment_score_positive %>%">
-                                                Positive <%= campaign.review_sentiment_score_positive %>%
+                                            <div class="progress-bar bg-success" style="width: <%= audience.review_sentiment_score_positive %>%">
+                                                Positive <%= audience.review_sentiment_score_positive %>%
                                             </div>
                                             -->
                                         </div>
 
                                         <div class="progress mb-2">
                                             <!--
-                                            <div class="progress-bar bg-danger" style="width: <%= campaign.review_sentiment_score_negative %>%">
-                                                Negative <%= campaign.review_sentiment_score_negative %>%
+                                            <div class="progress-bar bg-danger" style="width: <%= audience.review_sentiment_score_negative %>%">
+                                                Negative <%= audience.review_sentiment_score_negative %>%
                                             </div>-->
                                         </div>
                                         <div class="progress mb-2">
                                             <!--
-                                            <div class="progress-bar bg-secondary" style="width: <%= campaign.review_sentiment_score_neutral %>%">
-                                                Neutral <%= campaign.review_sentiment_score_neutral %>%
+                                            <div class="progress-bar bg-secondary" style="width: <%= audience.review_sentiment_score_neutral %>%">
+                                                Neutral <%= audience.review_sentiment_score_neutral %>%
                                             </div>
                                             -->
                                         </div>
                                         <div class="progress mb-2">
                                             <!--
-                                            <div class="progress-bar bg-warning" style="width: <%= campaign.review_sentiment_score_mixed %>%">
-                                                Mixed <%= campaign.review_sentiment_score_mixed %>%
+                                            <div class="progress-bar bg-warning" style="width: <%= audience.review_sentiment_score_mixed %>%">
+                                                Mixed <%= audience.review_sentiment_score_mixed %>%
                                             </div>
                                             -->
                                         </div>
@@ -131,11 +131,11 @@
                                 <div class="card mt-3">
                                     <div class="card-header bg-info text-white">Social Media Links</div>
                                     <div class="card-body">
-                                        <p><strong>Link 1:</strong> <a href="<%= campaign.social_media_content_link1 %>" target="_blank"><%= campaign.social_media_content_link1 %></a></p>
-                                        <p><strong>Link 2:</strong> <a href="<%= campaign.social_media_content_link2 %>" target="_blank"><%= campaign.social_media_content_link2 %></a></p>
-                                        <p><strong>Link 3:</strong> <a href="<%= campaign.social_media_content_link3 %>" target="_blank"><%= campaign.social_media_content_link3 %></a></p>
-                                        <p><strong>Link 4:</strong> <a href="<%= campaign.social_media_content_link4 %>" target="_blank"><%= campaign.social_media_content_link4 %></a></p>
-                                        <p><strong>Link 5:</strong> <a href="<%= campaign.social_media_content_link5 %>" target="_blank"><%= campaign.social_media_content_link5 %></a></p>
+                                        <p><strong>Link 1:</strong> <a href="<%= audience.social_media_content_link1 %>" target="_blank"><%= audience.social_media_content_link1 %></a></p>
+                                        <p><strong>Link 2:</strong> <a href="<%= audience.social_media_content_link2 %>" target="_blank"><%= audience.social_media_content_link2 %></a></p>
+                                        <p><strong>Link 3:</strong> <a href="<%= audience.social_media_content_link3 %>" target="_blank"><%= audience.social_media_content_link3 %></a></p>
+                                        <p><strong>Link 4:</strong> <a href="<%= audience.social_media_content_link4 %>" target="_blank"><%= audience.social_media_content_link4 %></a></p>
+                                        <p><strong>Link 5:</strong> <a href="<%= audience.social_media_content_link5 %>" target="_blank"><%= audience.social_media_content_link5 %></a></p>
                                     </div>
                                 </div>
                             </div>

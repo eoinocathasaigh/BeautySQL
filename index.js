@@ -25,7 +25,7 @@ app.get("/", (req, res)=> {
 */
 
 app.get("/", (req, res)=> {
-    mySqlDao.getCamps()
+    mySqlDao.getValidCamps()
     .then((data)=>{
         res.render("campaigns", {"campDetails": data});
     })
@@ -77,7 +77,7 @@ app.get("/members", (req, res)=> {
 //Rendering the campaings with their details
 
 app.get("/campaigns", (req, res)=> {
-    mySqlDao.getCamps()
+    mySqlDao.getValidCamps()
     .then((data)=>{
         res.render("campaigns", {"campDetails": data});
     })
@@ -86,13 +86,19 @@ app.get("/campaigns", (req, res)=> {
     })
 })
 
-app.get("/campaigns/:id", (req, res)=> {
+app.get("/campaigns/:id", (req, res) => {
     const id = req.params.id;
-    mySqlDao.getCampaignParticipants(id)
-    .then((data)=>{
-        res.render("campDetails", {"campDetails": data});
+    Promise.all([
+        mySqlDao.getCampaignParticipants(id),
+        mySqlDao.getCampDetails(id)
+    ])
+    .then(([audienceData, campaignDetails]) => {
+        res.render("campDetails", {
+            "campDetails": campaignDetails,
+            "audienceDetails": audienceData
+        });
     })
-    .catch((error)=>{
+    .catch((error) => {
         res.send(error);
-    })
-})
+    });
+});

@@ -53,6 +53,7 @@ h1 {
 .campaignTable th {
     background-color: #343a40;
     color: #ffffff;
+    text-align: center;
 }
 
 .campaignTable tr:nth-child(even) {
