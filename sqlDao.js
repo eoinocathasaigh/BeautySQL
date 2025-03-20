@@ -23,6 +23,11 @@ pmysql.createPool({
 })
 
 var login = function (hostname, username, password, database) {
+    this.hostname = hostname;
+    this.username = username;
+    this.password = password;
+    this.database = database;
+    /*
     return new Promise((resolve, reject) => {
         pmysql.createPool({
             connectionLimit: 5,
@@ -38,7 +43,7 @@ var login = function (hostname, username, password, database) {
         .catch((e) => {
             reject(e)
         })
-    })
+    })*/
 }
 
 //Members methods & logic

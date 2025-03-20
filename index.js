@@ -25,17 +25,15 @@ app.get("/", (req, res)=> {
 
 app.post("/login", (req, res)=> {
     const {hostname, username, password, database} = req.body;
-    mySqlDao.login(hostname, username, password, database)
-    .then((data)=> {
-        if(data.length > 0){
-            res.redirect("/members");
-        } else {
-            res.send("Invalid Credentials");
-        }
-    })
-    .catch((error)=> {
-        res.send(error);
-    })
+    if(!hostname || !username || !password || !database){
+        alert("Please fill in all fields");
+        res.redirect("/");
+    }
+    else{
+        mySqlDao.login(hostname, username, password, database)
+
+        res.redirect("/members");
+    }
 })
 
 /*
