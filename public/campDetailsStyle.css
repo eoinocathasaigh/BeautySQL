@@ -1,0 +1,194 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: wheat;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container styling */
+.container {
+    max-width: 90%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation links */
+.nav-links {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.nav-links a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.nav-links a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Page headings */
+h2 {
+    color: #343a40;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Card styling */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-weight: bold;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-header.bg-primary {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.card-header.bg-success {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.card-header.bg-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.card-header.bg-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.card-header.bg-secondary {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.card-header.bg-dark {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.card-header.bg-info {
+    background-color: #17a2b8;
+    color: #ffffff;
+}
+
+/* Accordion styling */
+.accordion-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.accordion-header .accordion-button {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.accordion-header .accordion-button:hover {
+    background-color: #e9ecef;
+}
+
+.accordion-body {
+    padding: 15px;
+    background-color: #ffffff;
+}
+
+/* Image styling */
+img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Progress bar styling */
+.progress {
+    height: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    font-size: 0.9rem;
+    line-height: 20px;
+}
+
+/* Buttons */
+button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Social media links */
+.card-body a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.card-body a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* Table styling for available members */
+.card-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.card-body table th,
+.card-body table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.card-body table th {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.card-body table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.card-body table tr:hover {
+    background-color: #f1f1f1;
+}

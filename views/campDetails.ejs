@@ -5,181 +5,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campaign Data</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/campDetailsStyle.css" rel="stylesheet">
 </head>
-<body class="container py-4">
-    <div class="nav-links">
-        <p>
-            <a href="/campaigns">Back</a>
-        </p>
-    </div>
-    <h2 class="text-center mb-4">Campaign Details</h2>
-    <!--Displaying all the details for the current campaign-->
-    <div class="card mb-4">
-        <div class="card-header bg-primary text-white">Campaign Data</div>
-        <div class="card-body">
-            <p><strong>Campaign ID:</strong> <%= campDetails.campaign_id %></p>
-            <p><strong>Product ID:</strong> <%= campDetails.product_id %></p>
-            <p><strong>Product Variant ID:</strong> <%= campDetails.SamCap_Product_var_id %></p>
-            <p><strong>Posted Date:</strong> <%= new Date(campDetails.Campaign_posted_at).toLocaleDateString() %></p>
-            <p><strong>Campaign Name:</strong> <%= campDetails.campaign_name %></p>
-            <p><strong>Sampling Product ID:</strong> <%= campDetails.sampling_product_id %></p>
-            <p><strong>Number of Samples:</strong> <%= campDetails.sampling_no_of_samples %></p>
-            <p><strong>Sampling Posted Date:</strong> <%= new Date(campDetails.sampling_posted_date).toLocaleDateString() %></p>
-            <p><strong>Sampling Campaign Reference:</strong> <%= campDetails.sampling_campaign_ref %></p>
-            <p><strong>Campaign Status:</strong> <%= campDetails.campaign_status %></p>
-            <p><strong>User Left Video Content:</strong> <%= campDetails.user_lef_video_content ? "Yes" : "No" %></p>
-            <p><strong>Attribute Name:</strong> <%= campDetails.attribute_name %></p>
-            <p><strong>Attribute Value:</strong> <%= campDetails.attribute_value %></p>
+<body>
+    <div class="container">
+        <div class="nav-links">
+            <p>
+                <a href="/campaigns">Back</a>
+            </p>
         </div>
-    </div>
-    <!--Displaying the details for all current audience members-->
-    <div class="accordion" id="campaignAccordion">
-        <h2>Current Audience</h2>
-        <% audienceDetails.forEach(function(audience, index) { %>
-            <div class="accordion-item mb-3">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
-                            data-bs-target="#collapse<%= index %>" aria-expanded="false">
-                        <%= audience.username %> (ID: <%= audience.user_id %>)
-                    </button>
-                </h2>
-                <div id="collapse<%= index %>" class="accordion-collapse collapse" data-bs-parent="#campaignAccordion">
-                    <div class="accordion-body">
-                        <div class="row">
-                            <!-- User Profile Section -->
-                            <div class="col-md-4">
-                                <div class="card mb-3">
-                                    <div class="card-header bg-primary text-white">User Profile</div>
-                                    <div class="card-body">
-                                        <img src="<%= audience.profile_image_url %>" class="img-fluid rounded mb-2" alt="<%= audience.username %>'s Profile Photo">
-                                        <p><strong>Name:</strong> <%= audience.profile_name %> <%= audience.profile_surname %></p>
-                                        <p><strong>Email:</strong> <%= audience.user_email %></p>
-                                        <p><strong>Country:</strong> <%= audience.user_country %></p>
-                                        <p><strong>DOB:</strong> <%= audience.user_dob %></p>
-                                        <p><strong>Gender:</strong> <%= audience.gender %></p>
-                                        <p><strong>Skin Tone:</strong> <%= audience.ua_skin_tone %></p>
-                                        <p><strong>Skin Type:</strong> <%= audience.ua_skin_type %></p>
-                                        <p><strong>Hair Type:</strong> <%= audience.ua_hair_type %></p>
-                                        <p><strong>Eye Colour:</strong> <%= audience.ua_eye_colour %></p>
-                                        <p><strong>Newsletter:</strong> <%= audience.profile_newsletter ? "Subscribed" : "Not Subscribed" %></p>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <!-- Campaign & Review Section -->
-                            <div class="col-md-8">
-                                <div class="card mb-3">
-                                    <div class="card-header bg-success text-white">Campaign Information</div>
-                                    <div class="card-body">
-                                        <p><strong>Campaign Name:</strong> <%= audience.campaign_name %></p>
-                                        <p><strong>Status:</strong> <%= audience.campaign_status %></p>
-                                        <p><strong>Posted Date:</strong> <%= new Date(audience.sampling_posted_date).toLocaleDateString() %></p>
-                                        <p><strong>End Date:</strong> <%= new Date(audience.campaign_end_date).toLocaleDateString() %></p>
-                                        <p><strong>Samples:</strong> <%= audience.sampling_no_of_samples %></p>
-                                        <p><strong>Campaign Ref:</strong> <%= audience.sampling_campaign_ref %></p>
-                                    </div>
-                                </div>
-    
-                                <div class="card mb-3">
-                                    <div class="card-header bg-warning">Product Review</div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <img src="<%= audience.product_image_url %>" class="img-fluid" alt="Product">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <h5><%= audience.product_title %></h5>
-                                                <h6><%= audience.review_title %></h6>
-                                                <p><%= audience.review_description %></p>
-                                                <p><strong>Rating:</strong> <%= audience.review_rating %>/5</p>
-                                                <p><strong>Would Recommend:</strong> <%= audience.will_recommend ? "Yes" : "No" %></p>
-                                                <p><strong>Would Repurchase:</strong> <%= audience.will_repurchase ? "Yes" : "No" %></p>
-                                                <p><strong>How obtained:</strong> <%= audience.how_did_get_product %></p>
-                                                <p><strong>Review Created At:</strong> <%= new Date(audience.review_created_at).toLocaleDateString() %></p>
-                                            </div>
+        <h2 class="text-center mb-4">Campaign Details</h2>
+        <!--Displaying all the details for the current campaign-->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">Campaign Data</div>
+            <div class="card-body">
+                <p><strong>Campaign ID:</strong> <%= campDetails.campaign_id %></p>
+                <p><strong>Product ID:</strong> <%= campDetails.product_id %></p>
+                <p><strong>Product Variant ID:</strong> <%= campDetails.SamCap_Product_var_id %></p>
+                <p><strong>Posted Date:</strong> <%= new Date(campDetails.Campaign_posted_at).toLocaleDateString() %></p>
+                <p><strong>Campaign Name:</strong> <%= campDetails.campaign_name %></p>
+                <p><strong>Sampling Product ID:</strong> <%= campDetails.sampling_product_id %></p>
+                <p><strong>Number of Samples:</strong> <%= campDetails.sampling_no_of_samples %></p>
+                <p><strong>Sampling Posted Date:</strong> <%= new Date(campDetails.sampling_posted_date).toLocaleDateString() %></p>
+                <p><strong>Sampling Campaign Reference:</strong> <%= campDetails.sampling_campaign_ref %></p>
+                <p><strong>Campaign Status:</strong> <%= campDetails.campaign_status %></p>
+                <p><strong>User Left Video Content:</strong> <%= campDetails.user_lef_video_content ? "Yes" : "No" %></p>
+                <p><strong>Attribute Name:</strong> <%= campDetails.attribute_name %></p>
+                <p><strong>Attribute Value:</strong> <%= campDetails.attribute_value %></p>
+            </div>
+        </div>
+        <!--Displaying the details for all current audience members-->
+        <div class="accordion" id="campaignAccordion">
+            <h2>Current Audience</h2>
+            <% audienceDetails.forEach(function(audience, index) { %>
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                data-bs-target="#collapse<%= index %>" aria-expanded="false">
+                            <%= audience.username %> (ID: <%= audience.user_id %>)
+                        </button>
+                    </h2>
+                    <div id="collapse<%= index %>" class="accordion-collapse collapse" data-bs-parent="#campaignAccordion">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <!-- User Profile Section -->
+                                <div class="col-md-4">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-primary text-white">User Profile</div>
+                                        <div class="card-body">
+                                            <img src="<%= audience.profile_image_url %>" class="img-fluid rounded mb-2" alt="<%= audience.username %>'s Profile Photo">
+                                            <p><strong>Name:</strong> <%= audience.profile_name %> <%= audience.profile_surname %></p>
+                                            <p><strong>Email:</strong> <%= audience.user_email %></p>
+                                            <p><strong>Country:</strong> <%= audience.user_country %></p>
+                                            <p><strong>DOB:</strong> <%= audience.user_dob %></p>
+                                            <p><strong>Gender:</strong> <%= audience.gender %></p>
+                                            <p><strong>Skin Tone:</strong> <%= audience.ua_skin_tone %></p>
+                                            <p><strong>Skin Type:</strong> <%= audience.ua_skin_type %></p>
+                                            <p><strong>Hair Type:</strong> <%= audience.ua_hair_type %></p>
+                                            <p><strong>Eye Colour:</strong> <%= audience.ua_eye_colour %></p>
+                                            <p><strong>Newsletter:</strong> <%= audience.profile_newsletter ? "Subscribed" : "Not Subscribed" %></p>
                                         </div>
                                     </div>
                                 </div>
-    
-                                <% if (audience.video_url) { %>
-                                <div class="card mb-3">
-                                    <div class="card-header bg-danger text-white">Review Video</div>
-                                    <div class="card-body">
-                                        <video controls width="100%">
-                                            <source src="<%= audience.video_url %>" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                        <p><strong>Video Status:</strong> <%= audience.video_status %></p>
-                                    </div>
-                                </div>
-                                <% } %>
-    
-                                <div class="card">
-                                    <div class="card-header bg-secondary text-white">Sentiment Analysis</div>
-                                    <div class="card-body">
-                                        <p><strong>Overall Sentiment:</strong> <%= audience.review_sentiment %></p>
-                                        <div class="progress mb-2">
-                                            <!--
-                                            <div class="progress-bar bg-success" style="width: <%= audience.review_sentiment_score_positive %>%">
-                                                Positive <%= audience.review_sentiment_score_positive %>%
-                                            </div>
-                                            -->
-                                        </div>
-
-                                        <div class="progress mb-2">
-                                            <!--
-                                            <div class="progress-bar bg-danger" style="width: <%= audience.review_sentiment_score_negative %>%">
-                                                Negative <%= audience.review_sentiment_score_negative %>%
-                                            </div>-->
-                                        </div>
-                                        <div class="progress mb-2">
-                                            <!--
-                                            <div class="progress-bar bg-secondary" style="width: <%= audience.review_sentiment_score_neutral %>%">
-                                                Neutral <%= audience.review_sentiment_score_neutral %>%
-                                            </div>
-                                            -->
-                                        </div>
-                                        <div class="progress mb-2">
-                                            <!--
-                                            <div class="progress-bar bg-warning" style="width: <%= audience.review_sentiment_score_mixed %>%">
-                                                Mixed <%= audience.review_sentiment_score_mixed %>%
-                                            </div>
-                                            -->
+        
+                                <!-- Campaign & Review Section -->
+                                <div class="col-md-8">
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-success text-white">Campaign Information</div>
+                                        <div class="card-body">
+                                            <p><strong>Campaign Name:</strong> <%= audience.campaign_name %></p>
+                                            <p><strong>Status:</strong> <%= audience.campaign_status %></p>
+                                            <p><strong>Posted Date:</strong> <%= new Date(audience.sampling_posted_date).toLocaleDateString() %></p>
+                                            <p><strong>End Date:</strong> <%= new Date(audience.campaign_end_date).toLocaleDateString() %></p>
+                                            <p><strong>Samples:</strong> <%= audience.sampling_no_of_samples %></p>
+                                            <p><strong>Campaign Ref:</strong> <%= audience.sampling_campaign_ref %></p>
                                         </div>
                                     </div>
-                                </div>
+        
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-warning">Product Review</div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <img src="<%= audience.product_image_url %>" class="img-fluid" alt="Product">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <h5><%= audience.product_title %></h5>
+                                                    <h6><%= audience.review_title %></h6>
+                                                    <p><%= audience.review_description %></p>
+                                                    <p><strong>Rating:</strong> <%= audience.review_rating %>/5</p>
+                                                    <p><strong>Would Recommend:</strong> <%= audience.will_recommend ? "Yes" : "No" %></p>
+                                                    <p><strong>Would Repurchase:</strong> <%= audience.will_repurchase ? "Yes" : "No" %></p>
+                                                    <p><strong>How obtained:</strong> <%= audience.how_did_get_product %></p>
+                                                    <p><strong>Review Created At:</strong> <%= new Date(audience.review_created_at).toLocaleDateString() %></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <% if (audience.video_url) { %>
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-danger text-white">Review Video</div>
+                                        <div class="card-body">
+                                            <video controls width="100%">
+                                                <source src="<%= audience.video_url %>" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            <p><strong>Video Status:</strong> <%= audience.video_status %></p>
+                                        </div>
+                                    </div>
+                                    <% } %>
+        
+                                    <div class="card">
+                                        <div class="card-header bg-secondary text-white">Sentiment Analysis</div>
+                                        <div class="card-body">
+                                            <p><strong>Overall Sentiment:</strong> <%= audience.review_sentiment %></p>
+                                            <div class="progress mb-2">
+                                                <!--
+                                                <div class="progress-bar bg-success" style="width: <%= audience.review_sentiment_score_positive %>%">
+                                                    Positive <%= audience.review_sentiment_score_positive %>%
+                                                </div>
+                                                -->
+                                            </div>
     
-                                <div class="card mt-3">
-                                    <div class="card-header bg-info text-white">Social Media Links</div>
-                                    <div class="card-body">
-                                        <p><strong>Link 1:</strong> <a href="<%= audience.social_media_content_link1 %>" target="_blank"><%= audience.social_media_content_link1 %></a></p>
-                                        <p><strong>Link 2:</strong> <a href="<%= audience.social_media_content_link2 %>" target="_blank"><%= audience.social_media_content_link2 %></a></p>
-                                        <p><strong>Link 3:</strong> <a href="<%= audience.social_media_content_link3 %>" target="_blank"><%= audience.social_media_content_link3 %></a></p>
-                                        <p><strong>Link 4:</strong> <a href="<%= audience.social_media_content_link4 %>" target="_blank"><%= audience.social_media_content_link4 %></a></p>
-                                        <p><strong>Link 5:</strong> <a href="<%= audience.social_media_content_link5 %>" target="_blank"><%= audience.social_media_content_link5 %></a></p>
+                                            <div class="progress mb-2">
+                                                <!--
+                                                <div class="progress-bar bg-danger" style="width: <%= audience.review_sentiment_score_negative %>%">
+                                                    Negative <%= audience.review_sentiment_score_negative %>%
+                                                </div>-->
+                                            </div>
+                                            <div class="progress mb-2">
+                                                <!--
+                                                <div class="progress-bar bg-secondary" style="width: <%= audience.review_sentiment_score_neutral %>%">
+                                                    Neutral <%= audience.review_sentiment_score_neutral %>%
+                                                </div>
+                                                -->
+                                            </div>
+                                            <div class="progress mb-2">
+                                                <!--
+                                                <div class="progress-bar bg-warning" style="width: <%= audience.review_sentiment_score_mixed %>%">
+                                                    Mixed <%= audience.review_sentiment_score_mixed %>%
+                                                </div>
+                                                -->
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="card mt-3">
+                                        <div class="card-header bg-info text-white">Social Media Links</div>
+                                        <div class="card-body">
+                                            <p><strong>Link 1:</strong> <a href="<%= audience.social_media_content_link1 %>" target="_blank"><%= audience.social_media_content_link1 %></a></p>
+                                            <p><strong>Link 2:</strong> <a href="<%= audience.social_media_content_link2 %>" target="_blank"><%= audience.social_media_content_link2 %></a></p>
+                                            <p><strong>Link 3:</strong> <a href="<%= audience.social_media_content_link3 %>" target="_blank"><%= audience.social_media_content_link3 %></a></p>
+                                            <p><strong>Link 4:</strong> <a href="<%= audience.social_media_content_link4 %>" target="_blank"><%= audience.social_media_content_link4 %></a></p>
+                                            <p><strong>Link 5:</strong> <a href="<%= audience.social_media_content_link5 %>" target="_blank"><%= audience.social_media_content_link5 %></a></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <% }) %>
-
-        <!--Area for displaying all the info for currently available members-->
-        <div class="card mt-4">
-            <div class="card-header bg-dark text-white">Currently Available Members</div>
-            <div class="card-body">
-                <% availableMembers.forEach(function(member) { %>
-                    <div class="mb-3">
-                        <p><strong>ID:</strong> <%= member.id %></p>
-                        <p><strong>Username:</strong> <%= member.username %></p>
-                        <p><strong>Email:</strong> <%= member.email %></p>
-                        <p><strong>Attribute Name:</strong> <%= member.attribute_name %></p>
-                        <p><strong>Attribute Value:</strong> <%= member.attribute_value %></p>
-                        <hr>
-                    </div>
-                <% }) %>
+            <% }) %>
+    
+            <!--Area for displaying all the info for currently available members-->
+            <div class="card mt-4">
+                <div class="card-header bg-dark text-white">Currently Available Members</div>
+                <div class="card-body">
+                    <% availableMembers.forEach(function(member) { %>
+                        <div class="mb-3">
+                            <p><strong>ID:</strong> <%= member.id %></p>
+                            <p><strong>Username:</strong> <%= member.username %></p>
+                            <p><strong>Email:</strong> <%= member.email %></p>
+                            <p><strong>Attribute Name:</strong> <%= member.attribute_name %></p>
+                            <p><strong>Attribute Value:</strong> <%= member.attribute_value %></p>
+                            <hr>
+                        </div>
+                    <% }) %>
+                </div>
             </div>
         </div>
     </div>

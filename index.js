@@ -16,14 +16,29 @@ app.listen(3000, ()=>{
     console.log("App is listening for connection");
 })
 
-/*
+
 //Routing in the application
 //Returning the content of the home page - what the user will initially see
 app.get("/", (req, res)=> {
-    res.render("home");
+    res.render("login");
 })
-*/
 
+app.post("/login", (req, res)=> {
+    const {hostname, username, password, database} = req.body;
+    mySqlDao.login(hostname, username, password, database)
+    .then((data)=> {
+        if(data.length > 0){
+            res.redirect("/members");
+        } else {
+            res.send("Invalid Credentials");
+        }
+    })
+    .catch((error)=> {
+        res.send(error);
+    })
+})
+
+/*
 app.get("/", (req, res)=> {
     mySqlDao.getValidCamps()
     .then((data)=>{
@@ -33,6 +48,7 @@ app.get("/", (req, res)=> {
         res.send(error);
     })
 })
+*/
 
 //Rendering the page for the individual beauty squad member details
 app.get("/members/edit/:id", (req, res)=> {

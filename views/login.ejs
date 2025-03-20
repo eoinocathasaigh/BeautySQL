@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeautySQL - Login</title>
+    <link rel="stylesheet" href="/loginStyles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>BeautySQL Login</h1>
+        <form action="/login" method="POST" class="login-form">
+            <div class="form-group">
+                <label for="hostname">Hostname:</label>
+                <input type="text" id="hostname" name="hostname" required placeholder="e.g., localhost">
+            </div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter password">
+            </div>
+            <div class="form-group">
+                <label for="database">Database Name:</label>
+                <input type="text" id="database" name="database" required placeholder="Enter database name">
+            </div>
+            <button type="submit">Connect</button>
+        </form>
+    </div>
+</body>
+</html>

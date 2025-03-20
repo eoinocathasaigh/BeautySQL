@@ -1,23 +1,45 @@
 //This data access object will enable interaction with the sql in the actual database
 var pmysql = require("promise-mysql");
 var pool;
+var host = 'localhost';
+var user = 'root';
+var password = 'root';
+var database = 'mydb';
 
 //Creating a pool of connections for this program
 pmysql.createPool({
     //For the sake of simplicity this app will allow you to run up to 5 versions of it at once for now
     connectionLimit: 5,
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'mydb'
+    host: host,
+    user: user,
+    password: password,
+    database: database
 })
-    //p passes back the connection to the database
-    .then((p) => {
-        pool = p
+.then((p) => {
+    pool = p
+})
+.catch((e) => {
+    console.log("pool error:" + error)
+})
+
+var login = function (hostname, username, password, database) {
+    return new Promise((resolve, reject) => {
+        pmysql.createPool({
+            connectionLimit: 5,
+            host: hostname,
+            user: username,
+            password: password,
+            database: database
+        })
+        .then((p) => {
+            pool = p
+            resolve("Connected to database")
+        })
+        .catch((e) => {
+            reject(e)
+        })
     })
-    .catch((e) => {
-        console.log("pool error:" + error)
-    })
+}
 
 //Members methods & logic
 //Displaying all the beauty squad members
@@ -254,4 +276,4 @@ var getEligibleMembers = function () {
     });
 }
 
-module.exports = { getMembers, memberDetails, getCampDetails, getValidCamps, getCampaignParticipants, updateMember, getEligibleMembers };
+module.exports = { getMembers, memberDetails, getCampDetails, getValidCamps, getCampaignParticipants, updateMember, getEligibleMembers, login };
