@@ -9,11 +9,6 @@ var database;
 //Creating a pool of connections for this program
 
 var login = function (hostname, username, password, database) {
-    this.hostname = hostname;
-    this.username = username;
-    this.password = password;
-    this.database = database;
-
     return new Promise((resolve, reject) => {
         pmysql.createPool({
             connectionLimit: 5,
@@ -23,14 +18,16 @@ var login = function (hostname, username, password, database) {
             database: database
         })
         .then((p) => {
-            pool = p
-            resolve("Connected to database")
+            pool = p;
+            resolve("Connected to database");
         })
         .catch((e) => {
-            reject(e.code)
-        })
-    })
-}
+            console.log("Connection failed:", e); // Debugging log
+            reject(e); // Ensures error reaches index.js
+        });
+    });
+};
+
 
 //Members methods & logic
 //Displaying all the beauty squad members

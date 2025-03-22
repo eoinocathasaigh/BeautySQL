@@ -5,6 +5,8 @@ var mySqlDao = require('./sqlDao')
 let ejs = require('ejs');
 app.set('view engine', 'ejs')
 const { check, validationResult } = require('express-validator');
+//Variable for controlling if the user is signed in as a guest or not
+var guest;
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: false}))
@@ -23,48 +25,41 @@ app.get("/", (req, res)=> {
     res.render("login");
 })
 
-/*
-app.post("/login", (req, res)=> {
-    const {hostname, username, password, database} = req.body;
-    if(!hostname || !username || !password || !database){
-        alert("Please fill in all fields");
-        res.redirect("/");
-    }
-    else{
-        mySqlDao.login(hostname, username, password, database)
-
-        res.redirect("/members");
-    }
-})
-*/
 app.post("/login", (req, res) => {
     const { hostname, username, password, database } = req.body;
 
     if (!hostname || !username || !password || !database) {
-        res.send(`<script>alert("Please fill in all fields."); window.location.href = "/";</script>`);
-    } else {
-        mySqlDao.login(hostname, username, password, database)
+        return res.send(`<script>alert("Please fill in all fields."); window.location.href = "/";</script>`);
+    }
+
+    mySqlDao.login(hostname, username, password, database)
         .then(() => {
             res.redirect("/members");
         })
         .catch((error) => {
-            alert("Error encountered while logging in.\nEnsure all credentials are correct and try again.\nAlternatively click \"Proceed as guest\"");
-            console.log(error);
+            console.log("Database Connection Failed:", error); // Debugging log
+            res.send(`<script>alert("Error encountered while logging in. Ensure credentials are correct and try again."); window.location.href = "/";</script>`);
         });
-    }
 });
 
-/*
-app.get("/", (req, res)=> {
-    mySqlDao.getValidCamps()
-    .then((data)=>{
-        res.render("campaigns", {"campDetails": data});
-    })
-    .catch((error)=>{
-        res.send(error);
-    })
-})
-*/
+app.post("/login/guest", (req, res) => {
+    guest = true;
+
+    const { hostname, username, password, database } = req.body;
+
+    if (!hostname || !username || !password || !database) {
+        return res.send(`<script>alert("Please fill in all fields."); window.location.href = "/";</script>`);
+    }
+
+    mySqlDao.login(hostname, "root", "root", database)
+        .then(() => {
+            res.redirect("/members");
+        })
+        .catch((error) => {
+            console.log("Database Connection Failed:", error); // Debugging log
+            res.send(`<script>alert("Error encountered while logging in. Ensure credentials are correct and try again."); window.location.href = "/";</script>`);
+        });
+});
 
 //Rendering the page for the individual beauty squad member details
 app.get("/members/edit/:id", (req, res)=> {
