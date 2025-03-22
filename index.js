@@ -26,6 +26,9 @@ app.get("/", (req, res)=> {
 })
 
 app.post("/login", (req, res) => {
+
+    guest = false;
+    
     const { hostname, username, password, database } = req.body;
 
     if (!hostname || !username || !password || !database) {
@@ -42,23 +45,26 @@ app.post("/login", (req, res) => {
         });
 });
 
+app.get("/login/guest", (req, res) => {
+    res.render("guestLogin");
+});
+
 app.post("/login/guest", (req, res) => {
     guest = true;
+    const { hostname, database } = req.body;
 
-    const { hostname, username, password, database } = req.body;
-
-    if (!hostname || !username || !password || !database) {
-        return res.send(`<script>alert("Please fill in all fields."); window.location.href = "/";</script>`);
+    if (!hostname || !database) {
+        return res.send(`<script>alert("Please fill in all fields."); window.location.href = "/login/guest";</script>`);
     }
 
     mySqlDao.login(hostname, "root", "root", database)
-        .then(() => {
-            res.redirect("/members");
-        })
-        .catch((error) => {
-            console.log("Database Connection Failed:", error); // Debugging log
-            res.send(`<script>alert("Error encountered while logging in. Ensure credentials are correct and try again."); window.location.href = "/";</script>`);
-        });
+    .then(() => {
+        res.redirect("/members");
+    })
+    .catch((error) => {
+        console.log("Database Connection Failed:", error); // Debugging log
+        res.send(`<script>alert("Error encountered while logging in. Ensure credentials are correct and try again."); window.location.href = "/";</script>`);
+    });
 });
 
 //Rendering the page for the individual beauty squad member details
@@ -93,7 +99,7 @@ app.post("/members/edit/:id", (req, res)=> {
 app.get("/members", (req, res)=> {
     mySqlDao.getMembers()
     .then((data)=>{
-        res.render("squadMembers", {"squadMembers": data});
+        res.render("squadMembers", {"squadMembers": data, guest});
     })
     .catch((error)=>{
         console.log("Error Encountered While Retrieving data")
@@ -106,7 +112,7 @@ app.get("/members", (req, res)=> {
 app.get("/campaigns", (req, res)=> {
     mySqlDao.getValidCamps()
     .then((data)=>{
-        res.render("campaigns", {"campDetails": data});
+        res.render("campaigns", {"campDetails": data, guest});
     })
     .catch((error)=>{
         res.send(error);

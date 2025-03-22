@@ -32,7 +32,7 @@
                     <td><%= member.video_reviewer %></td>
                     <td>
                         <form action="/members/edit/<%= member.user_id %>" method="GET" class="squadForm">
-                            <button type="submit" class="memberButton">Member Details</button>
+                            <button type="submit" class="memberButton" <%= guest ? 'disabled' : '' %>>Member Details</button>
                         </form>
                     </td>
                 </tr>

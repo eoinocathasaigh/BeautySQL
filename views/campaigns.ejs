@@ -36,7 +36,7 @@
                         <td><%= campaign.description %></td>
                         <td>
                             <form action="/campaigns/<%= campaign.camp_id %>" method="GET">
-                                <button type="submit">View Details</button>
+                                <button type="submit" <%= guest ? 'disabled' : '' %>>View Details</button>
                             </form>
                         </td>
                     </tr>
