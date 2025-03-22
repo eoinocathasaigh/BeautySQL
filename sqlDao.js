@@ -1,33 +1,19 @@
 //This data access object will enable interaction with the sql in the actual database
 var pmysql = require("promise-mysql");
 var pool;
-var host = 'localhost';
-var user = 'root';
-var password = 'root';
-var database = 'mydb';
+var hostname;
+var username;
+var password;
+var database;
 
 //Creating a pool of connections for this program
-pmysql.createPool({
-    //For the sake of simplicity this app will allow you to run up to 5 versions of it at once for now
-    connectionLimit: 5,
-    host: host,
-    user: user,
-    password: password,
-    database: database
-})
-.then((p) => {
-    pool = p
-})
-.catch((e) => {
-    console.log("pool error:" + error)
-})
 
 var login = function (hostname, username, password, database) {
     this.hostname = hostname;
     this.username = username;
     this.password = password;
     this.database = database;
-    /*
+
     return new Promise((resolve, reject) => {
         pmysql.createPool({
             connectionLimit: 5,
@@ -41,9 +27,9 @@ var login = function (hostname, username, password, database) {
             resolve("Connected to database")
         })
         .catch((e) => {
-            reject(e)
+            reject(e.code)
         })
-    })*/
+    })
 }
 
 //Members methods & logic

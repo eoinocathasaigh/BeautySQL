@@ -23,6 +23,7 @@ app.get("/", (req, res)=> {
     res.render("login");
 })
 
+/*
 app.post("/login", (req, res)=> {
     const {hostname, username, password, database} = req.body;
     if(!hostname || !username || !password || !database){
@@ -35,6 +36,23 @@ app.post("/login", (req, res)=> {
         res.redirect("/members");
     }
 })
+*/
+app.post("/login", (req, res) => {
+    const { hostname, username, password, database } = req.body;
+
+    if (!hostname || !username || !password || !database) {
+        res.send(`<script>alert("Please fill in all fields."); window.location.href = "/";</script>`);
+    } else {
+        mySqlDao.login(hostname, username, password, database)
+        .then(() => {
+            res.redirect("/members");
+        })
+        .catch((error) => {
+            alert("Error encountered while logging in.\nEnsure all credentials are correct and try again.\nAlternatively click \"Proceed as guest\"");
+            console.log(error);
+        });
+    }
+});
 
 /*
 app.get("/", (req, res)=> {
