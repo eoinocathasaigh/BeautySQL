@@ -1,21 +1,19 @@
 //This data access object will enable interaction with the sql in the actual database
-var pmysql = require("promise-mysql");
+var mysql = require("promise-mysql");
 var pool;
-var hostname;
-var username;
-var password;
-var database;
 
 //Creating a pool of connections for this program
 
 var login = function (hostname, username, password, database) {
     return new Promise((resolve, reject) => {
-        pmysql.createPool({
+        mysql.createPool({
             connectionLimit: 5,
             host: hostname,
             user: username,
             password: password,
-            database: database
+            database: database,
+            waitForConnections: true,
+            queueLimit: 0
         })
         .then((p) => {
             pool = p;
