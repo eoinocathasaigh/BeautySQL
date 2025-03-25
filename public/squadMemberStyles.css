@@ -79,7 +79,7 @@ tr:nth-child(even) {
     display: inline;
 }
 
-.memberButton {
+button {
     padding: 8px 12px;
     background-color: #3498db;
     border: none;
