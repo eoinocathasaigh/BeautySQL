@@ -15,22 +15,37 @@
             </p>
         </div>
         <h2 class="text-center mb-4">Campaign Details</h2>
-        <!--Displaying all the details for the current campaign-->
+        <!-- Displaying all the details for the current campaign -->
         <div class="card mb-4">
-            <div class="card-header bg-primary text-white">Campaign Data</div>
+            <div class="card-header bg-primary text-white text-center">
+            <h4>Campaign Data</h4>
+            </div>
             <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
                 <p><strong>Campaign ID:</strong> <%= campDetails.campaign_id %></p>
                 <p><strong>Product ID:</strong> <%= campDetails.product_id %></p>
                 <p><strong>Product Variant ID:</strong> <%= campDetails.SamCap_Product_var_id %></p>
                 <p><strong>Posted Date:</strong> <%= new Date(campDetails.Campaign_posted_at).toLocaleDateString() %></p>
                 <p><strong>Campaign Name:</strong> <%= campDetails.campaign_name %></p>
+                </div>
+                <div class="col-md-6">
                 <p><strong>Sampling Product ID:</strong> <%= campDetails.sampling_product_id %></p>
                 <p><strong>Number of Samples:</strong> <%= campDetails.sampling_no_of_samples %></p>
                 <p><strong>Sampling Posted Date:</strong> <%= new Date(campDetails.sampling_posted_date).toLocaleDateString() %></p>
                 <p><strong>Sampling Campaign Reference:</strong> <%= campDetails.sampling_campaign_ref %></p>
                 <p><strong>Campaign Status:</strong> <%= campDetails.campaign_status %></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
                 <p><strong>Attribute Name:</strong> <%= campDetails.attribute_name %></p>
+                </div>
+                <div class="col-md-6">
                 <p><strong>Attribute Value:</strong> <%= campDetails.attribute_value %></p>
+                </div>
+            </div>
             </div>
         </div>
         <!--Displaying the details for all current audience members-->
