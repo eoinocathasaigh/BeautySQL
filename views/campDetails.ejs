@@ -101,6 +101,29 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-info text-white">Interaction Details</div>
+                                        <div class="card-body">
+                                            <p><strong>Updated At:</strong> <%= new Date(audience.interaction_updated_at).toLocaleDateString() %></p>
+                                            <p><strong>Created At:</strong> <%= new Date(audience.interaction_created_at).toLocaleDateString() %></p>
+                                            <p><strong>Social Media Content:</strong> <%= audience.interaction_social_media_content %></p>
+                                            <p><strong>Comment:</strong> <%= audience.interaction_comment %></p>
+                                            <p><strong>Include Again:</strong> <%= audience.interaction_include_again ? "Yes" : "No" %></p>
+                                            <p><strong>Product Demonstrated:</strong> <%= audience.interaction_product_demonstrated ? "Yes" : "No" %></p>
+                                            <p><strong>Consumer on Camera:</strong> <%= audience.interaction_consumer_on_camera ? "Yes" : "No" %></p>
+                                            <p><strong>Voiceover:</strong> <%= audience.interaction_voiceover ? "Yes" : "No" %></p>
+                                            <p><strong>Live Talking to Camera:</strong> <%= audience.interaction_live_talking_to_camera ? "Yes" : "No" %></p>
+                                            <p><strong>Captions:</strong> <%= audience.interaction_captions ? "Yes" : "No" %></p>
+                                            <p><strong>Informative Written Review:</strong> <%= audience.interaction_informative_written_review ? "Yes" : "No" %></p>
+                                            <p><strong>Watermarks:</strong> <%= audience.interaction_watermarks ? "Yes" : "No" %></p>
+                                            <p><strong>Short Video on Repeat:</strong> <%= audience.interaction_short_video_on_repeat ? "Yes" : "No" %></p>
+                                            <p><strong>Just Photos in Video:</strong> <%= audience.interaction_just_photos_in_video ? "Yes" : "No" %></p>
+                                            <p><strong>Unboxing Video Only:</strong> <%= audience.interaction_unboxing_video_only ? "Yes" : "No" %></p>
+                                            <p><strong>Distracting Transitions:</strong> <%= audience.interaction_distracting_transitions ? "Yes" : "No" %></p>
+                                            <p><strong>Missed Completion Date:</strong> <%= audience.interaction_missed_completion_date ? "Yes" : "No" %></p>
+                                        </div>
+                                    </div>
         
                                     <% if (audience.video_url) { %>
                                     <div class="card mb-3">
