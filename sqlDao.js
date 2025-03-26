@@ -82,7 +82,7 @@ var updateMember = function(userId, updatedData) {
 //Getting the surface level details for a campaign, will be used for navigation to a later page
 var getValidCamps = function () {
     return new Promise((resolve, reject) => {
-        pool.query(`select id as camp_id, campaign_ref as sampling_campaign_ref, posted_date from sampling_campaigns where posted_date > CURRENT_DATE();`)
+        pool.query(`select id as camp_id, campaign_ref as sampling_campaign_ref, posted_date, country as country from sampling_campaigns where posted_date > CURRENT_DATE();`)
             .then((data) => {
                 resolve(data);
             })

@@ -34,7 +34,7 @@
                     <td><%= member.user_id %></td>
                     <td><%= member.username %></td>
                     <td><%= member.user_email %></td>
-                    <td><%= member.video_reviewer %></td>
+                    <td><%= member.video_reviewer === 1 ? 'Yes' : 'No' %></td>
                     <td>
                         <form action="/members/edit/<%= member.user_id %>" method="GET" class="squadForm">
                             <button type="submit" <%= guest ? 'disabled' : '' %>>Member Details</button>
