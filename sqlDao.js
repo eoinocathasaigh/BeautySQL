@@ -108,7 +108,6 @@ var getCampDetails = function (campaignId) {
             samcap.posted_date AS sampling_posted_date,
             samint.campaign_ref AS sampling_campaign_ref,
             samint.status AS campaign_status,
-            samint.video_content AS user_lef_video_content,
             ua.attribute_name AS attribute_name,
             ua.attribute_value AS attribute_value
             FROM sampling_campaigns samcap
@@ -164,7 +163,6 @@ var getCampaignParticipants = function (campaignId) {
         samcap.product_id AS sampling_product_id,
         samcap.no_of_samples AS sampling_no_of_samples,
         samcap.posted_date AS sampling_posted_date,
-        samint.video_content AS user_lef_video_content,
         user.username AS username,
         p.name AS profile_name,
         p.surname AS profile_surname,
