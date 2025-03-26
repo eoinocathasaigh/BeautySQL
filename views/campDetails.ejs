@@ -47,7 +47,7 @@
                     <div id="collapse<%= index %>" class="accordion-collapse collapse" data-bs-parent="#campaignAccordion">
                         <div class="accordion-body">
                             <div class="row">
-                                <!-- User Profile Section -->
+                                <!-- User Profile Section and New Sections -->
                                 <div class="col-md-4">
                                     <div class="card mb-3">
                                         <div class="card-header bg-primary text-white">User Profile</div>
@@ -65,8 +65,52 @@
                                             <p><strong>Newsletter:</strong> <%= audience.profile_newsletter ? "Subscribed" : "Not Subscribed" %></p>
                                         </div>
                                     </div>
+
+                                    <!-- Moved Sentiment Analysis here -->
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-secondary text-white">Sentiment Analysis</div>
+                                        <div class="card-body">
+                                            <p><strong>Overall Sentiment:</strong> <%= audience.review_sentiment %></p>
+                                            <div class="progress mb-2">
+                                                <!--
+                                                <div class="progress-bar bg-success" style="width: <%= audience.review_sentiment_score_positive %>%">
+                                                    Positive <%= audience.review_sentiment_score_positive %>%
+                                                </div>-->
+                                            </div>
+                                            <div class="progress mb-2">
+                                                <!--
+                                                <div class="progress-bar bg-danger" style="width: <%= audience.review_sentiment_score_negative %>%">
+                                                    Negative <%= audience.review_sentiment_score_negative %>%
+                                                </div>-->
+                                            </div>
+                                            <div class="progress mb-2">
+                                                <!--
+                                                <div class="progress-bar bg-secondary" style="width: <%= audience.review_sentiment_score_neutral %>%">
+                                                    Neutral <%= audience.review_sentiment_score_neutral %>%
+                                                </div>-->
+                                            </div>
+                                            <div class="progress mb-2">
+                                                <!--
+                                                <div class="progress-bar bg-warning" style="width: <%= audience.review_sentiment_score_mixed %>%">
+                                                    Mixed <%= audience.review_sentiment_score_mixed %>%
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Moved Social Media Links here -->
+                                    <div class="card mb-3">
+                                        <div class="card-header bg-info text-white">Social Media Links</div>
+                                        <div class="card-body">
+                                            <p><strong>Link 1:</strong> <a href="<%= audience.social_media_content_link1 %>" target="_blank">Click here</a></p>
+                                            <p><strong>Link 2:</strong> <a href="<%= audience.social_media_content_link2 %>" target="_blank">Click here</a></p>
+                                            <p><strong>Link 3:</strong> <a href="<%= audience.social_media_content_link3 %>" target="_blank">Click here</a></p>
+                                            <p><strong>Link 4:</strong> <a href="<%= audience.social_media_content_link4 %>" target="_blank">Click here</a></p>
+                                            <p><strong>Link 5:</strong> <a href="<%= audience.social_media_content_link5 %>" target="_blank">Click here</a></p>
+                                        </div>
+                                    </div>
                                 </div>
-        
+
                                 <!-- Campaign & Review Section -->
                                 <div class="col-md-8">
                                     <div class="card mb-3">
@@ -137,52 +181,6 @@
                                         </div>
                                     </div>
                                     <% } %>
-        
-                                    <div class="card">
-                                        <div class="card-header bg-secondary text-white">Sentiment Analysis</div>
-                                        <div class="card-body">
-                                            <p><strong>Overall Sentiment:</strong> <%= audience.review_sentiment %></p>
-                                            <div class="progress mb-2">
-                                                <!--
-                                                <div class="progress-bar bg-success" style="width: <%= audience.review_sentiment_score_positive %>%">
-                                                    Positive <%= audience.review_sentiment_score_positive %>%
-                                                </div>
-                                                -->
-                                            </div>
-    
-                                            <div class="progress mb-2">
-                                                <!--
-                                                <div class="progress-bar bg-danger" style="width: <%= audience.review_sentiment_score_negative %>%">
-                                                    Negative <%= audience.review_sentiment_score_negative %>%
-                                                </div>-->
-                                            </div>
-                                            <div class="progress mb-2">
-                                                <!--
-                                                <div class="progress-bar bg-secondary" style="width: <%= audience.review_sentiment_score_neutral %>%">
-                                                    Neutral <%= audience.review_sentiment_score_neutral %>%
-                                                </div>
-                                                -->
-                                            </div>
-                                            <div class="progress mb-2">
-                                                <!--
-                                                <div class="progress-bar bg-warning" style="width: <%= audience.review_sentiment_score_mixed %>%">
-                                                    Mixed <%= audience.review_sentiment_score_mixed %>%
-                                                </div>
-                                                -->
-                                            </div>
-                                        </div>
-                                    </div>
-        
-                                    <div class="card mt-3">
-                                        <div class="card-header bg-info text-white">Social Media Links</div>
-                                        <div class="card-body">
-                                            <p><strong>Link 1:</strong> <a href="<%= audience.social_media_content_link1 %>" target="_blank"><%= audience.social_media_content_link1 %></a></p>
-                                            <p><strong>Link 2:</strong> <a href="<%= audience.social_media_content_link2 %>" target="_blank"><%= audience.social_media_content_link2 %></a></p>
-                                            <p><strong>Link 3:</strong> <a href="<%= audience.social_media_content_link3 %>" target="_blank"><%= audience.social_media_content_link3 %></a></p>
-                                            <p><strong>Link 4:</strong> <a href="<%= audience.social_media_content_link4 %>" target="_blank"><%= audience.social_media_content_link4 %></a></p>
-                                            <p><strong>Link 5:</strong> <a href="<%= audience.social_media_content_link5 %>" target="_blank"><%= audience.social_media_content_link5 %></a></p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
