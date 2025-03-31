@@ -1,14 +1,13 @@
 {
   "name": "beautysql",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "nodemon index.js"
+    "start": "electron .",
+    "package-win": "electron-packager . MyApp --platform=win32 --arch=x64 --out=dist --overwrite"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "body-parser": "^1.20.3",
     "ejs": "^3.1.10",
@@ -17,5 +16,11 @@
     "mysql2": "^3.14.0",
     "nodemon": "^3.1.9",
     "promise-mysql": "^5.2.0"
-  }
+  },
+  "devDependencies": {
+    "electron": "^35.1.1",
+    "electron-packager": "^17.1.2"
+  },
+  "keywords": [],
+  "description": ""
 }
