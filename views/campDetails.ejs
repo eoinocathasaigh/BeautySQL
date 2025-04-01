@@ -18,7 +18,7 @@
         <!-- Displaying all the details for the current campaign -->
         <div class="card mb-4">
             <div class="card-header bg-primary text-white text-center">
-            <h4>Campaign Data</h4>
+            <h4><strong>Campaign Data</strong></h4>
             </div>
             <div class="card-body">
             <div class="row">
@@ -50,7 +50,7 @@
         </div>
         <!--Displaying the details for all current audience members-->
         <div class="accordion" id="campaignAccordion">
-            <h2>Current Audience</h2>
+            <h2><strong>Current Audience</strong></h2>
             <% audienceDetails.forEach(function(audience, index) { %>
                 <div class="accordion-item mb-3">
                     <h2 class="accordion-header">
@@ -210,11 +210,10 @@
                 <div class="card-body">
                     <% availableMembers.forEach(function(member) { %>
                         <div class="mb-3">
-                            <p><strong>ID:</strong> <%= member.id %></p>
+                            <p><strong>ID:</strong> <%= member.user_id %></p>
                             <p><strong>Username:</strong> <%= member.username %></p>
-                            <p><strong>Email:</strong> <%= member.email %></p>
-                            <p><strong>Attribute Name:</strong> <%= member.attribute_name %></p>
-                            <p><strong>Attribute Value:</strong> <%= member.attribute_value %></p>
+                            <p><strong>Email:</strong> <%= member.user_email %></p>
+                            <p><strong>Country:</strong> <%= member.user_country %></p>
                             <hr>
                         </div>
                     <% }) %>

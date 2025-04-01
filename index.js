@@ -14,7 +14,7 @@ app.use(express.static('public'));
 
 //Making our app listen on port 3004
 //Listening for connections on a certain port
-app.listen(3000, ()=>{
+app.listen(4000, ()=>{
     console.log("App is listening for connection");
 })
 
@@ -121,10 +121,11 @@ app.get("/campaigns", (req, res)=> {
 
 app.get("/campaigns/:id", (req, res) => {
     const id = req.params.id;
+    const campaignRef = req.query.ref; // Extract the campaign reference from the query parameter
     Promise.all([
         mySqlDao.getCampaignParticipants(id),
         mySqlDao.getCampDetails(id),
-        mySqlDao.getEligibleMembers()
+        mySqlDao.getEligibleMembers(campaignRef, id)
     ])
     .then(([audienceData, campaignDetails, availableMembers]) => {
         res.render("campDetails", {

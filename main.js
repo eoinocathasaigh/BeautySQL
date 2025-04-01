@@ -28,7 +28,7 @@ app.whenReady().then(() => {
 
     // Wait for the server to start, then load the app
     setTimeout(() => {
-        mainWindow.loadURL('http://localhost:3000');
+        mainWindow.loadURL('http://localhost:4000');
     }, 3000);
 
     mainWindow.on('closed', () => {

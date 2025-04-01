@@ -258,15 +258,24 @@ WHERE video_status = "Success"
     })
 }
 
-var getEligibleMembers = function () {
+var getEligibleMembers = function (campRef, campId) {
     return new Promise((resolve, reject) => {
-        pool.query(`SELECT u.id, u.username, u.email, ua.attribute_name, ua.attribute_value
-            FROM user u
-            JOIN user_attributes ua ON u.id = ua.user_id
-            JOIN awards a ON u.id = a.id
-            LEFT JOIN audience aud ON u.id = aud.id
-            WHERE a.id = 6
-            AND aud.id IS NULL;`)
+        pool.query(`SELECT 
+            u.id AS user_id,
+            u.username AS username,
+            u.email AS user_email,
+            u.country AS user_country
+        FROM user u
+        LEFT JOIN sampler_interactions samint ON u.id = samint.user_id
+        LEFT JOIN user_awards ua ON u.id = ua.user_id
+        WHERE 
+            ua.award_id = '6'
+            AND u.id NOT IN (
+                SELECT user_id FROM sampler_interactions WHERE campaign_ref = ?
+            )
+            AND u.country COLLATE utf8mb4_general_ci = (
+                SELECT country COLLATE utf8mb4_general_ci FROM sampling_campaigns WHERE id = ?
+            );`, [campRef, campId])
             .then((data) => {
                 resolve(data);
             })

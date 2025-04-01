@@ -40,7 +40,7 @@
                         <td><%= campaign.end_date %></td>
                         <td><%= campaign.country %></td>
                         <td>
-                            <form action="/campaigns/<%= campaign.camp_id %>" method="GET">
+                            <form action="/campaigns/<%= campaign.camp_id %>?ref=<%= campaign.sampling_campaign_ref %>" method="GET">
                                 <button type="submit" <%= guest ? 'disabled' : '' %>>View Details</button>
                             </form>
                         </td>
