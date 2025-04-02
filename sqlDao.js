@@ -258,7 +258,7 @@ WHERE video_status = "Success"
     })
 }
 
-var getEligibleMembers = function (campRef, campId) {
+var getEligibleMembers = function (campId) {
     return new Promise((resolve, reject) => {
         pool.query(`SELECT 
             u.id AS user_id,
@@ -266,16 +266,19 @@ var getEligibleMembers = function (campRef, campId) {
             u.email AS user_email,
             u.country AS user_country
         FROM user u
-        LEFT JOIN sampler_interactions samint ON u.id = samint.user_id
         LEFT JOIN user_awards ua ON u.id = ua.user_id
         WHERE 
             ua.award_id = '6'
             AND u.id NOT IN (
-                SELECT user_id FROM sampler_interactions WHERE campaign_ref = ?
+                SELECT user_id 
+                FROM sampler_interactions 
+                WHERE campaign_ref = ?
             )
             AND u.country COLLATE utf8mb4_general_ci = (
-                SELECT country COLLATE utf8mb4_general_ci FROM sampling_campaigns WHERE id = ?
-            );`, [campRef, campId])
+                SELECT country COLLATE utf8mb4_general_ci 
+                FROM sampling_campaigns 
+                WHERE id = ?
+            );`, [campId, campId])
             .then((data) => {
                 resolve(data);
             })

@@ -121,11 +121,10 @@ app.get("/campaigns", (req, res)=> {
 
 app.get("/campaigns/:id", (req, res) => {
     const id = req.params.id;
-    const campaignRef = req.query.ref; // Extract the campaign reference from the query parameter
     Promise.all([
         mySqlDao.getCampaignParticipants(id),
         mySqlDao.getCampDetails(id),
-        mySqlDao.getEligibleMembers(campaignRef, id)
+        mySqlDao.getEligibleMembers(id)
     ])
     .then(([audienceData, campaignDetails, availableMembers]) => {
         res.render("campDetails", {
