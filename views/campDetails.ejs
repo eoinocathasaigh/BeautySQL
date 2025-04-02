@@ -62,7 +62,7 @@
                     <div id="collapse<%= index %>" class="accordion-collapse collapse" data-bs-parent="#campaignAccordion">
                         <div class="accordion-body">
                             <div class="row">
-                                <!-- User Profile Section and New Sections -->
+                                <!-- Section for the details of each user in this particular campaign -->
                                 <div class="col-md-4">
                                     <div class="card mb-3">
                                         <div class="card-header bg-primary text-white">User Profile</div>
@@ -75,46 +75,57 @@
                                             <p><strong>DOB:</strong> <%= audience.user_dob %></p>
                                             <p><strong>Gender:</strong> <%= audience.gender %></p>
                                             <p><strong>Skin Tone:</strong> <%= audience.ua_skin_tone %></p>
-                                            <p><strong>Skin Type:</strong> <%= audience.ua_skin_type %></p>
-                                            <p><strong>Hair Type:</strong> <%= audience.ua_hair_type %></p>
-                                            <p><strong>Eye Colour:</strong> <%= audience.ua_eye_colour %></p>
                                             <p><strong>Newsletter:</strong> <%= audience.profile_newsletter ? "Subscribed" : "Not Subscribed" %></p>
                                         </div>
                                     </div>
-
-                                    <!-- Moved Sentiment Analysis here -->
+                                    
                                     <div class="card mb-3">
                                         <div class="card-header bg-secondary text-white">Sentiment Analysis</div>
                                         <div class="card-body">
                                             <p><strong>Overall Sentiment:</strong> <%= audience.review_sentiment %></p>
-                                            <div class="progress mb-2">
-                                                <!--
-                                                <div class="progress-bar bg-success" style="width: <%= audience.review_sentiment_score_positive %>%">
-                                                    Positive <%= audience.review_sentiment_score_positive %>%
-                                                </div>-->
+                                            
+                                            <div class="mb-3">
+                                                <input type="number" id="sentimentScore" value="<%= audience.review_sentiment_score %>" min="0" class="mb-2">
+                                                <div class="progress">
+                                                    <!--
+                                                    <div class="progress-bar bg-success" style="width: <%= audience.review_sentiment_score_positive %>%">
+                                                        Positive <%= audience.review_sentiment_score_positive %>%
+                                                    </div>-->
+                                                </div>
                                             </div>
-                                            <div class="progress mb-2">
-                                                <!--
-                                                <div class="progress-bar bg-danger" style="width: <%= audience.review_sentiment_score_negative %>%">
-                                                    Negative <%= audience.review_sentiment_score_negative %>%
-                                                </div>-->
+                                            
+                                            <div class="mb-3">
+                                                <input type="number" id="reviewscorenegative" value="<%= audience.review_sentiment_score_negative %>" min="0" class="mb-2">
+                                                <div class="progress">
+                                                    <!--
+                                                    <div class="progress-bar bg-danger" style="width: <%= audience.review_sentiment_score_negative %>%">
+                                                        Negative <%= audience.review_sentiment_score_negative %>%
+                                                    </div>-->
+                                                </div>
                                             </div>
-                                            <div class="progress mb-2">
-                                                <!--
-                                                <div class="progress-bar bg-secondary" style="width: <%= audience.review_sentiment_score_neutral %>%">
-                                                    Neutral <%= audience.review_sentiment_score_neutral %>%
-                                                </div>-->
+                                            
+                                            <div class="mb-3">
+                                                <input type="number" id="reviewscoreneutral" value="<%= audience.review_sentiment_score_neutral %>" min="0" class="mb-2">
+                                                <div class="progress">
+                                                    <!--
+                                                    <div class="progress-bar bg-secondary" style="width: <%= audience.review_sentiment_score_neutral %>%">
+                                                        Neutral <%= audience.review_sentiment_score_neutral %>%
+                                                    </div>-->
+                                                </div>
                                             </div>
-                                            <div class="progress mb-2">
-                                                <!--
-                                                <div class="progress-bar bg-warning" style="width: <%= audience.review_sentiment_score_mixed %>%">
-                                                    Mixed <%= audience.review_sentiment_score_mixed %>%
-                                                </div>-->
+                                            
+                                            <div class="mb-3">
+                                                <input type="number" id="reviewscoremixed" value="<%= audience.review_sentiment_score_mixed %>" min="0" class="mb-2">
+                                                <div class="progress">
+                                                    <!--
+                                                    <div class="progress-bar bg-warning" style="width: <%= audience.review_sentiment_score_mixed %>%">
+                                                        Mixed <%= audience.review_sentiment_score_mixed %>%
+                                                    </div>-->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Moved Social Media Links here -->
                                     <div class="card mb-3">
                                         <div class="card-header bg-info text-white">Social Media Links</div>
                                         <div class="card-body">
