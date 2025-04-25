@@ -149,6 +149,7 @@ button {
     border-radius: 4px;
     cursor: pointer;
     font-size: 0.9rem;
+    
 }
 
 button:hover {
@@ -227,4 +228,14 @@ button:hover {
 
 .accordion-body {
     padding: 10px;
+}
+
+/* Scrollable container for audience members */
+.scrollable-container {
+    max-height: 350px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+    padding: 10px;
+    background-color: grey; 
 }

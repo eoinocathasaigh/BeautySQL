@@ -64,16 +64,89 @@ h1 {
     background-color: #f1f1f1;
 }
 
-button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 4px;
+/* Filter Section */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+}
+
+.card-header {
     font-weight: bold;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
+    background-color: #343a40;
+    color: #ffffff;
+    text-align: center;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body form .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.card-body form .col-md-3 {
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 250px;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+}
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: auto;
+    display: block;
+    margin: 10px auto; /* Centers the button horizontally */
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #0056b3;
+}
+
+.no-campaigns {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: lightgrey;
+    border: 1px solid black;
+    border-radius: 8px;
+    color: black;
 }

@@ -17,10 +17,9 @@
     "nodemon": "^3.1.9",
     "promise-mysql": "^5.2.0"
   },
-  "devDependencies": {
-    "electron": "^35.1.1",
-    "electron-packager": "^17.1.2"
-  },
   "keywords": [],
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "electron": "^35.2.1"
+  }
 }
