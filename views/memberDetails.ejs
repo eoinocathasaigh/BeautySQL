@@ -44,7 +44,7 @@
             <input type="checkbox" id="vide_rev" name="vide_rev" value="1" <%= memberDetails.video_reviewer ? 'checked' : '' %>>
             <br>
             <label for="heard">Heard About:</label>
-            <input type="text" id="heard" name="heard" value="<%= memberDetails.heard_about %>">
+            <textarea id="heard" name="heard" rows="4" cols="65"><%= memberDetails.heard_about %></textarea>
             <br>
             <label for="status">User Status:</label>
             <select id="status" name="status" required>
@@ -55,7 +55,7 @@
             </select>
             <br>
             <label for="lastLog">Last Login:</label>
-            <input type="number" id="lastLog" name="lastLog" minlength="1" value="<%= memberDetails.user_last_login_at %>">
+            <input type="number" id="lastLog" name="lastLog" minlength="1" value="<%= memberDetails.user_last_login_at %>" min="0">
             <br>
             <label for="create">Created At:</label>
             <input type="text" id="create" name="create" value="<%= memberDetails.user_created_at %>" readonly>
@@ -67,25 +67,25 @@
             <input type="text" id="tikHand" name="tikHand" maxlength="255" value="<%= memberDetails.profile_tiktok_handle %>">
             <br>
             <label for="instFol">Instagram Followers:</label>
-            <input type="number" id="instFol" name="instFol" value="<%= memberDetails.instagram_followers %>">
+            <input type="number" id="instFol" name="instFol" value="<%= memberDetails.instagram_followers %>" min="0">
             <br>
             <label for="profShar">Profile Sharing:</label>
-            <input type="int" id="profShar" name="profShar" value="<%= memberDetails.profile_sharing %>">
+            <input type="int" id="profShar" name="profShar" value="<%= memberDetails.profile_sharing %>" min="0">
             <br>
             <label for="profAtts">Profile Attributes Privacy:</label>
             <input type="text" id="profAtts" name="profAtts" maxlength="255" value="<%= memberDetails.profile_attributes_privacy %>">
             <br>
             <label for="profBio">Profile Bio:</label>
-            <input type="text" id="profBio" name="profBio" value="<%= memberDetails.profile_bio %>">
+            <textarea id="profBio" name="profBio" rows="4" cols="65"><%= memberDetails.profile_bio %></textarea>
             <br>
             <label for="profImgId">Profile Image Id:</label>
-            <input type="number" id="profImgId" name="profImgId" value="<%= memberDetails.profile_image_id %>">
+            <input type="number" id="profImgId" name="profImgId" value="<%= memberDetails.profile_image_id %>" min="0">
             <br>
             <label for="profImgUrl">Profile Image Url:</label>
             <input type="text" id="profImgUrl" name="profImgUrl" value="<%= memberDetails.profile_image_url %>">
             <br>
             <label for="profNews">Profile Newsletter:</label>
-            <input type="number" id="profNews" name="profNews" value="<%= memberDetails.profile_newsletter %>">
+            <input type="number" id="profNews" name="profNews" value="<%= memberDetails.profile_newsletter %>" min="0">
             <br>
             <br>
 
@@ -584,10 +584,10 @@
             <input type="text" id="phoneCode" name="phoneCode" maxlength="8" value="<%= memberDetails.ua_phone_code %>">
             <br>
             <label for="phoneNum">Phone Number:</label>
-            <input type="text" id="phoneNum" name="phoneNum" maxlength="20" value="<%= memberDetails.ua_phone_number %>">
+            <input type="text" id="phoneNum" name="phoneNum" maxlength="20" value="<%= memberDetails.ua_phone_number %>" min="0">
             <br>
             <label for="phoneConfAt">Phone Confirmed At:</label>
-            <input type="number" id="phoneConfAt" name="phoneConfAt" value="<%= memberDetails.ua_phone_confirmed_at %>">
+            <input type="number" id="phoneConfAt" name="phoneConfAt" value="<%= memberDetails.ua_phone_confirmed_at %>" min="0">
             <br>
             <button type="submit">Update</button>
         </form>

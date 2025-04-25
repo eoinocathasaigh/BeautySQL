@@ -13,41 +13,81 @@
                 <button type="submit">Change Database</button>
             </div>
         </form>
-        <h1><u>Displaying all Currently Running Campaigns</u></h1>
+        <h1><u>Beauty Buddy Campaigns</u></h1>
         <div class="nav-links">
             <p>
-                <!--<a href="/">Home</a>-->
                 <a href="/members">Squad Members</a>
             </p>
         </div>
-        <table class="campaignTable">
-            <thead>
-                <tr>
-                    <th>Campaign Reference</th>
-                    <th>Campaign ID</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Country</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% campDetails.forEach(function(campaign) { %>
-                    <tr>
-                        <td><%= campaign.sampling_campaign_ref %></td>
-                        <td><%= campaign.camp_id %></td>
-                        <td><%= campaign.posted_date %></td>
-                        <td><%= campaign.end_date %></td>
-                        <td><%= campaign.country %></td>
-                        <td>
-                            <form action="/campaigns/<%= campaign.camp_id %>?ref=<%= campaign.sampling_campaign_ref %>" method="GET">
-                                <button type="submit" <%= guest ? 'disabled' : '' %>>View Details</button>
-                            </form>
-                        </td>
-                    </tr>
-                <% }); %>
-            </tbody>
-        </table>
+        <div class="card">
+            <div class="card-header">Filter Campaigns</div>
+            <div class="card-body">
+                <form action="/campaigns/filter" method="GET">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="campaignId">Campaign ID:</label>
+                            <input type="number" id="campaignId" name="campaignId" class="form-control mb-2" min="0">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="campaignRef">Campaign Reference:</label>
+                            <input type="text" id="campaignRef" name="campaignRef" class="form-control mb-2">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="country">Country:</label>
+                            <input type="text" id="country" name="country" class="form-control mb-2">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="productId">Product ID:</label>
+                            <input type="number" id="productId" name="productId" class="form-control mb-2" min="0">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="productVariantId">Product Variant ID:</label>
+                            <input type="number" id="productVariantId" name="productVariantId" class="form-control mb-2" min="0">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Search</button>
+                </form>
+            </div>
+        </div>
+        
+        <% if (campDetails.length > 0) { %>
+            <div class="table-wrapper">
+                <table class="campaignTable">
+                    <thead>
+                        <tr>
+                            <th>Campaign Reference</th>
+                            <th>Campaign ID</th>
+                            <th>Product ID</th>
+                            <th>Product Variant ID</th>
+                            <th>Start Date</th>
+                            <th>Country</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% campDetails.forEach(function(campaign) { %>
+                            <tr>
+                                <td><%= campaign.sampling_campaign_ref %></td>
+                                <td><%= campaign.camp_id %></td>
+                                <td><%= campaign.product_id %></td>
+                                <td><%= campaign.product_variant_id %></td>
+                                <td><%= campaign.posted_date %></td>
+                                <td><%= campaign.country %></td>
+                                <td>
+                                    <form action="/campaigns/<%= campaign.camp_id %>?ref=<%= campaign.sampling_campaign_ref %>" method="GET">
+                                        <button type="submit">View Details</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <p class="no-campaigns">No campaigns to display.</p>
+        <% } %>
     </div>
 </body>
 </html>

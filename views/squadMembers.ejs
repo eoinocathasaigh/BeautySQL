@@ -4,45 +4,324 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Squad Members</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/squadMemberStyles.css">
 </head>
 <body>
     <div class="container">
         <form action="/" method="GET">
             <div style="text-align: center;">
-                <button type="submit">Change Database</button>
+                <button type="submit" class="btn btn-primary mt-3">Change Database</button>
             </div>
         </form>
-        <h1><u>Displaying all available Beauty Squad Members</u></h1>
+        <h1><u><strong>Apply filters to see squad members</strong></u></h1>
         
         <div class="nav-links">
             <p>
-                <!--<a href="/">Home</a>-->
-                <a href="/campaigns">Track Campaign</a>
+                <a href="/campaigns">Track Campaigns</a>
             </p>
         </div>
-        <table class="memberTable">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Squad Member Email</th>
-                <th>Video Reviewer</th>
-                <th>Update Video Reviewer Status</th>
-            </tr>
-            <% squadMembers.forEach((member) => { %>
-                <tr>
-                    <td><%= member.user_id %></td>
-                    <td><%= member.username %></td>
-                    <td><%= member.user_email %></td>
-                    <td><%= member.video_reviewer === 1 ? 'Yes' : 'No' %></td>
-                    <td>
-                        <form action="/members/edit/<%= member.user_id %>" method="GET" class="squadForm">
-                            <button type="submit" <%= guest ? 'disabled' : '' %>>Member Details</button>
-                        </form>
-                    </td>
-                </tr>
-            <% }) %>
-        </table>
-    </div>
+        <div class="card mt-4">
+            <div class="card-header bg-secondary text-white">Filter Squad Members</div>
+            <div class="card-body">
+                <form action="/members/filterMembers" method="GET">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="memID">Member ID:</label>
+                            <input type="number" id="memID" name="memID" class="form-control mb-2" min="0">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="country">Country:</label>
+                            <input type="text" id="country" name="country" class="form-control mb-2">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="ageRange">Age Range:</label>
+                            <input type="text" id="ageRange" name="ageRange" placeholder="e.g., 20-30" class="form-control mb-2">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="skinConcerns">Skin Concerns:</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="skinConcernsDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Skin Concerns</button>
+                                <ul class="dropdown-menu" aria-labelledby="skinConcernsDropdown">
+                                    <li><input type="checkbox" name="skinConcerns[]" value="sensitive_skin"> Sensitive Skin</li>
+                                    <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_fine_lines"> Fine Lines</li>
+                                    <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_breakouts"> Breakouts</li>
+                                    <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_large_pores"> Large Pores</li>
+                                    <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_hyper_pigmentation"> Hpyer Pigmentation</li>
+                                    <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_uneven_tone"> Uneven Tone</li>
+                                    <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_dehydration"> Dehydration</li>
+                                    <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_acne"> Acne</li>
+                                    <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_dull_skin"> Dull Skin</li>
+                                    <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_rosacea"> Rosacea</li>
+                                    <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_dark_spots"> Dark Spots</li>
+                                    <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_sun_damage"> Sun Damage</li>
+                                    <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_puffiness"> Puffiness</li>
+                                    <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_cystic_acne"> Cystic Acne</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="eyeConcerns">Eye Concerns:</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="eyeConcernsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Select Eye Concerns
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="eyeConcernsDropdown">
+                                    <li><input type="checkbox" name="eyeConcerns[]" value="eye_concern_dark_circles "> Dark Circles</li>
+                                    <li><input type="checkbox" name="eyeConcerns[]" value="eye_concern_lines_wrinkles "> Lines/Wrinkles</li>
+                                    <li><input type="checkbox" name="eyeConcerns[]" value="eye_concern_drooping_eyelids"> Drooping Eyelids</li>
+                                    <li><input type="checkbox" name="eyeConcerns[]" value="eye_concern_puffiness"> Puffiness</li>
+                                    <li><input type="checkbox" name="eyeConcerns[]" value="eye_concern_under_eye_hallows"> Under Eye Hallows</li>
+                                    <li><input type="checkbox" name="eyeConcerns[]" value="eye_concern_none"> None</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="lipConcerns">Lip Concerns:</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="lipConcernsDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Lip Concerns</button>
+                                <ul class="dropdown-menu" aria-labelledby="lipConcernsDropdown">
+                                    <li><input type="checkbox" name="lipConcerns[]" value="lips_concern_normal "> Normal</li>
+                                    <li><input type="checkbox" name="lipConcerns[]" value="lips_concern_dry "> Dry</li>
+                                    <li><input type="checkbox" name="lipConcerns[]" value="lips_concern_cracked"> Cracked</li>
+                                    <li><input type="checkbox" name="lipConcerns[]" value="lips_concern_cold_sores"> Cold Sores</li>
+                                    <li><input type="checkbox" name="lipConcerns[]" value="lips_concern_thin"> Thin</li>
+                                    <li><input type="checkbox" name="lipConcerns[]" value="lips_concern_chapped"> Chapped</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="bodySkinConcerns">Body Skin Concerns:</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="bodySkinConcernsDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Body Skin Concerns</button>
+                                <ul class="dropdown-menu" aria-labelledby="bodySkinConcernsDropdown">
+                                    <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_cellulite "> Cellulite</li>
+                                    <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_stretch_marks "> Stretch Marks</li>
+                                    <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_dehydration"> Dehydration</li>
+                                    <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_menopausal"> Menopausal</li>
+                                    <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_itchy_skin"> Itchy Skin</li>
+                                    <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_eczema"> Eczema</li>
+                                    <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_psoriasis"> Psoriasis</li>
+                                    <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_vitiligo"> Vitiligo</li>
+                                    <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_keratosis_pilaris"> Keratosis Pilaris</li>
+                                    <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_none"> None</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="hairConcerns">Hair Concerns:</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="hairConcernsDropdown" data-bs-toggle="dropdown" aria-expanded="false">Hair Concerns</button>
+                                <ul class="dropdown-menu" aria-labelledby="hairConcernsDropdown">
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_frizz "> Frizz</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_dandruff "> Dandruff</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_damage"> Damage</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_coloured"> Coloured</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_lack_volume"> Lack Volume</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_hair_loss"> Hair Loss</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_ageing_hair"> Ageing Hair</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_split_ends"> Split Ends</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_lack_shine"> Lack Shine</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_psoriasis"> Psoriasis</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_oily_scalp"> Oily Scalp</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_itchy_scalp"> Itchy Scalp</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_heat_damaged"> Heat Damaged</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_thinning"> Thinning</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_alopecia"> Alopecia</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_dry_scalp"> Dry Scalp</li>
+                                    <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_none"> None</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="scents">Scents:</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="scentsDropdown" data-bs-toggle="dropdown" aria-expanded="false">Scents</button>
+                                <ul class="dropdown-menu" aria-labelledby="scentsDropdown">
+                                    <li><input type="checkbox" name="scents[]" value="scents_clean "> Clean</li>
+                                    <li><input type="checkbox" name="scents[]" value="scents_floral "> Floral</li>
+                                    <li><input type="checkbox" name="scents[]" value="scents_oriental"> Oriental</li>
+                                    <li><input type="checkbox" name="scents[]" value="scents_woody"> Woody</li>
+                                    <li><input type="checkbox" name="scents[]" value="scents_citrus"> Citrus</li>
+                                    <li><input type="checkbox" name="scents[]" value="scents_fruity"> Fruity</li>
+                                    <li><input type="checkbox" name="scents[]" value="scents_green"> Green</li>
+                                    <li><input type="checkbox" name="scents[]" value="scents_oceanic"> Oceanic</li>
+                                    <li><input type="checkbox" name="scents[]" value="scents_spicy"> Spicy</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="productConcers">Product Concerns:</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="productDropdown" data-bs-toggle="dropdown" aria-expanded="false">Product Concerns</button>
+                                <ul class="dropdown-menu" aria-labelledby="productDropdown">
+                                    <li><input type="checkbox" name="productConcers[]" value="product_anti_ageing "> Product Anti Ageing</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_clean "> Product Clean</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_contains_aloe"> Contains Aloe</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_contains_caffeine"> Contains Caffeine</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_contains_cocoa"> Contains Cocoa</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_contains_retinol"> Contains Retinol</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_contains_shea"> Contains Shea</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_contains_spf"> Contains Spf</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_cruelty_free"> Cruelty Free</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_eco_friendly"> Eco Friendly</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_halal"> Product Halal</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_natural"> Product Natural</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_organic"> Product Organic</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_vegan_friendly"> Product Vegan Friendly</li>
+                                    <li><input type="checkbox" name="productConcers[]" value="product_sustainable"> Product Sustainable</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="scents">Skin Tone:</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="skinToneDropdown" data-bs-toggle="dropdown" aria-expanded="false">Skin Tone</button>
+                                <ul class="dropdown-menu" aria-labelledby="skinToneDropdown">
+                                    <li><input type="checkbox" name="skinTone[]" value="VERY_FAIR "> Very Fair</li>
+                                    <li><input type="checkbox" name="skinTone[]" value="FAIR "> Fair</li>
+                                    <li><input type="checkbox" name="skinTone[]" value="MEDIUM"> Medium</li>
+                                    <li><input type="checkbox" name="skinTone[]" value="TAN"> Tan</li>
+                                    <li><input type="checkbox" name="skinTone[]" value="DEEP"> Deep</li>
+                                    <li><input type="checkbox" name="skinTone[]" value="DARK"> Dark</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="scents">Skin Type:</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="skinTypeDropdown" data-bs-toggle="dropdown" aria-expanded="false">Skin Type</button>
+                                <ul class="dropdown-menu" aria-labelledby="skinTypeDropdown">
+                                    <li><input type="checkbox" name="skinType[]" value="NORMAL "> Normal</li>
+                                    <li><input type="checkbox" name="skinType[]" value="DRY "> Dry</li>
+                                    <li><input type="checkbox" name="skinType[]" value="OILY"> Oily</li>
+                                    <li><input type="checkbox" name="skinType[]" value="COMBINATION"> Combination</li>
+                                    <li><input type="checkbox" name="skinType[]" value="MATURE"> Mature</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="scents">Hair Moisture Level:</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="hairMoistDropdown" data-bs-toggle="dropdown" aria-expanded="false">Hair Moisture Level</button>
+                                <ul class="dropdown-menu" aria-labelledby="hairMoistDropdown">
+                                    <li><input type="checkbox" name="hairMoistLevel[]" value="NORMAL "> Normal</li>
+                                    <li><input type="checkbox" name="hairMoistLevel[]" value="DRY "> Dry</li>
+                                    <li><input type="checkbox" name="hairMoistLevel[]" value="OILY"> Oily</li>
+                                </ul>
+                            </div>
+                        </div>
+        
+                        <div class="col-md-6">
+                            <label for="scents">Hair Type:</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="hairTypeDropdown" data-bs-toggle="dropdown" aria-expanded="false">Hair Type</button>
+                                <ul class="dropdown-menu" aria-labelledby="hairTypeDropdown">
+                                    <li><input type="checkbox" name="hairType[]" value="STRAIGHT"> Straight</li>
+                                    <li><input type="checkbox" name="hairType[]" value="SOFT_WAVE "> Soft Wave</li>
+                                    <li><input type="checkbox" name="hairType[]" value="WAVY"> Wavy</li>
+                                    <li><input type="checkbox" name="hairType[]" value="CURLY"> Curly</li>
+                                    <li><input type="checkbox" name="hairType[]" value="TIGHT_CURLY"> Tight Curly</li>
+                                    <li><input type="checkbox" name="hairType[]" value="COILY"> Coily</li>
+                                    <li><input type="checkbox" name="hairType[]" value="CURLY"> Curly</li>
+                                    <li><input type="checkbox" name="hairType[]" value="TIGHT_COILS"> Tight Coils</li>
+                                    <li><input type="checkbox" name="hairType[]" value="WIRY"> Wiry</li>
+                                    <li><input type="checkbox" name="hairType[]" value="KINKY"> Kinky</li>
+                                </ul>
+                            </div>
+                        </div>
+        
+                        <div class="col-md-6">
+                            <label for="scents">Hair Colour:</label>
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="hairColDropdown" data-bs-toggle="dropdown" aria-expanded="false">Hair Colour</button>
+                                <ul class="dropdown-menu" aria-labelledby="hairColDropdown">
+                                    <li><input type="checkbox" name="hairColour[]" value="BLONDE "> Blonde</li>
+                                    <li><input type="checkbox" name="hairColour[]" value="RED "> Red</li>
+                                    <li><input type="checkbox" name="hairColour[]" value="BROWN"> Brown</li>
+                                    <li><input type="checkbox" name="hairColour[]" value="BLACK "> Black</li>
+                                    <li><input type="checkbox" name="hairColour[]" value="GREY "> Grey</li>
+                                    <li><input type="checkbox" name="hairColour[]" value="WHITE"> White</li>
+                                    <li><input type="checkbox" name="hairColour[]" value="OTHER"> Other</li>
+                                </ul>
+                            </div>
+                    </div>
+        
+                    <div class="col-md-6">
+                        <label for="scents">Eye Colour:</label>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="EyeColDropdown" data-bs-toggle="dropdown" aria-expanded="false">Eye Colour</button>
+                            <ul class="dropdown-menu" aria-labelledby="EyeColDropdown">
+                                <li><input type="checkbox" name="eyeCol[]" value="BLUE"> Blue</li>
+                                <li><input type="checkbox" name="eyeCol[]" value="GREEN "> Green</li>
+                                <li><input type="checkbox" name="eyeCol[]" value="GREY"> Grey</li>
+                                <li><input type="checkbox" name="eyeCol[]" value="BROWN"> Brown</li>
+                                <li><input type="checkbox" name="eyeCol[]" value="HAZEL"> Hazel</li>
+                                <li><input type="checkbox" name="eyeCol[]" value="AMBER"> Amber</li>
+                                <li><input type="checkbox" name="eyeCol[]" value="RED"> Red</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="limit">Number of Results:</label>
+                            <input type="number" id="limit" name="limit" class="form-control mb-2" min="1" placeholder="Enter limit">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Search</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Filtered Results -->
+        <div class="card mt-4">
+            <div class="card-header bg-dark text-white">Filtered Squad Members</div>
+            <div class="card-body">
+                <% if (filteredMembers && filteredMembers.length > 0) { %>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped align-middle text-nowrap">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Instagram</th>
+                                        <th>TikTok</th>
+                                        <th>Latest Review</th>
+                                        <th>Latest Campaign</th>
+                                        <th>Total Campaigns</th>
+                                        <th>Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% filteredMembers.forEach(function(member) { %>
+                                        <tr>
+                                            <td><%= member.user_id %></td>
+                                            <td><%= member.username %></td>
+                                            <td title="<%= member.user_email %>">
+                                                <%= member.user_email.length > 20 ? member.user_email.slice(0, 20) + "..." : member.user_email %>
+                                            </td>
+                                            <td><%= member.instagram_handle || "N/A" %></td>
+                                            <td><%= member.tiktok_handle || "N/A" %></td>
+                                            <td><%= member.latest_review_date ? new Date(member.latest_review_date).toLocaleDateString() : "N/A" %></td>
+                                            <td><%= member.latest_campaign_date ? new Date(member.latest_campaign_date).toLocaleDateString() : "N/A" %></td>
+                                            <td><%= member.total_campaigns %></td>
+                                            <td>
+                                                <a href="/members/edit/<%= member.user_id %>" class="btn btn-info btn-sm">View Details</a>
+                                            </td>
+                                        </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                <% } else { %>
+                    <p class="text-muted">No members match the selected criteria.</p>
+                <% } %>
+            </div>
+        </div>
+            </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>

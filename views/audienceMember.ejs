@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audience Member Details</title>
+    <link rel="stylesheet" href="/audienceStyle.css">
+</head>
+<body>
+    <div class="container">
+        <p style="font-size: 20px;"><a href="/campaigns/<%= campaign %>"><u>Back</u></a></p>
+        <h1><u>Currently Viewing: <%= memberDetails.username %></u></h1>
+
+        <img src="<%= memberDetails.profile_image_url %>" alt="<%= memberDetails.username %>'s Profile Photo" class="profile-img">
+        
+        <div class="card">
+            <div class="card-header bg-primary text-white">Member Details</div>
+            <p><strong>Member ID:</strong> <%= memberDetails.user_id %></p>
+            <p><strong>Username:</strong> <%= memberDetails.username %></p>
+            <p><strong>First Name:</strong> <%= memberDetails.profile_name %></p>
+            <p><strong>Surname:</strong> <%= memberDetails.profile_surname %></p>
+            <p><strong>Email:</strong> <%= memberDetails.user_email %></p>
+            <p><strong>Country:</strong> <%= memberDetails.user_country %></p>
+            <p><strong>Date of Birth:</strong> <%= memberDetails.user_dob %></p>
+            <p><strong>Gender:</strong> <%= memberDetails.gender %></p>
+            <p><strong>Video Reviewer:</strong> <%= memberDetails.video_reviewer ? "Yes" : "No" %></p>
+            <p><strong>Heard About:</strong> <%= memberDetails.heard_about %></p>
+            <p><strong>User Status:</strong> <%= memberDetails.user_status %></p>
+            <p><strong>Last Login:</strong> <%= memberDetails.user_last_login_at %></p>
+            <p><strong>Created At:</strong> <%= memberDetails.user_created_at %></p>
+            <p><strong>Instagram Handle:</strong> <%= memberDetails.profile_instagram_handle %></p>
+            <p><strong>TikTok Handle:</strong> <%= memberDetails.profile_tiktok_handle %></p>
+            <p><strong>Instagram Followers:</strong> <%= memberDetails.instagram_followers %></p>
+            <p><strong>Profile Sharing:</strong> <%= memberDetails.profile_sharing %></p>
+            <p><strong>Profile Attributes Privacy:</strong> <%= memberDetails.profile_attributes_privacy %></p>
+            <p><strong>Profile Bio:</strong> <%= memberDetails.profile_bio %></p>
+            <p><strong>Profile Image ID:</strong> <%= memberDetails.profile_image_id %></p>
+            <p><strong>Profile Newsletter:</strong> <%= memberDetails.profile_newsletter ? "Subscribed" : "Not Subscribed" %></p>
+        </div>
+
+        <div class="card">
+            <div class="card-header bg-primary text-white">Member Skin & Eye Attributes</div>
+            <p><strong>Skin Tone:</strong> <%= memberDetails.ua_skin_tone %></p>
+            <p><strong>Skin Complexion:</strong> <%= memberDetails.ua_skin_complexion %></p>
+            <p><strong>Sensitive Skin:</strong> <%= memberDetails.ua_sensitive_skin ? "Yes" : "No" %></p>
+            <p><strong>Skin Type:</strong> <%= memberDetails.ua_skin_type %></p>
+            <p><strong>Skin Concerns - Fine Lines:</strong> <%= memberDetails.ua_skin_concerns_fine_lines ? "Yes" : "No" %></p>
+            <p><strong>Skin Concerns - Breakouts:</strong> <%= memberDetails.ua_skin_concerns_breakouts ? "Yes" : "No" %></p>
+            <p><strong>Skin Concerns - Large Pores:</strong> <%= memberDetails.ua_skin_concerns_large_pores ? "Yes" : "No" %></p>
+            <p><strong>Skin Concerns - Hyper Pigmentation:</strong> <%= memberDetails.ua_skin_concerns_hyper_pigmentation ? "Yes" : "No" %></p>
+            <p><strong>Skin Concerns - Uneven Tone:</strong> <%= memberDetails.ua_skin_concerns_uneven_tone ? "Yes" : "No" %></p>
+            <p><strong>Skin Concerns - Dehydration:</strong> <%= memberDetails.ua_skin_concerns_dehydration ? "Yes" : "No" %></p>
+            <p><strong>Skin Concerns - Acne:</strong> <%= memberDetails.ua_skin_concerns_acne ? "Yes" : "No" %></p>
+            <p><strong>Skin Concerns - Dull Skin:</strong> <%= memberDetails.ua_skin_dull_skin ? "Yes" : "No" %></p>
+            <p><strong>Skin Concerns - Rosacea:</strong> <%= memberDetails.ua_skin_concerns_rosacea ? "Yes" : "No" %></p>
+            <p><strong>Skin Concerns - Dark Spots:</strong> <%= memberDetails.ua_skin_concerns_dark_spots ? "Yes" : "No" %></p>
+            <p><strong>Skin Concerns - Sun Damage:</strong> <%= memberDetails.ua_skin_concerns_sun_damage ? "Yes" : "No" %></p>
+            <p><strong>Skin Concerns - Puffiness:</strong> <%= memberDetails.ua_skin_concerns_puffiness ? "Yes" : "No" %></p>
+            <p><strong>Skin Concerns - Cystic Acne:</strong> <%= memberDetails.ua_skin_concerns_cystic_acne ? "Yes" : "No" %></p>
+            <p><strong>Eye Colour:</strong> <%= memberDetails.ua_eye_colour %></p>
+            <p><strong>Eye Concerns - Dark Circles:</strong> <%= memberDetails.ua_eye_concerns_dark_circles ? "Yes" : "No" %></p>
+            <p><strong>Eye Concerns - Lines/Wrinkles:</strong> <%= memberDetails.ua_eye_concerns_lines_wrinkles ? "Yes" : "No" %></p>
+            <p><strong>Eye Concerns - Drooping Eyelids:</strong> <%= memberDetails.ua_eye_concerns_drooping_eyelids ? "Yes" : "No" %></p>
+            <p><strong>Eye Concerns - Puffiness:</strong> <%= memberDetails.ua_eye_concerns_puffiness ? "Yes" : "No" %></p>
+            <p><strong>Eye Concerns - Under Eye Hallows:</strong> <%= memberDetails.ua_eye_concerns_under_eye_hallows ? "Yes" : "No" %></p>
+            <p><strong>Eye Concerns - None:</strong> <%= memberDetails.ua_eye_concerns_none ? "Yes" : "No" %></p>
+        </div>
+        <div class="card">
+            <div class="card-header bg-primary text-white">Member Lips Body Concerns</div>
+            <p><strong>Lips Concerns - Normal:</strong> <%= memberDetails.ua_lips_concerns_normal ? "Yes" : "No" %></p>
+            <p><strong>Lips Concerns - Dry:</strong> <%= memberDetails.ua_lips_concerns_dry ? "Yes" : "No" %></p>
+            <p><strong>Lips Concerns - Cracked:</strong> <%= memberDetails.ua_lips_concerns_cracked ? "Yes" : "No" %></p>
+            <p><strong>Lips Concerns - Cold Sores:</strong> <%= memberDetails.ua_lips_concerns_cold_sores ? "Yes" : "No" %></p>
+            <p><strong>Lips Concerns - Thin:</strong> <%= memberDetails.ua_lips_concerns_thin ? "Yes" : "No" %></p>
+            <p><strong>Lips Concerns - Chapped:</strong> <%= memberDetails.ua_lips_concerns_chapped ? "Yes" : "No" %></p>
+            <p><strong>Body Skin Type:</strong> <%= memberDetails.ua_body_skin_type %></p>
+            <p><strong>Body Skin Concerns - Cellulite:</strong> <%= memberDetails.ua_body_skin_concerns_cellulite ? "Yes" : "No" %></p>
+            <p><strong>Body Skin Concerns - Stretch Marks:</strong> <%= memberDetails.ua_body_skin_concerns_stretch_marks ? "Yes" : "No" %></p>
+            <p><strong>Body Skin Concerns - Dehydration:</strong> <%= memberDetails.ua_body_skin_concerns_dehydration ? "Yes" : "No" %></p>
+            <p><strong>Body Skin Concerns - Menopausal:</strong> <%= memberDetails.ua_body_skin_concerns_menopausal ? "Yes" : "No" %></p>
+            <p><strong>Body Skin Concerns - Itchy Skin:</strong> <%= memberDetails.ua_body_skin_concerns_itchy_skin ? "Yes" : "No" %></p>
+            <p><strong>Body Skin Concerns - Eczema:</strong> <%= memberDetails.ua_body_skin_concerns_eczema ? "Yes" : "No" %></p>
+            <p><strong>Body Skin Concerns - Psoriasis:</strong> <%= memberDetails.ua_body_skin_concerns_psoriasis ? "Yes" : "No" %></p>
+            <p><strong>Body Skin Concerns - Vitiligo:</strong> <%= memberDetails.ua_body_skin_concerns_vitiligo ? "Yes" : "No" %></p>
+            <p><strong>Body Skin Concerns - Keratosis Pilaris:</strong> <%= memberDetails.ua_body_skin_concerns_keratosis_pilaris ? "Yes" : "No" %></p>
+            <p><strong>Body Skin Concerns - None:</strong> <%= memberDetails.ua_body_skin_concerns_none ? "Yes" : "No" %></p>
+        </div>
+        <div class="card">
+            <div class="card-header bg-primary text-white">Member Hair Concerns</div>
+            <p><strong>Hair Structure:</strong> <%= memberDetails.ua_hair_structure || "Not Specified" %></p>
+            <p><strong>Moisture Levels:</strong> <%= memberDetails.ua_moisture_levels || "Not Specified" %></p>
+            <p><strong>Hair Colour:</strong> <%= memberDetails.ua_hair_colour || "Not Specified" %></p>
+            <p><strong>Hair Type:</strong> <%= memberDetails.ua_hair_type || "Not Specified" %></p>
+            <p><strong>Hair Colour - Treated:</strong> <%= memberDetails.ua_hair_colour_treated ? "Yes" : "No" %></p>
+            <p><strong>Hair Colour - Treated How:</strong> <%= memberDetails.ua_hair_colour_treated_how || "Not Specified" %></p>
+            <p><strong>Hair Concerns - Frizz:</strong> <%= memberDetails.ua_hair_concerns_frizz ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Dandruff:</strong> <%= memberDetails.ua_hair_concerns_dandruff ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Damage:</strong> <%= memberDetails.ua_hair_concerns_damage ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Coloured:</strong> <%= memberDetails.ua_hair_concerns_coloured ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Lack of Volume:</strong> <%= memberDetails.ua_hair_concerns_lack_volume ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Hair Loss:</strong> <%= memberDetails.ua_hair_concerns_hair_loss ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Ageing Hair:</strong> <%= memberDetails.ua_hair_concerns_ageing_hair ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Split Ends:</strong> <%= memberDetails.ua_hair_concerns_split_ends ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Lack of Shine:</strong> <%= memberDetails.ua_hair_concerns_lack_shine ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Psoriasis:</strong> <%= memberDetails.ua_hair_concerns_psoriasis ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Oily Scalp:</strong> <%= memberDetails.ua_hair_oily_scalp ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Itchy Scalp:</strong> <%= memberDetails.ua_hair_concern_itchy_scalp ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Heat Damaged:</strong> <%= memberDetails.ua_hair_concern_heat_damaged ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Thinning:</strong> <%= memberDetails.ua_hair_concern_thinning ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Alopecia:</strong> <%= memberDetails.ua_hair_concern_alopecia ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - Dry Scalp:</strong> <%= memberDetails.ya_hari_concern_dry_scalp ? "Yes" : "No" %></p>
+            <p><strong>Hair Concerns - None:</strong> <%= memberDetails.ua_hair_concerns_none ? "Yes" : "No" %></p>
+        </div>
+        <div class="card">
+            <div class="card-header bg-primary text-white">Scent & product details</div>
+            <p><strong>Scents - Clean:</strong> <%= memberDetails.ua_scents_clean ? "Yes" : "No" %></p>
+            <p><strong>Scents - Floral:</strong> <%= memberDetails.ua_scents_floral ? "Yes" : "No" %></p>
+            <p><strong>Scents - Oriental:</strong> <%= memberDetails.ua_scents_oriental ? "Yes" : "No" %></p>
+            <p><strong>Scents - Woody:</strong> <%= memberDetails.ua_scents_woody ? "Yes" : "No" %></p>
+            <p><strong>Scents - Citrus:</strong> <%= memberDetails.ua_scents_citrus ? "Yes" : "No" %></p>
+            <p><strong>Scents - Fruity:</strong> <%= memberDetails.ua_scents_fruity ? "Yes" : "No" %></p>
+            <p><strong>Scents - Green:</strong> <%= memberDetails.ua_scents_green ? "Yes" : "No" %></p>
+            <p><strong>Scents - Oceanic:</strong> <%= memberDetails.ua_scents_oceanic ? "Yes" : "No" %></p>
+            <p><strong>Scents - Spicy:</strong> <%= memberDetails.ua_scents_spicy ? "Yes" : "No" %></p>
+            <p><strong>Product - Anti Ageing:</strong> <%= memberDetails.ua_product_anti_ageing || "Not Specified" %></p>
+            <p><strong>Product - Clean:</strong> <%= memberDetails.ua_product_clean || "Not Specified" %></p>
+            <p><strong>Product - Contains Aloe:</strong> <%= memberDetails.ua_product_contains_aloe || "Not Specified" %></p>
+            <p><strong>Product - Contains Caffeine:</strong> <%= memberDetails.ua_product_contains_caffeine || "Not Specified" %></p>
+            <p><strong>Product - Contains Cocoa:</strong> <%= memberDetails.ua_product_contains_cocoa || "Not Specified" %></p>
+            <p><strong>Product - Contains Retinol:</strong> <%= memberDetails.ua_product_contains_retinol || "Not Specified" %></p>
+            <p><strong>Product - Contains Shea:</strong> <%= memberDetails.ua_product_contains_shea || "Not Specified" %></p>
+            <p><strong>Product - Contains SPF:</strong> <%= memberDetails.ua_product_contains_spf || "Not Specified" %></p>
+            <p><strong>Product - Cruelty Free:</strong> <%= memberDetails.ua_product_cruelty_free || "Not Specified" %></p>
+            <p><strong>Product - Eco Friendly:</strong> <%= memberDetails.ua_product_eco_friendly || "Not Specified" %></p>
+            <p><strong>Product - Halal:</strong> <%= memberDetails.ua_product_halal || "Not Specified" %></p>
+            <p><strong>Product - Natural:</strong> <%= memberDetails.ua_product_natural || "Not Specified" %></p>
+            <p><strong>Product - Organic:</strong> <%= memberDetails.ua_product_organic || "Not Specified" %></p>
+            <p><strong>Product - Vegan Friendly:</strong> <%= memberDetails.ua_product_vegan_friendly || "Not Specified" %></p>
+            <p><strong>Product - Sustainable:</strong> <%= memberDetails.ua_product_sustainable || "Not Specified" %></p>
+        </div>
+        <div class="card">
+            <div class="card-header bg-primary text-white">Member Purchasing Factors</div>
+            <p><strong>Purchasing Factor 1:</strong> <%= memberDetails.ua_purchasing_factor1 || "Not Specified" %></p>
+            <p><strong>Purchasing Factor 2:</strong> <%= memberDetails.ua_purchasing_factor2 || "Not Specified" %></p>
+            <p><strong>Purchasing Factor 3:</strong> <%= memberDetails.ua_purchasing_factor3 || "Not Specified" %></p>
+            <p><strong>Purchasing Factor 4:</strong> <%= memberDetails.ua_purchasing_factor4 || "Not Specified" %></p>
+            <p><strong>Purchasing Factor 5:</strong> <%= memberDetails.ua_purchasing_factor5 || "Not Specified" %></p>
+            <p><strong>Purchasing Factor 6:</strong> <%= memberDetails.ua_purchasing_factor6 || "Not Specified" %></p>
+            <p><strong>Purchasing Factor 7:</strong> <%= memberDetails.ua_purchasing_factor7 || "Not Specified" %></p>
+            <p><strong>Purchasing Factor 8:</strong> <%= memberDetails.ua_purchasing_factor8 || "Not Specified" %></p>
+            <p><strong>Purchasing Factor 9:</strong> <%= memberDetails.ua_purchasing_factor9 || "Not Specified" %></p>
+            <p><strong>Purchasing Factor 10:</strong> <%= memberDetails.ua_purchasing_factor10 || "Not Specified" %></p>
+        </div>
+        <div class="card">
+            <div class="card-header bg-primary text-white">Personal Member Details</div>
+            <p><strong>Try Skincare:</strong> <%= memberDetails.ua_try_skincare || "Not Specified" %></p>
+            <p><strong>Try Haircare:</strong> <%= memberDetails.ua_try_haircare || "Not Specified" %></p>
+            <p><strong>Try Makeup:</strong> <%= memberDetails.ua_try_makeup || "Not Specified" %></p>
+            <p><strong>Education:</strong> <%= memberDetails.ua_education || "Not Specified" %></p>
+            <p><strong>Employment:</strong> <%= memberDetails.ua_employment || "Not Specified" %></p>
+            <p><strong>Under 18 in Home:</strong> <%= memberDetails.ua_under_18_in_home ? "Yes" : "No" %></p>
+            <p><strong>Address 1:</strong> <%= memberDetails.ua_address1 || "Not Specified" %></p>
+            <p><strong>Address 2:</strong> <%= memberDetails.ua_address2 || "Not Specified" %></p>
+            <p><strong>City:</strong> <%= memberDetails.ua_city || "Not Specified" %></p>
+            <p><strong>County:</strong> <%= memberDetails.ua_county || "Not Specified" %></p>
+            <p><strong>Postcode:</strong> <%= memberDetails.ua_postcode || "Not Specified" %></p>
+            <p><strong>Phone Code:</strong> <%= memberDetails.ua_phone_code || "Not Specified" %></p>
+            <p><strong>Phone Number:</strong> <%= memberDetails.ua_phone_number || "Not Specified" %></p>
+            <p><strong>Phone Confirmed At:</strong> <%= memberDetails.ua_phone_confirmed_at || "Not Specified" %></p>
+        </div>
+    </div>
+</body>
+</html>

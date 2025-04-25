@@ -8,231 +8,610 @@
     <link href="/campDetailsStyle.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="nav-links">
-            <p>
-                <a href="/campaigns">Back</a>
-            </p>
+    <div class="container py-4">
+        <div class="nav-links mb-3">
+            <a href="/campaigns" class="btn btn-outline-secondary">&larr; Back to Campaigns</a>
         </div>
-        <h2 class="text-center mb-4"><strong>Campaign Details for: <%= campDetails.campaign_name  %></strong></h2>
-        <!-- Displaying all the details for the current campaign -->
-        <div class="card mb-4">
+
+        <h2 class="text-center mb-5"><strong>Campaign Details for: <%= campDetails.campaign_name %></strong></h2>
+
+        <!-- Campaign Data Card -->
+        <div class="card shadow-lg mb-4">
             <div class="card-header bg-primary text-white text-center">
-            <h4><strong>Campaign Data</strong></h4>
+                <h4 class="mb-0"><strong>Campaign Data</strong></h4>
             </div>
             <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-                <p><strong>Campaign ID:</strong> <%= campDetails.campaign_id %></p>
-                <p><strong>Product ID:</strong> <%= campDetails.product_id %></p>
-                <p><strong>Product Variant ID:</strong> <%= campDetails.SamCap_Product_var_id %></p>
-                <p><strong>Posted Date:</strong> <%= new Date(campDetails.Campaign_posted_at).toLocaleDateString() %></p>
-                <p><strong>Campaign Name:</strong> <%= campDetails.campaign_name %></p>
-                </div>
-                <div class="col-md-6">
-                <p><strong>Sampling Product ID:</strong> <%= campDetails.sampling_product_id %></p>
-                <p><strong>Number of Samples:</strong> <%= campDetails.sampling_no_of_samples %></p>
-                <p><strong>Sampling Posted Date:</strong> <%= new Date(campDetails.sampling_posted_date).toLocaleDateString() %></p>
-                <p><strong>Sampling Campaign Reference:</strong> <%= campDetails.sampling_campaign_ref %></p>
-                <p><strong>Campaign Status:</strong> <%= campDetails.campaign_status %></p>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-6">
-                <p><strong>Attribute Name:</strong> <%= campDetails.attribute_name %></p>
-                </div>
-                <div class="col-md-6">
-                <p><strong>Attribute Value:</strong> <%= campDetails.attribute_value %></p>
-                </div>
-            </div>
-            </div>
-        </div>
-        <!--Displaying the details for all current audience members-->
-        <div class="accordion" id="campaignAccordion">
-            <h2><strong>Current Audience</strong></h2>
-            <% audienceDetails.forEach(function(audience, index) { %>
-                <div class="accordion-item mb-3">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
-                                data-bs-target="#collapse<%= index %>" aria-expanded="false">
-                            <%= audience.username %> (ID: <%= audience.user_id %>)
-                        </button>
-                    </h2>
-                    <div id="collapse<%= index %>" class="accordion-collapse collapse" data-bs-parent="#campaignAccordion">
-                        <div class="accordion-body">
-                            <div class="row">
-                                <!-- Section for the details of each user in this particular campaign -->
-                                <div class="col-md-4">
-                                    <div class="card mb-3">
-                                        <div class="card-header bg-primary text-white">User Profile</div>
-                                        <div class="card-body">
-                                            <img src="<%= audience.profile_image_url %>" class="img-fluid rounded mb-2" alt="<%= audience.username %>'s Profile Photo">
-                                            <p><strong>See Squad Member Details:</strong><a href="/members/edit/<%= audience.user_id %>">Click here!</a></p>
-                                            <p><strong>Name:</strong> <%= audience.profile_name %> <%= audience.profile_surname %></p>
-                                            <p><strong>Email:</strong> <%= audience.user_email %></p>
-                                            <p><strong>Country:</strong> <%= audience.user_country %></p>
-                                            <p><strong>DOB:</strong> <%= audience.user_dob %></p>
-                                            <p><strong>Gender:</strong> <%= audience.gender %></p>
-                                            <p><strong>Skin Tone:</strong> <%= audience.ua_skin_tone %></p>
-                                            <p><strong>Newsletter:</strong> <%= audience.profile_newsletter ? "Subscribed" : "Not Subscribed" %></p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="card mb-3">
-                                        <div class="card-header bg-secondary text-white">Sentiment Analysis</div>
-                                        <div class="card-body">
-                                            <p><strong>Overall Sentiment:</strong> <%= audience.review_sentiment %></p>
-                                            
-                                            <div class="mb-3">
-                                                <input type="number" id="sentimentScore" value="<%= audience.review_sentiment_score %>" min="0" class="mb-2">
-                                                <div class="progress">
-                                                    <!--
-                                                    <div class="progress-bar bg-success" style="width: <%= audience.review_sentiment_score_positive %>%">
-                                                        Positive <%= audience.review_sentiment_score_positive %>%
-                                                    </div>-->
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="mb-3">
-                                                <input type="number" id="reviewscorenegative" value="<%= audience.review_sentiment_score_negative %>" min="0" class="mb-2">
-                                                <div class="progress">
-                                                    <!--
-                                                    <div class="progress-bar bg-danger" style="width: <%= audience.review_sentiment_score_negative %>%">
-                                                        Negative <%= audience.review_sentiment_score_negative %>%
-                                                    </div>-->
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="mb-3">
-                                                <input type="number" id="reviewscoreneutral" value="<%= audience.review_sentiment_score_neutral %>" min="0" class="mb-2">
-                                                <div class="progress">
-                                                    <!--
-                                                    <div class="progress-bar bg-secondary" style="width: <%= audience.review_sentiment_score_neutral %>%">
-                                                        Neutral <%= audience.review_sentiment_score_neutral %>%
-                                                    </div>-->
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="mb-3">
-                                                <input type="number" id="reviewscoremixed" value="<%= audience.review_sentiment_score_mixed %>" min="0" class="mb-2">
-                                                <div class="progress">
-                                                    <!--
-                                                    <div class="progress-bar bg-warning" style="width: <%= audience.review_sentiment_score_mixed %>%">
-                                                        Mixed <%= audience.review_sentiment_score_mixed %>%
-                                                    </div>-->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card mb-3">
-                                        <div class="card-header bg-info text-white">Social Media Links</div>
-                                        <div class="card-body">
-                                            <p><strong>Link 1:</strong> <a href="<%= audience.social_media_content_link1 %>" target="_blank">Click here</a></p>
-                                            <p><strong>Link 2:</strong> <a href="<%= audience.social_media_content_link2 %>" target="_blank">Click here</a></p>
-                                            <p><strong>Link 3:</strong> <a href="<%= audience.social_media_content_link3 %>" target="_blank">Click here</a></p>
-                                            <p><strong>Link 4:</strong> <a href="<%= audience.social_media_content_link4 %>" target="_blank">Click here</a></p>
-                                            <p><strong>Link 5:</strong> <a href="<%= audience.social_media_content_link5 %>" target="_blank">Click here</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Campaign & Review Section -->
-                                <div class="col-md-8">
-                                    <div class="card mb-3">
-                                        <div class="card-header bg-success text-white">Campaign Information</div>
-                                        <div class="card-body">
-                                            <p><strong>Campaign Name:</strong> <%= audience.campaign_name %></p>
-                                            <p><strong>Status:</strong> <%= audience.campaign_status %></p>
-                                            <p><strong>Posted Date:</strong> <%= new Date(audience.sampling_posted_date).toLocaleDateString() %></p>
-                                            <p><strong>End Date:</strong> <%= new Date(audience.campaign_end_date).toLocaleDateString() %></p>
-                                            <p><strong>Samples:</strong> <%= audience.sampling_no_of_samples %></p>
-                                            <p><strong>Campaign Ref:</strong> <%= audience.sampling_campaign_ref %></p>
-                                        </div>
-                                    </div>
-        
-                                    <div class="card mb-3">
-                                        <div class="card-header bg-warning">Product Review</div>
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <img src="<%= audience.product_image_url %>" class="img-fluid" alt="Product">
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <h5><%= audience.product_title %></h5>
-                                                    <h6><%= audience.review_title %></h6>
-                                                    <p><%= audience.review_description %></p>
-                                                    <p><strong>Rating:</strong> <%= audience.review_rating %>/5</p>
-                                                    <p><strong>Would Recommend:</strong> <%= audience.will_recommend ? "Yes" : "No" %></p>
-                                                    <p><strong>Would Repurchase:</strong> <%= audience.will_repurchase ? "Yes" : "No" %></p>
-                                                    <p><strong>How obtained:</strong> <%= audience.how_did_get_product %></p>
-                                                    <p><strong>Review Created At:</strong> <%= new Date(audience.review_created_at).toLocaleDateString() %></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="card mb-3">
-                                        <div class="card-header bg-info text-white">Interaction Details</div>
-                                        <div class="card-body">
-                                            <p><strong>Updated At:</strong> <%= new Date(audience.interaction_updated_at).toLocaleDateString() %></p>
-                                            <p><strong>Created At:</strong> <%= new Date(audience.interaction_created_at).toLocaleDateString() %></p>
-                                            <p><strong>Social Media Content:</strong> <%= audience.interaction_social_media_content %></p>
-                                            <p><strong>Comment:</strong> <%= audience.interaction_comment %></p>
-                                            <p><strong>Include Again:</strong> <%= audience.interaction_include_again ? "Yes" : "No" %></p>
-                                            <p><strong>Product Demonstrated:</strong> <%= audience.interaction_product_demonstrated ? "Yes" : "No" %></p>
-                                            <p><strong>Consumer on Camera:</strong> <%= audience.interaction_consumer_on_camera ? "Yes" : "No" %></p>
-                                            <p><strong>Voiceover:</strong> <%= audience.interaction_voiceover ? "Yes" : "No" %></p>
-                                            <p><strong>Live Talking to Camera:</strong> <%= audience.interaction_live_talking_to_camera ? "Yes" : "No" %></p>
-                                            <p><strong>Captions:</strong> <%= audience.interaction_captions ? "Yes" : "No" %></p>
-                                            <p><strong>Informative Written Review:</strong> <%= audience.interaction_informative_written_review ? "Yes" : "No" %></p>
-                                            <p><strong>Watermarks:</strong> <%= audience.interaction_watermarks ? "Yes" : "No" %></p>
-                                            <p><strong>Short Video on Repeat:</strong> <%= audience.interaction_short_video_on_repeat ? "Yes" : "No" %></p>
-                                            <p><strong>Just Photos in Video:</strong> <%= audience.interaction_just_photos_in_video ? "Yes" : "No" %></p>
-                                            <p><strong>Unboxing Video Only:</strong> <%= audience.interaction_unboxing_video_only ? "Yes" : "No" %></p>
-                                            <p><strong>Distracting Transitions:</strong> <%= audience.interaction_distracting_transitions ? "Yes" : "No" %></p>
-                                            <p><strong>Missed Completion Date:</strong> <%= audience.interaction_missed_completion_date ? "Yes" : "No" %></p>
-                                        </div>
-                                    </div>
-        
-                                    <% if (audience.video_url) { %>
-                                    <div class="card mb-3">
-                                        <div class="card-header bg-danger text-white">Review Video</div>
-                                        <div class="card-body">
-                                            <video controls width="100%">
-                                                <source src="<%= audience.video_url %>" type="video/mp4">
-                                                Your browser does not support the video tag.
-                                            </video>
-                                            <p><strong>Video Status:</strong> <%= audience.video_status %></p>
-                                        </div>
-                                    </div>
-                                    <% } %>
-                                </div>
-                            </div>
-                        </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <p><strong>Campaign ID:</strong> <%= campDetails.campaign_id %></p>
+                        <p><strong>Product ID:</strong> <%= campDetails.product_id %></p>
+                        <p><strong>Product Variant ID:</strong> <%= campDetails.SamCap_Product_var_id %></p>
+                        <p><strong>Posted Date:</strong> <%= new Date(campDetails.Campaign_posted_at).toLocaleDateString() %></p>
+                        <p><strong>Campaign Reference:</strong> <%= campDetails.campaign_name %></p>
+                        <p><strong>Audience ID:</strong> <%= campDetails.audience_id %></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Sampling Product ID:</strong> <%= campDetails.sampling_product_id %></p>
+                        <p><strong>Number of Samples:</strong> <%= campDetails.sampling_no_of_samples %></p>
+                        <p><strong>Sampling Posted Date:</strong> <%= new Date(campDetails.sampling_posted_date).toLocaleDateString() %></p>
+                        <p><strong>Sampling Campaign Reference:</strong> <%= campDetails.sampling_campaign_ref %></p>
                     </div>
                 </div>
-            <% }) %>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Attribute Name:</strong> <%= campDetails.attribute_name %></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Attribute Value:</strong> <%= campDetails.attribute_value %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Audience Details Section -->
+        <h3 class="text-center mt-5 mb-4"><strong>Current Audience</strong></h3>
+        <% if (audienceDetails.length > 0) { %>
+            <div class="scrollable-container">
+                <div class="accordion" id="campaignAccordion">
+                    <% audienceDetails.forEach(function(audience, index) { %>
+                        <div class="accordion-item mb-4 shadow-sm">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#collapse<%= index %>" aria-expanded="false">
+                                    <%= audience.username %> (ID: <%= audience.user_id %>)
+                                </button>
+                            </h2>
+                            <div id="collapse<%= index %>" class="accordion-collapse collapse" data-bs-parent="#campaignAccordion">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <!-- Cards on left column (no change to content) -->
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-primary text-white">User Profile</div>
+                                                <div class="card-body">
+                                                    <img src="<%= audience.profile_image_url %>" class="img-fluid rounded mb-2" alt="<%= audience.username %>'s Profile Photo">
+                                                    <p><strong>See Squad Member Details: </strong><a href="/audienceMember/<%= audience.user_id %>?campaignId=<%= campDetails.campaign_id %>"> Click here!</a></p>
+                                                    <p><strong>Name:</strong> <%= audience.profile_name %> <%= audience.profile_surname %></p>
+                                                    <p><strong>Email:</strong> <%= audience.user_email %></p>
+                                                    <p><strong>Country:</strong> <%= audience.user_country %></p>
+                                                    <p><strong>DOB:</strong> <%= audience.user_dob %></p>
+                                                    <p><strong>Gender:</strong> <%= audience.gender %></p>
+                                                    <p><strong>Skin Tone:</strong> <%= audience.ua_skin_tone %></p>
+                                                    <p><strong>Newsletter:</strong> <%= audience.profile_newsletter ? "Subscribed" : "Not Subscribed" %></p>
+                                                </div>
+                                            </div>
     
-            <!--Area for displaying all the info for currently available members-->
-            <div class="card mt-4">
-                <div class="card-header bg-dark text-white">Currently Available Members</div>
-                <div class="card-body">
-                    <% availableMembers.forEach(function(member) { %>
-                        <div class="mb-3">
-                            <p><strong>ID:</strong> <%= member.user_id %></p>
-                            <p><strong>Username:</strong> <%= member.username %></p>
-                            <p><strong>Email:</strong> <%= member.user_email %></p>
-                            <p><strong>Country:</strong> <%= member.user_country %></p>
-                            <hr>
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-secondary text-white">Sentiment Analysis</div>
+                                                <div class="card-body">
+                                                    <p><strong>Overall Sentiment:</strong> <%= audience.review_sentiment %></p>
+                                                    
+                                                    <div class="mb-3">
+                                                        <p><strong>Positive Sentiment Score:</strong> <%= audience.review_sentiment_score_positive %></p>
+                                                    </div>
+                                                    
+                                                    <div class="mb-3">
+                                                        <p><strong>Negative Sentiment Score:</strong> <%= audience.review_sentiment_score_negative %></p>
+                                                    </div>
+                                                    
+                                                    <div class="mb-3">
+                                                        <p><strong>Neutral Sentiment Score:</strong> <%= audience.review_sentiment_score_neutral %></p>
+                                                    </div>
+                                                    
+                                                    <div class="mb-3">
+                                                        <p><strong>Mixed Sentiment Score:</strong> <%= audience.review_sentiment_score_mixed %></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="card mb-3">
+                                                <div class="card-header bg-info text-white">Social Media Links</div>
+                                                <div class="card-body">
+                                                    <p><strong>Link 1:</strong> <a href="<%= audience.social_media_link1 %>" target="_blank">Click here</a></p>
+                                                    <p><strong>Link 2:</strong> <a href="<%= audience.social_media_link2 %>" target="_blank">Click here</a></p>
+                                                    <p><strong>Link 3:</strong> <a href="<%= audience.social_media_link3 %>" target="_blank">Click here</a></p>
+                                                    <p><strong>Link 4:</strong> <a href="<%= audience.social_media_link4 %>" target="_blank">Click here</a></p>
+                                                    <p><strong>Link 5:</strong> <a href="<%= audience.social_media_link5 %>" target="_blank">Click here</a></p>
+                                                </div>
+                                            </div>
+    
+                                            <form action="/campaigns/<%= campDetails.campaign_id %>/removeMember/<%= audience.user_id %>" method="POST" style="display: inline;">
+                                                <input type="hidden" name="campaignId" value="<%= campDetails.campaign_id %>">
+                                                <input type="hidden" name="audienceId" value="<%= campDetails.audience_id %>">
+                                                <button type="submit" class="btn btn-danger btn-sm">Remove from Campaign</button>
+                                            </form>
+                                        </div>
+    
+                                        <div class="col-md-8">
+                                            <!-- Cards on right column -->
+                                            <% if (audience.review_title) { %>
+                                                <div class="card mb-3">
+                                                    <div class="card-header bg-warning">Product Review</div>
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <img src="<%= audience.product_image_url %>" class="img-fluid" alt="Product">
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <h5><strong>Product Title:</strong> <%= audience.product_title %></h5>
+                                                                <h6><strong>Review Title:</strong> <%= audience.review_title %></h6>
+                                                                <p><strong>Description:</strong> <%= audience.review_description %></p>
+                                                                <p><strong>Rating:</strong> <%= audience.review_rating %></p>
+                                                                <p><strong>Status:</strong> <%= audience.status %></p>
+                                                                <p><strong>Created At:</strong> <%= new Date(audience.review_created_at).toLocaleDateString() %></p>
+                                                                <p><strong>Updated At:</strong> <%= new Date(audience.review_updated_at).toLocaleDateString() %></p>
+                                                                <p><strong>Like Count:</strong> <%= audience.review_like_count %></p>
+                                                                <p><strong>Comment Count:</strong> <%= audience.review_comment_count %></p>
+                                                                <p><strong>Progress:</strong> <%= audience.review_progress %></p>
+                                                                <p><strong>Would Recommend:</strong> <%= audience.review_recommend_product ? "Yes" : "No" %></p>
+                                                                <p><strong>Would Repurchase:</strong> <%= audience.review_repurchase_product ? "Yes" : "No" %></p>
+                                                                <p><strong>How Obtained:</strong> <%= audience.review_how_did_get_product %></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card mb-3">
+                                                    <div class="card-header bg-info text-white">Interaction Details</div>
+                                                    <div class="card-body">
+                                                        <p><strong>Updated At:</strong> <%= new Date(audience.interaction_updated_at).toLocaleDateString() %></p>
+                                                        <p><strong>Created At:</strong> <%= new Date(audience.interaction_created_at).toLocaleDateString() %></p>
+                                                        <p><strong>Social Media Content:</strong> <%= audience.interaction_social_media_content ? "Yes" : "No" %></p>
+                                                        <p><strong>Comment:</strong> <%= audience.interaction_comment %></p>
+                                                        <p><strong>Include Again:</strong> <%= audience.interaction_include_again %></p>
+                                                        <p><strong>Product Demonstrated:</strong> <%= audience.interaction_product_demonstrated ? "Yes" : "No" %></p>
+                                                        <p><strong>Consumer on Camera:</strong> <%= audience.interaction_consumer_on_camera ? "Yes" : "No" %></p>
+                                                        <p><strong>Voiceover:</strong> <%= audience.interaction_voiceover ? "Yes" : "No" %></p>
+                                                        <p><strong>Live Talking to Camera:</strong> <%= audience.interaction_live_talking_to_camera ? "Yes" : "No" %></p>
+                                                        <p><strong>Captions:</strong> <%= audience.interaction_captions ? "Yes" : "No" %></p>
+                                                        <p><strong>Informative Written Review:</strong> <%= audience.interaction_informative_written_review ? "Yes" : "No" %></p>
+                                                        <p><strong>Watermarks:</strong> <%= audience.interaction_watermarks ? "Yes" : "No" %></p>
+                                                        <p><strong>Short Video on Repeat:</strong> <%= audience.interaction_short_video_on_repeat ? "Yes" : "No" %></p>
+                                                        <p><strong>Just Photos in Video:</strong> <%= audience.interaction_just_photos_in_video ? "Yes" : "No" %></p>
+                                                        <p><strong>Unboxing Video Only:</strong> <%= audience.interaction_unboxing_video_only ? "Yes" : "No" %></p>
+                                                        <p><strong>Distracting Transitions:</strong> <%= audience.interaction_distracting_transitions ? "Yes" : "No" %></p>
+                                                        <p><strong>Missed Completion Date:</strong> <%= audience.interaction_missed_completion_date ? "Yes" : "No" %></p>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="card mb-3">
+                                                    <div class="card-header bg-danger text-white">Review Video</div>
+                                                    <div class="card-body">
+                                                        <video controls width="100%">
+                                                            <source src="<%= audience.video_url %>" type="video/mp4">
+                                                            Your browser does not support the video tag.
+                                                        </video>
+                                                        <p><strong>Video Status:</strong> <%= audience.video_status %></p>
+                                                        <p><strong>Deleted:</strong> <%= audience.review_video_deleted ? "Yes" : "No" %></p>
+                                                            <p><strong>Video ID:</strong> <%= audience.review_video_id %></p>
+                                                            <p><strong>Created At:</strong> <%= new Date(audience.review_video_created_at).toLocaleDateString() %></p>
+                                                        </div>
+                                                    </div>
+        
+                                                <form action="/campaigns/<%= campDetails.campaign_id %>/updateMember/<%= audience.user_id %>" method="POST" style="display: inline;">
+                                                    <div class="card mb-3">
+                                                        <div class="card-header bg-secondary text-white">Update Sentiment Analysis</div>
+                                                        <div class="card-body">
+                                                            <label for="overallSentiment">Overall Sentiment:</label>
+                                                            <select id="overallSentiment" name="overallSentiment" required>
+                                                                <option value='' <%= audience.review_sentiment === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                                                                <option value='POSITIVE' <%= audience.review_sentiment === 'POSITIVE' ? 'selected' : '' %>>Positive</option>
+                                                                <option value='NEGATIVE' <%= audience.review_sentiment === 'NEGATIVE' ? 'selected' : '' %>>Negative</option>
+                                                                <option value='NEUTRAL' <%= audience.review_sentiment === 'NEUTRAL' ? 'selected' : '' %>>Neutral</option>
+                                                                <option value='MIXED' <%= audience.review_sentiment === 'MIXED' ? 'selected' : '' %>>Mixed</option>
+                                                            </select><br>
+                                                            <label for="reviewscorepositive">Positive Sentiment:</label>
+                                                            <input type="number" id="reviewscorepositive" name="reviewscorepositive" value="<%= audience.review_sentiment_score_positive %>" min="0" class="form-control mb-2">
+                                                            <label for="reviewscorenegative">Negative Sentiment:</label>
+                                                            <input type="number" id="reviewscorenegative" name="reviewscorenegative" value="<%= audience.review_sentiment_score_negative %>" min="0" class="form-control mb-2">
+                                                            <label for="reviewscoreneutral">Neutral Sentiment:</label>
+                                                            <input type="number" id="reviewscoreneutral" name="reviewscoreneutral" value="<%= audience.review_sentiment_score_neutral %>" min="0" class="form-control mb-2">
+                                                            <label for="reviewscoremixed">Mixed Sentiment:</label>
+                                                            <input type="number" id="reviewscoremixed" name="reviewscoremixed" value="<%= audience.review_sentiment_score_mixed %>" min="0" class="form-control mb-2">
+                                                        </div>
+                                                    </div>
+                                                    <div class="card mb-3">
+                                                        <div class="card-header bg-info text-white">Update Interaction Details & Review Status</div>
+                                                        <div class="card-body">
+                                                            <label for="interactionComment">Comment:</label>
+                                                            <textarea id="interactionComment" name="interactionComment" class="form-control mb-2"><%= audience.interaction_comment %></textarea>
+                                                            <label for="interactionStatus">Review Status:</label>
+                                                            <textarea id="interactionStatus" name="interactionStatus" class="form-control mb-2"><%= audience.status %></textarea>
+                                                            <label for="interactionIncludeAgain">Include Again:</label>
+                                                            <select id="interactionIncludeAgain" name="interactionIncludeAgain" required>
+                                                                <option value='' <%= audience.interaction_include_again === 'NULL' ? 'selected' : '' %>>Select a value</option>
+                                                                <option value='Yes, Definitely' <%= audience.interaction_include_again === 'Yes, Definitely' ? 'selected' : '' %>>Yes, Definitely</option>
+                                                                <option value='Yes' <%= audience.interaction_include_again === 'Yes' ? 'selected' : '' %>>Yes</option>
+                                                                <option value='No' <%= audience.interaction_include_again === 'No' ? 'selected' : '' %>>No</option>
+                                                                <option value='Maybe' <%= audience.interaction_include_again === 'Maybe' ? 'selected' : '' %>>Maybe</option>
+                                                            </select>
+                                                            <br>
+                                                            <label for="interactionProductDemonstrated">Product Demonstrated:</label>
+                                                            <input type="checkbox" id="interactionProductDemonstrated" name="interactionProductDemonstrated" value="1" <%= audience.interaction_product_demonstrated ? 'checked' : '' %> class="form-check-input mb-2">
+                                                            <br>
+                                                            <label for="interactionConsumerOnCamera">Consumer on Camera:</label>
+                                                            <input type="checkbox" id="interactionConsumerOnCamera" name="interactionConsumerOnCamera" value="1" <%= audience.interaction_consumer_on_camera ? 'checked' : '' %> class="form-check-input mb-2">
+                                                            <br>
+                                                            <label for="interactionVoiceover">Voiceover:</label>
+                                                            <input type="checkbox" id="interactionVoiceover" name="interactionVoiceover" value="1" <%= audience.interaction_voiceover ? 'checked' : '' %> class="form-check-input mb-2">
+                                                            <br>
+                                                            <label for="interactionLiveTalkingToCamera">Live Talking to Camera:</label>
+                                                            <input type="checkbox" id="interactionLiveTalkingToCamera" name="interactionLiveTalkingToCamera" value="1" <%= audience.interaction_live_talking_to_camera ? 'checked' : '' %> class="form-check-input mb-2">
+                                                            <br>
+                                                            <label for="interactionCaptions">Captions:</label>
+                                                            <input type="checkbox" id="interactionCaptions" name="interactionCaptions" value="1" <%= audience.interaction_captions ? 'checked' : '' %> class="form-check-input mb-2">
+                                                            <br>
+                                                            <label for="interactionInformativeWrittenReview">Informative Written Review:</label>
+                                                            <input type="checkbox" id="interactionInformativeWrittenReview" name="interactionInformativeWrittenReview" value="1" <%= audience.interaction_informative_written_review ? 'checked' : '' %> class="form-check-input mb-2">
+                                                            <br>
+                                                            <label for="interactionWatermarks">Watermarks:</label>
+                                                            <input type="checkbox" id="interactionWatermarks" name="interactionWatermarks" value="1" <%= audience.interaction_watermarks ? 'checked' : '' %> class="form-check-input mb-2">
+                                                            <br>
+                                                            <label for="interactionShortVideoOnRepeat">Short Video on Repeat:</label>
+                                                            <input type="checkbox" id="interactionShortVideoOnRepeat" name="interactionShortVideoOnRepeat" value="1" <%= audience.interaction_short_video_on_repeat ? 'checked' : '' %> class="form-check-input mb-2">
+                                                            <br>
+                                                            <label for="interactionJustPhotosInVideo">Just Photos in Video:</label>
+                                                            <input type="checkbox" id="interactionJustPhotosInVideo" name="interactionJustPhotosInVideo" value="1" <%= audience.interaction_just_photos_in_video ? 'checked' : '' %> class="form-check-input mb-2">
+                                                            <br>
+                                                            <label for="interactionUnboxingVideoOnly">Unboxing Video Only:</label>
+                                                            <input type="checkbox" id="interactionUnboxingVideoOnly" name="interactionUnboxingVideoOnly" value="1" <%= audience.interaction_unboxing_video_only ? 'checked' : '' %> class="form-check-input mb-2">
+                                                            <br>
+                                                            <label for="interactionDistractingTransitions">Distracting Transitions:</label>
+                                                            <input type="checkbox" id="interactionDistractingTransitions" name="interactionDistractingTransitions" value="1" <%= audience.interaction_distracting_transitions ? 'checked' : '' %> class="form-check-input mb-2">
+                                                            <br>
+                                                            <label for="interactionMissedCompletionDate">Missed Completion Date:</label>
+                                                            <input type="checkbox" id="interactionMissedCompletionDate" name="interactionMissedCompletionDate" value="1" <%= audience.interaction_missed_completion_date ? 'checked' : '' %> class="form-check-input mb-2">
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary btn-sm">Update Details</button>
+                                                </form>
+                                            <% } else { %>
+                                                <p class="text-muted">No review available for this user.</p>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     <% }) %>
                 </div>
             </div>
-        </div>
-    </div>
+        <% } else { %>
+            <div class="alert alert-info">No audience members found for this campaign.</div>
+        <% } %>
 
+<!-- Filter Form -->
+<div class="card mt-4">
+    <div class="card-header bg-secondary text-white">Filter Eligible Members</div>
+    <div class="card-body">
+        <form action="/campaigns/<%= campDetails.campaign_id %>/filterMembers" method="GET">
+            <input type="hidden" name="audienceId" value="<%= campDetails.audience_id %>">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="memID">Member ID:</label>
+                    <input type="number" id="memID" name="memID" class="form-control mb-2" min="0">
+                </div>
+                <div class="col-md-4">
+                    <label for="country">Country:</label>
+                    <input type="text" id="country" name="country" class="form-control mb-2">
+                </div>
+                <div class="col-md-4">
+                    <label for="ageRange">Age Range:</label>
+                    <input type="text" id="ageRange" name="ageRange" placeholder="e.g., 20-30" class="form-control mb-2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="skinConcerns">Skin Concerns:</label>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="skinConcernsDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Skin Concerns</button>
+                        <ul class="dropdown-menu" aria-labelledby="skinConcernsDropdown">
+                            <li><input type="checkbox" name="skinConcerns[]" value="sensitive_skin"> Sensitive Skin</li>
+                            <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_fine_lines"> Fine Lines</li>
+                            <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_breakouts"> Breakouts</li>
+                            <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_large_pores"> Large Pores</li>
+                            <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_hyper_pigmentation"> Hpyer Pigmentation</li>
+                            <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_uneven_tone"> Uneven Tone</li>
+                            <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_dehydration"> Dehydration</li>
+                            <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_acne"> Acne</li>
+                            <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_dull_skin"> Dull Skin</li>
+                            <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_rosacea"> Rosacea</li>
+                            <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_dark_spots"> Dark Spots</li>
+                            <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_sun_damage"> Sun Damage</li>
+                            <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_puffiness"> Puffiness</li>
+                            <li><input type="checkbox" name="skinConcerns[]" value="skin_concern_cystic_acne"> Cystic Acne</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="eyeConcerns">Eye Concerns:</label>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="eyeConcernsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Select Eye Concerns
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="eyeConcernsDropdown">
+                            <li><input type="checkbox" name="eyeConcerns[]" value="eye_concern_dark_circles "> Dark Circles</li>
+                            <li><input type="checkbox" name="eyeConcerns[]" value="eye_concern_lines_wrinkles "> Lines/Wrinkles</li>
+                            <li><input type="checkbox" name="eyeConcerns[]" value="eye_concern_drooping_eyelids"> Drooping Eyelids</li>
+                            <li><input type="checkbox" name="eyeConcerns[]" value="eye_concern_puffiness"> Puffiness</li>
+                            <li><input type="checkbox" name="eyeConcerns[]" value="eye_concern_under_eye_hallows"> Under Eye Hallows</li>
+                            <li><input type="checkbox" name="eyeConcerns[]" value="eye_concern_none"> None</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="lipConcerns">Lip Concerns:</label>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="lipConcernsDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Lip Concerns</button>
+                        <ul class="dropdown-menu" aria-labelledby="lipConcernsDropdown">
+                            <li><input type="checkbox" name="lipConcerns[]" value="lips_concern_normal "> Normal</li>
+                            <li><input type="checkbox" name="lipConcerns[]" value="lips_concern_dry "> Dry</li>
+                            <li><input type="checkbox" name="lipConcerns[]" value="lips_concern_cracked"> Cracked</li>
+                            <li><input type="checkbox" name="lipConcerns[]" value="lips_concern_cold_sores"> Cold Sores</li>
+                            <li><input type="checkbox" name="lipConcerns[]" value="lips_concern_thin"> Thin</li>
+                            <li><input type="checkbox" name="lipConcerns[]" value="lips_concern_chapped"> Chapped</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="bodySkinConcerns">Body Skin Concerns:</label>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="bodySkinConcernsDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Body Skin Concerns</button>
+                        <ul class="dropdown-menu" aria-labelledby="bodySkinConcernsDropdown">
+                            <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_cellulite "> Cellulite</li>
+                            <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_stretch_marks "> Stretch Marks</li>
+                            <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_dehydration"> Dehydration</li>
+                            <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_menopausal"> Menopausal</li>
+                            <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_itchy_skin"> Itchy Skin</li>
+                            <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_eczema"> Eczema</li>
+                            <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_psoriasis"> Psoriasis</li>
+                            <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_vitiligo"> Vitiligo</li>
+                            <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_keratosis_pilaris"> Keratosis Pilaris</li>
+                            <li><input type="checkbox" name="bodySkinConcerns[]" value="body_skin_concern_none"> None</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="hairConcerns">Hair Concerns:</label>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="hairConcernsDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Hair Concerns</button>
+                        <ul class="dropdown-menu" aria-labelledby="hairConcernsDropdown">
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_frizz "> Frizz</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_dandruff "> Dandruff</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_damage"> Damage</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_coloured"> Coloured</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_lack_volume"> Lack Volume</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_hair_loss"> Hair Loss</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_ageing_hair"> Ageing Hair</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_split_ends"> Split Ends</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_lack_shine"> Lack Shine</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_psoriasis"> Psoriasis</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_oily_scalp"> Oily Scalp</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_itchy_scalp"> Itchy Scalp</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_heat_damaged"> Heat Damaged</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_thinning"> Thinning</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_alopecia"> Alopecia</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_dry_scalp"> Dry Scalp</li>
+                            <li><input type="checkbox" name="hairConcerns[]" value="hair_concern_none"> None</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="scents">Scents:</label>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="scentsDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Scents</button>
+                        <ul class="dropdown-menu" aria-labelledby="scentsDropdown">
+                            <li><input type="checkbox" name="scents[]" value="scents_clean "> Clean</li>
+                            <li><input type="checkbox" name="scents[]" value="scents_floral "> Floral</li>
+                            <li><input type="checkbox" name="scents[]" value="scents_oriental"> Oriental</li>
+                            <li><input type="checkbox" name="scents[]" value="scents_woody"> Woody</li>
+                            <li><input type="checkbox" name="scents[]" value="scents_citrus"> Citrus</li>
+                            <li><input type="checkbox" name="scents[]" value="scents_fruity"> Fruity</li>
+                            <li><input type="checkbox" name="scents[]" value="scents_green"> Green</li>
+                            <li><input type="checkbox" name="scents[]" value="scents_oceanic"> Oceanic</li>
+                            <li><input type="checkbox" name="scents[]" value="scents_spicy"> Spicy</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="productConcers">Product Concerns:</label>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="productDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Product Concerns</button>
+                        <ul class="dropdown-menu" aria-labelledby="productDropdown">
+                            <li><input type="checkbox" name="productConcers[]" value="product_anti_ageing "> Product Anti Ageing</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_clean "> Product Clean</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_contains_aloe"> Contains Aloe</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_contains_caffeine"> Contains Caffeine</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_contains_cocoa"> Contains Cocoa</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_contains_retinol"> Contains Retinol</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_contains_shea"> Contains Shea</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_contains_spf"> Contains Spf</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_cruelty_free"> Cruelty Free</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_eco_friendly"> Eco Friendly</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_halal"> Product Halal</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_natural"> Product Natural</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_organic"> Product Organic</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_vegan_friendly"> Product Vegan Friendly</li>
+                            <li><input type="checkbox" name="productConcers[]" value="product_sustainable"> Product Sustainable</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="scents">Skin Tone:</label>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="skinToneDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Skin Tone</button>
+                        <ul class="dropdown-menu" aria-labelledby="skinToneDropdown">
+                            <li><input type="checkbox" name="skinTone[]" value="VERY_FAIR "> Very Fair</li>
+                            <li><input type="checkbox" name="skinTone[]" value="FAIR "> Fair</li>
+                            <li><input type="checkbox" name="skinTone[]" value="MEDIUM"> Medium</li>
+                            <li><input type="checkbox" name="skinTone[]" value="TAN"> Tan</li>
+                            <li><input type="checkbox" name="skinTone[]" value="DEEP"> Deep</li>
+                            <li><input type="checkbox" name="skinTone[]" value="DARK"> Dark</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="scents">Skin Type:</label>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="skinTypeDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Skin Type</button>
+                        <ul class="dropdown-menu" aria-labelledby="skinTypeDropdown">
+                            <li><input type="checkbox" name="skinType[]" value="NORMAL "> Normal</li>
+                            <li><input type="checkbox" name="skinType[]" value="DRY "> Dry</li>
+                            <li><input type="checkbox" name="skinType[]" value="OILY"> Oily</li>
+                            <li><input type="checkbox" name="skinType[]" value="COMBINATION"> Combination</li>
+                            <li><input type="checkbox" name="skinType[]" value="MATURE"> Mature</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="scents">Hair Moisture Level:</label>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="hairMoistDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Hair Moisture Level</button>
+                        <ul class="dropdown-menu" aria-labelledby="hairMoistDropdown">
+                            <li><input type="checkbox" name="hairMoistLevel[]" value="NORMAL "> Normal</li>
+                            <li><input type="checkbox" name="hairMoistLevel[]" value="DRY "> Dry</li>
+                            <li><input type="checkbox" name="hairMoistLevel[]" value="OILY"> Oily</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="scents">Hair Type:</label>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="hairTypeDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Hair Type</button>
+                        <ul class="dropdown-menu" aria-labelledby="hairTypeDropdown">
+                            <li><input type="checkbox" name="hairType[]" value="STRAIGHT"> Straight</li>
+                            <li><input type="checkbox" name="hairType[]" value="SOFT_WAVE "> Soft Wave</li>
+                            <li><input type="checkbox" name="hairType[]" value="WAVY"> Wavy</li>
+                            <li><input type="checkbox" name="hairType[]" value="CURLY"> Curly</li>
+                            <li><input type="checkbox" name="hairType[]" value="TIGHT_CURLY"> Tight Curly</li>
+                            <li><input type="checkbox" name="hairType[]" value="COILY"> Coily</li>
+                            <li><input type="checkbox" name="hairType[]" value="CURLY"> Curly</li>
+                            <li><input type="checkbox" name="hairType[]" value="TIGHT_COILS"> Tight Coils</li>
+                            <li><input type="checkbox" name="hairType[]" value="WIRY"> Wiry</li>
+                            <li><input type="checkbox" name="hairType[]" value="KINKY"> Kinky</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="scents">Hair Colour:</label>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="hairColDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Hair Colour</button>
+                        <ul class="dropdown-menu" aria-labelledby="hairColDropdown">
+                            <li><input type="checkbox" name="hairColour[]" value="BLONDE "> Blonde</li>
+                            <li><input type="checkbox" name="hairColour[]" value="RED "> Red</li>
+                            <li><input type="checkbox" name="hairColour[]" value="BROWN"> Brown</li>
+                            <li><input type="checkbox" name="hairColour[]" value="BLACK "> Black</li>
+                            <li><input type="checkbox" name="hairColour[]" value="GREY "> Grey</li>
+                            <li><input type="checkbox" name="hairColour[]" value="WHITE"> White</li>
+                            <li><input type="checkbox" name="hairColour[]" value="OTHER"> Other</li>
+                        </ul>
+                    </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="scents">Eye Colour:</label>
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="EyeColDropdown" data-bs-toggle="dropdown" aria-expanded="false">Select Eye Colour</button>
+                    <ul class="dropdown-menu" aria-labelledby="EyeColDropdown">
+                        <li><input type="checkbox" name="eyeCol[]" value="BLUE"> Blue</li>
+                        <li><input type="checkbox" name="eyeCol[]" value="GREEN "> Green</li>
+                        <li><input type="checkbox" name="eyeCol[]" value="GREY"> Grey</li>
+                        <li><input type="checkbox" name="eyeCol[]" value="BROWN"> Brown</li>
+                        <li><input type="checkbox" name="eyeCol[]" value="HAZEL"> Hazel</li>
+                        <li><input type="checkbox" name="eyeCol[]" value="AMBER"> Amber</li>
+                        <li><input type="checkbox" name="eyeCol[]" value="RED"> Red</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="limit">Number of Results:</label>
+                    <input type="number" id="limit" name="limit" class="form-control mb-2" min="1" placeholder="Enter limit">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Search</button>
+        </form>
+    </div>
+</div>
+
+<!-- Filtered Results -->
+<div class="card mt-4">
+    <div class="card-header bg-dark text-white">Filtered Eligible Members</div>
+    <div class="card-body">
+        <% if (filteredMembers && filteredMembers.length > 0) { %>
+            <form action="/campaigns/<%= campDetails.campaign_id %>/addSelectedMembers" method="POST">
+                <input type="hidden" name="campaignId" value="<%= campDetails.campaign_id %>">
+                <input type="hidden" name="audienceId" value="<%= campDetails.audience_id %>">
+                <input type="hidden" name="productVariantId" value="<%= campDetails.SamCap_Product_var_id %>">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped align-middle text-nowrap">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Select</th>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Country</th>
+                                <th>Instagram</th>
+                                <th>TikTok</th>
+                                <th>Latest Review</th>
+                                <th>Latest Campaign</th>
+                                <th>Total Campaigns</th>
+                                <th>Status Counts</th>
+                                <th>Include Again</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% filteredMembers.forEach(function(member) { %>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="selectedMembers[]" value="<%= member.user_id %>">
+                                    </td>
+                                    <td><%= member.user_id %></td>
+                                    <td><%= member.username %></td>
+                                    <td title="<%= member.user_email %>">
+                                        <%= member.user_email.length > 20 ? member.user_email.slice(0, 20) + "..." : member.user_email %>
+                                    </td>
+                                    <td><%= member.user_country %></td>
+                                    <td><%= member.instagram_handle || "N/A" %></td>
+                                    <td><%= member.tiktok_handle || "N/A" %></td>
+                                    <td><%= member.latest_review_date ? new Date(member.latest_review_date).toLocaleDateString() : "N/A" %></td>
+                                    <td><%= member.latest_campaign_date ? new Date(member.latest_campaign_date).toLocaleDateString() : "N/A" %></td>
+                                    <td><%= member.total_campaigns %></td>
+                                    <td>
+                                        <ul class="list-unstyled mb-0">
+                                            <li><strong>Complete:</strong> <%= member.status_complete_count %></li>
+                                            <li><strong>In Progress:</strong> <%= member.status_in_progress_count %></li>
+                                            <li><strong>Incomplete:</strong> <%= member.status_incomplete_count %></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul class="list-unstyled mb-0">
+                                            <li><strong>Definitely:</strong> <%= member.include_again_yes_definitely_count %></li>
+                                            <li><strong>Yes:</strong> <%= member.include_again_yes_count %></li>
+                                            <li><strong>Maybe:</strong> <%= member.include_again_maybe_count %></li>
+                                            <li><strong>No:</strong> <%= member.include_again_no_count %></li>
+                                            <li><strong>Null:</strong> <%= member.include_again_null_count %></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <a href="/audienceMember/<%= member.user_id %>?campaignId=<%= campDetails.campaign_id %>" class="btn btn-info btn-sm">View Details</a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Add Selected Members to Campaign</button>
+            </form>
+        <% } else { %>
+            <p class="text-muted">No members match the selected criteria.</p>
+        <% } %>
+    </div>
+</div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
