@@ -20,6 +20,7 @@
   "keywords": [],
   "description": "",
   "devDependencies": {
-    "electron": "^35.2.1"
+    "electron": "^35.2.1",
+    "electron-packager": "^17.1.2"
   }
 }
