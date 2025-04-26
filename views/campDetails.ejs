@@ -28,21 +28,13 @@
                         <p><strong>Product Variant ID:</strong> <%= campDetails.SamCap_Product_var_id %></p>
                         <p><strong>Posted Date:</strong> <%= new Date(campDetails.Campaign_posted_at).toLocaleDateString() %></p>
                         <p><strong>Campaign Reference:</strong> <%= campDetails.campaign_name %></p>
-                        <p><strong>Audience ID:</strong> <%= campDetails.audience_id %></p>
                     </div>
                     <div class="col-md-6">
                         <p><strong>Sampling Product ID:</strong> <%= campDetails.sampling_product_id %></p>
                         <p><strong>Number of Samples:</strong> <%= campDetails.sampling_no_of_samples %></p>
                         <p><strong>Sampling Posted Date:</strong> <%= new Date(campDetails.sampling_posted_date).toLocaleDateString() %></p>
                         <p><strong>Sampling Campaign Reference:</strong> <%= campDetails.sampling_campaign_ref %></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p><strong>Attribute Name:</strong> <%= campDetails.attribute_name %></p>
-                    </div>
-                    <div class="col-md-6">
-                        <p><strong>Attribute Value:</strong> <%= campDetails.attribute_value %></p>
+                        <p><strong>Audience ID:</strong> <%= campDetails.audience_id %></p>
                     </div>
                 </div>
             </div>
