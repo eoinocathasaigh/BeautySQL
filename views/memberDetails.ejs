@@ -28,7 +28,7 @@
             <input type="text" id="country" name="country" maxlength="255" value="<%= memberDetails.user_country %>">
             <br>
             <label for="dob">Date of Birth:</label>
-            <input type="text" id="dob" name="dob" maxlength="45" value="<%= memberDetails.user_dob %>">
+            <input type="text" id="dob" name="dob" maxlength="45" value="<%= memberDetails.user_dob %>" readonly>
             <br>
             <label for="gender">Gender:</label>
             <select id="gender" name="gender" required>
@@ -55,7 +55,7 @@
             </select>
             <br>
             <label for="lastLog">Last Login:</label>
-            <input type="number" id="lastLog" name="lastLog" minlength="1" value="<%= memberDetails.user_last_login_at %>" min="0">
+            <input type="number" id="lastLog" name="lastLog" minlength="1" value="<%= memberDetails.user_last_login_at %>" min="0" readonly>
             <br>
             <label for="create">Created At:</label>
             <input type="text" id="create" name="create" value="<%= memberDetails.user_created_at %>" readonly>
@@ -79,7 +79,7 @@
             <textarea id="profBio" name="profBio" rows="4" cols="65"><%= memberDetails.profile_bio %></textarea>
             <br>
             <label for="profImgId">Profile Image Id:</label>
-            <input type="number" id="profImgId" name="profImgId" value="<%= memberDetails.profile_image_id %>" min="0">
+            <input type="number" id="profImgId" name="profImgId" value="<%= memberDetails.profile_image_id %>" min="0" readonly>
             <br>
             <label for="profImgUrl">Profile Image Url:</label>
             <input type="text" id="profImgUrl" name="profImgUrl" value="<%= memberDetails.profile_image_url %>">
