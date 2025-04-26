@@ -1,47 +1,31 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser')
-var mySqlDao = require('./sqlDao')
-let ejs = require('ejs');
-app.set('view engine', 'ejs')
-const { check, validationResult } = require('express-validator');
-//Variable for controlling if the user is signed in as a guest or not
+// index.js
+const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
+const mySqlDao = require('./sqlDao');
+const { check, validationResult } = require('express-validator');
 
+const app = express();
+
+// — Views & Static —
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
-//Making our app listen on port 3004
-//Listening for connections on a certain port
-app.listen(4000, ()=>{
-    console.log("App is listening for connection");
-})
-
-
-//Routing in the application
-//Returning the content of the home page - what the user will initially see
-app.get("/", (req, res)=> {
-    res.render("login");
-})
-
+// — Routes —  
+app.get("/", (req, res) => {
+  res.render("login", { error: req.query.error });
+});
 app.post("/login", (req, res) => {
-    
-    const { hostname, username, password, database } = req.body;
-
-    if (!hostname || !username || !password || !database) {
-        return res.send(`<script>alert("Please fill in all fields."); window.location.href = "/";</script>`);
-    }
-
-    mySqlDao.login(hostname, username, password, database)
-        .then(() => {
-            res.redirect("/members");
-        })
-        .catch((error) => {
-            console.log("Database Connection Failed:", error); // Debugging log
-            res.send(`<script>alert("Error encountered while logging in. Ensure credentials are correct and try again."); window.location.href = "/";</script>`);
-        });
+  const { hostname, username, password, database } = req.body;
+  if (!hostname||!username||!password||!database) {
+    return res.redirect('/?error=Please%20fill%20in%20all%20fields');
+  }
+  mySqlDao.login(hostname, username, password, database)
+    .then(() => res.redirect("/members"))
+    .catch(() => res.redirect('/?error=Login%20failed'));
 });
 
 //Rendering the page for the individual beauty squad member details
@@ -224,3 +208,11 @@ app.get("/campaigns/:campaignId/filterMembers", (req, res) => {
         res.status(500).send("Failed to filter members");
     });
 });
+
+// Catch-all route for errors (in case views are not found)
+app.use((req, res) => {
+    res.status(404).send('Page not found. <a href="/">Home</a>');
+  });
+  
+  // **Export the app** so Electron can listen on it
+  module.exports = app;

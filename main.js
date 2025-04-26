@@ -1,43 +1,40 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
-const { exec } = require('child_process');
+// main.js
+const { app: electronApp, BrowserWindow } = require('electron');
+const expressApp = require('./index');      // your Express app
+let expressServer, mainWindow;
 
-let mainWindow;
-let serverProcess;
-
-app.whenReady().then(() => {
-    // Start the Express server from index.js
-    serverProcess = exec('node index.js', (err, stdout, stderr) => {
-        if (err) {
-            console.error(`Error starting server: ${err}`);
-            return;
-        }
-        console.log(`Server Output: ${stdout}`);
-        console.error(`Server Errors: ${stderr}`);
+async function startExpress() {
+  return new Promise(resolve => {
+    expressServer = expressApp.listen(4000, () => {
+      console.log('Express listening on port 4000');
+      resolve();
     });
+  });
+}
 
-    // Create the Electron window
-    mainWindow = new BrowserWindow({
-        width: 1200,
-        height: 800,
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false
-        }
-    });
+function stopExpress() {
+  if (expressServer) expressServer.close();
+}
 
-    // Wait for the server to start, then load the app
-    setTimeout(() => {
-        mainWindow.loadURL('http://localhost:4000');
-    }, 3000);
+function createWindow() {
+  mainWindow = new BrowserWindow({
+    width: 1200, height: 800,
+    webPreferences: { nodeIntegration: true, contextIsolation: false }
+  });
+  mainWindow.loadURL('http://localhost:4000');
+  mainWindow.on('closed', () => { mainWindow = null; });
+}
 
-    mainWindow.on('closed', () => {
-        mainWindow = null;
-        if (serverProcess) serverProcess.kill(); // Kill Express when Electron closes
-    });
+electronApp.whenReady().then(async () => {
+  await startExpress();   // start your server
+  createWindow();         // then open the UI
 });
 
-app.on('window-all-closed', () => {
-    if (serverProcess) serverProcess.kill(); // Ensure server stops
-    if (process.platform !== 'darwin') app.quit();
+electronApp.on('window-all-closed', () => {
+  stopExpress();          // shut down server cleanly
+  if (process.platform !== 'darwin') electronApp.quit();
+});
+
+electronApp.on('activate', () => {
+  if (!mainWindow) createWindow();
 });
