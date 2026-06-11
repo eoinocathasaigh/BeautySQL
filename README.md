@@ -1,0 +1,2 @@
+# BeautySQL - Eoin Ocathasaigh
+BeautySQL is an express application built to enhance a developers interaction with their SQL database either from their local based repository or through remote hosting on AWS. Developed for "The Beauty Buddy", the app automatically loads and represents data through a series of http method calls and complex SQL queires all to create a more interactive and streamlined experience of database interaction and management.
